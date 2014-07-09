@@ -12,6 +12,7 @@ public abstract class Operation<T extends Operation<T>> extends Expression<T> {
 		this.operandLimit = operandLimit;
 	}
 	
+	@SuppressWarnings("unchecked") // ugh, wish the compiler dug just a little deeper...
 	public T addOperand(ExpressionOperand operand) /* throws Exception */ {
 		if(operandLimit < 0 || elements.size() < operandLimit) {
 			return super.addOperand(operand);

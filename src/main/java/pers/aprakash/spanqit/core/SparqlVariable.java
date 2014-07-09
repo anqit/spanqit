@@ -6,9 +6,9 @@ import pers.aprakash.spanqit.rdf.ObjectPattern;
 import pers.aprakash.spanqit.rdf.PredicatePattern;
 import pers.aprakash.spanqit.rdf.SubjectPattern;
 
-public class SparqlVariable implements Projectable, ExpressionOperand,
-		Orderable, Groupable, GraphName, SubjectPattern, PredicatePattern,
-		ObjectPattern {
+public class SparqlVariable implements Projectable, SubjectPattern,
+		PredicatePattern, ObjectPattern, ExpressionOperand, Orderable,
+		Groupable, GraphName {
 	private String alias;
 
 	SparqlVariable(String varName) {

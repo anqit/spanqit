@@ -4,7 +4,7 @@ import pers.aprakash.spanqit.rdf.ObjectPattern;
 import pers.aprakash.spanqit.rdf.PredicatePattern;
 import pers.aprakash.spanqit.rdf.SubjectPattern;
 
-class TriplePattern implements GraphPatternIface {
+public class TriplePattern implements GraphPattern {
 	private SubjectPattern subject;
 	private PredicatePattern predicate;
 	private ObjectPattern object;

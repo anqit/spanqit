@@ -6,9 +6,9 @@ import org.junit.Test;
 import pers.aprakash.spanqit.core.SelectQuery;
 import pers.aprakash.spanqit.core.SparqlVariable;
 
-import static pers.aprakash.spanqit.constraint.QueryConstraintBuilder.*;
-import static pers.aprakash.spanqit.core.QueryElementBuilder.*;
-import static pers.aprakash.spanqit.graphpattern.GraphPatternBuilder.*;
+import static pers.aprakash.spanqit.constraint.Functions.*;
+import static pers.aprakash.spanqit.core.Elements.*;
+import static pers.aprakash.spanqit.graphpattern.GraphPatterns.*;
 
 public class SpanqitTest extends BaseSpanqitTest {
 	String namespace = "http://www.spanqit.com/#";
@@ -97,8 +97,8 @@ public class SpanqitTest extends BaseSpanqitTest {
 		SparqlVariable title = sq.createQueryVariable();
 		SparqlVariable x = sq.createQueryVariable();
 
-		sq.select(title).where(
-				tp(x, uri(dc, "title"), title).filter(
+		sq.select(title).where(and(
+				tp(x, uri(dc, "title"), title)).filter(
 						regex(title, "^SPARQL", "ig")));
 
 		p(sq);
@@ -114,14 +114,15 @@ public class SpanqitTest extends BaseSpanqitTest {
 		SparqlVariable x = sq.createQueryVariable();
 
 		sq.select(title, price)
-				.where(and(tp(x, uri(ns, "price"), price),
-						tp(x, uri(dc, "title"), title)).filter(lt(price, 30.5)));
+		  .where(and(tp(x, uri(ns, "price"), price),
+		  			 tp(x, uri(dc, "title"), title))
+		  		 .filter(lt(price, 30.5)));
 
 		p(sq);
 	}
 
 	@Test
 	public void testEmpty() {
-		System.out.println(new SelectQuery().getQueryString());
+		p(new SelectQuery());
 	}
 }

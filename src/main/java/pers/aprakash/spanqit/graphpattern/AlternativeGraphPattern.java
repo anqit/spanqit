@@ -3,7 +3,7 @@ package pers.aprakash.spanqit.graphpattern;
 import pers.aprakash.spanqit.core.QueryElementCollection;
 
 class AlternativeGraphPattern extends
-		QueryElementCollection<GroupGraphPattern> implements GraphPatternIface {
+		QueryElementCollection<GroupGraphPattern> implements GraphPattern {
 	private static final String UNION = "UNION";
 	private static final String DELIMETER = " " + UNION + " ";
 
@@ -11,12 +11,12 @@ class AlternativeGraphPattern extends
 		super(DELIMETER);
 	}
 
-	AlternativeGraphPattern(GraphPatternIface original) {
+	AlternativeGraphPattern(GraphPattern original) {
 		super(DELIMETER);
 		
 		if(original instanceof AlternativeGraphPattern) {
 			copy((AlternativeGraphPattern) original);
-		} else {
+		} else if(original != null){
 			elements.add(new GroupGraphPattern(original));
 		}
 	}
@@ -25,8 +25,8 @@ class AlternativeGraphPattern extends
 		this.elements = original.elements;
 	}
 
-	AlternativeGraphPattern union(GraphPatternIface... patterns) {
-		for (GraphPatternIface pattern : patterns) {
+	AlternativeGraphPattern union(GraphPattern... patterns) {
+		for (GraphPattern pattern : patterns) {
 			elements.add(new GroupGraphPattern(pattern));
 		}
 

@@ -5,7 +5,7 @@ public class NamedGraphPattern extends GroupGraphPattern {
 	private static final String GRAPH = "GRAPH";
 	private GraphName name;
 	
-	NamedGraphPattern(GraphPatternIface original, GraphName name) {
+	NamedGraphPattern(GraphPattern original, GraphName name) {
 		super(original);
 		this.name = name;
 	}

@@ -1,6 +1,6 @@
 package pers.aprakash.spanqit.graphpattern;
 
-public class QueryPattern extends GraphPattern {
+public class QueryPattern extends GraphPatternNotTriple {
 	private static final String WHERE = "WHERE";
 	
 	@Override

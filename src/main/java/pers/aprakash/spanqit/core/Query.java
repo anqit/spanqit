@@ -4,6 +4,7 @@ import pers.aprakash.spanqit.constraint.Expression;
 import pers.aprakash.spanqit.graphpattern.GraphPattern;
 import pers.aprakash.spanqit.graphpattern.QueryPattern;
 
+@SuppressWarnings("unchecked") // really wish i didn't have to do this
 public abstract class Query<T extends Query<T>> implements QueryElement {
 	protected static final String LIMIT = "LIMIT";
 	protected static final String OFFSET = "OFFSET";

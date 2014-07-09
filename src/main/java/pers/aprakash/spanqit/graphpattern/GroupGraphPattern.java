@@ -1,16 +1,15 @@
 package pers.aprakash.spanqit.graphpattern;
 
-
 import pers.aprakash.spanqit.constraint.Expression;
 import pers.aprakash.spanqit.core.QueryElementCollection;
 import pers.aprakash.spanqit.core.Util;
 
-class GroupGraphPattern extends QueryElementCollection<GraphPatternIface>
-		implements GraphPatternIface {
+class GroupGraphPattern extends QueryElementCollection<GraphPattern>
+		implements GraphPattern {
 	private static final String OPTIONAL = "OPTIONAL";
 	private static final String DELIMITER = " . ";
 	private Filter filter;
-	protected boolean isOptional;
+	protected boolean isOptional = false;
 
 	GroupGraphPattern() {
 		this(false);
@@ -21,14 +20,13 @@ class GroupGraphPattern extends QueryElementCollection<GraphPatternIface>
 		this.isOptional = isOptional;
 	}
 
-	GroupGraphPattern(GraphPatternIface pattern) {
+	GroupGraphPattern(GraphPattern original) {
 		super(DELIMITER);
 
-		if (pattern instanceof GroupGraphPattern) {
-			copy((GroupGraphPattern) pattern);
-		} else {
-			this.isOptional = false;
-			elements.add(pattern);
+		if (original instanceof GroupGraphPattern) {
+			copy((GroupGraphPattern) original);
+		} else if(original != null) {
+			elements.add(original);
 		}
 	}
 
@@ -38,8 +36,8 @@ class GroupGraphPattern extends QueryElementCollection<GraphPatternIface>
 		this.filter = original.filter;
 	}
 
-	GroupGraphPattern and(GraphPatternIface... patterns) {
-		for (GraphPatternIface pattern : patterns) {
+	GroupGraphPattern and(GraphPattern... patterns) {
+		for (GraphPattern pattern : patterns) {
 			elements.add(pattern);
 		}
 

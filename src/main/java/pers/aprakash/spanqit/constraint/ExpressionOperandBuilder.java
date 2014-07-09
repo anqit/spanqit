@@ -28,7 +28,7 @@ public class ExpressionOperandBuilder {
 			
 			@Override
 			public String getPrettyQueryString(int indent) {
-				return null;
+				return getQueryString();
 			}
 		};
 	}
@@ -47,19 +47,4 @@ public class ExpressionOperandBuilder {
 			}
 		};
 	}
-	
-//	public static ExpressionOperand convertToOperand(final double operand) {
-//		return new ExpressionOperand() {
-//			
-//			@Override
-//			public String getQueryString() {
-//				return String.valueOf(operand);
-//			}
-//			
-//			@Override
-//			public String getPrettyQueryString(int indent) {
-//				return getQueryString();
-//			}
-//		};
-//	}
 }
