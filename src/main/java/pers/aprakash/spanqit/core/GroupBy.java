@@ -10,7 +10,7 @@ public class GroupBy extends QueryElementCollection<Groupable> {
 		super(DELIMETER, new ArrayList<Groupable>());
 	}
 	
-	GroupBy by(Groupable... groupables) {
+	public GroupBy by(Groupable... groupables) {
 		for(Groupable groupable : groupables) {
 			elements.add(groupable);
 		}

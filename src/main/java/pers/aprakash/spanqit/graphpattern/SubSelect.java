@@ -1,49 +1,64 @@
 package pers.aprakash.spanqit.graphpattern;
 
-import pers.aprakash.spanqit.constraint.Expression;
-import pers.aprakash.spanqit.core.GroupBy;
-import pers.aprakash.spanqit.core.Having;
-import pers.aprakash.spanqit.core.OrderBy;
-import pers.aprakash.spanqit.core.SelectQuery;
+import pers.aprakash.spanqit.core.BaseQuery;
+import pers.aprakash.spanqit.core.Elements;
+import pers.aprakash.spanqit.core.Projectable;
+import pers.aprakash.spanqit.core.Projection;
+import pers.aprakash.spanqit.core.Util;
 
-public class SubSelect implements GraphPattern {
-	protected static final String LIMIT = "LIMIT";
-	protected static final String OFFSET = "OFFSET";
-
-	protected QueryPattern where = new QueryPattern();  // ? for DESCRIBE, required otherwise
-	protected GroupBy groupBy; // ?
-	protected OrderBy orderBy; // ?
-	protected Having having; // ?
-	protected int limit = -1, offset = -1, varCount = -1;  // ?
+public class SubSelect extends BaseQuery<SubSelect> implements GraphPattern {	
+	private Projection select = Elements.select();
 	
-	public GraphPattern and(GraphPattern... patterns) {
-		where.and(patterns);
+	/*
+	 * If someone has any ideas how I can eliminate the need for repeating
+	 * the following methods from SelectQuery without inheriting the methods
+	 * that don't apply to SubSelect (prologue and dataset stuff), that would
+	 * be awesome.
+	 */
+	
+	public SubSelect distinct() {
+		return distinct(true);
+	}
+	
+	public SubSelect distinct(boolean isDistinct) {
+		select.distinct(isDistinct);
 		
 		return this;
 	}
-
-	public GraphPattern union(GraphPattern... patterns) {
-		where.union(patterns);
+	
+	public SubSelect all() {
+		return all(true);
+	}
+	
+	public SubSelect all(boolean selectAll) {
+		select.all(selectAll);
 		
 		return this;
 	}
-
-	public GraphPattern optional(boolean isOptional) {
-		where.optional(isOptional);
+	
+	public SubSelect select(Projectable... projectables) {
+		select.select(projectables);
 		
 		return this;
 	}
-
-	public GraphPattern filter(Expression constraint) {
-		where.filter(constraint);
-		
-		return this;
+	
+	// TODO: Values
+	
+	@Override
+	protected String getQueryActionString() {
+		return select.getQueryString();
 	}
 	
 	@Override
 	public String getQueryString() {
+		StringBuilder subSelect = new StringBuilder();
+
+		subSelect.append(super.getQueryString());
 		
-		return super.getQueryString();
+		// TODO: VALUES
+		// subselect.append(values.getQueryString());
+		
+		return Util.getBracketedString(subSelect.toString());
 	}
 
 	@Override

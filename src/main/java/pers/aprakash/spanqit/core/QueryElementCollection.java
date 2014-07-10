@@ -35,19 +35,18 @@ public abstract class QueryElementCollection<T extends QueryElement> implements
 
 		if (!isEmpty()) {
 			Iterator<T> it = elements.iterator();
-
+			boolean first = true;
+			
 			while (it.hasNext()) {
 				T next = it.next();
-				if (next != null) {					
-					queryElements.append(next.getQueryString()).append(
-							delimeter);
+				if (next != null) {
+					if(!first) {
+						queryElements.append(delimeter);
+					}
+					queryElements.append(next.getQueryString());
+					
+					first = false;
 				}
-			}
-
-			if (queryElements.length() > 0) {
-				queryElements.delete(
-						queryElements.length() - delimeter.length(),
-						queryElements.length());
 			}
 		}
 

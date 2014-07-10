@@ -28,6 +28,18 @@ public class Elements {
 		return new FromClause(iri, true);
 	}
 
+	public static Projection select(Projectable... projectables) {
+		return new Projection().select(projectables);
+	}
+	
+	public static GroupBy groupBy(Groupable... groupables) {
+		return new GroupBy().by(groupables);
+	}
+	
+	public static OrderBy orderBy(OrderCondition... conditions) {
+		return new OrderBy().by(conditions);
+	}
+	
 	public static Having having(Expression<?>... expressions) {
 		return new Having().addConstraint(expressions);
 	}

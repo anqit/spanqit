@@ -3,7 +3,7 @@ package pers.aprakash.spanqit.core;
 import pers.aprakash.spanqit.graphpattern.GraphTemplate;
 import pers.aprakash.spanqit.graphpattern.TriplePattern;
 
-public class ConstructQuery extends Query<ConstructQuery> {
+public class ConstructQuery extends BaseQuery<ConstructQuery> {
 	private GraphTemplate construct = new GraphTemplate();
 		
 	public ConstructQuery construct(TriplePattern... patterns) {

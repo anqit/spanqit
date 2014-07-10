@@ -5,42 +5,15 @@ import pers.aprakash.spanqit.graphpattern.GraphPattern;
 import pers.aprakash.spanqit.graphpattern.QueryPattern;
 
 @SuppressWarnings("unchecked") // really wish i didn't have to do this
-public abstract class Query<T extends Query<T>> implements QueryElement {
+public abstract class BaseQuery<T extends BaseQuery<T>> implements QueryElement {
 	protected static final String LIMIT = "LIMIT";
 	protected static final String OFFSET = "OFFSET";
 	
-	protected Base base;  // ?
-	protected PrefixDeclarations prefixes;  // *
-	protected Dataset dataset;  // *
 	protected QueryPattern where = new QueryPattern();  // ? for DESCRIBE, required otherwise
 	protected GroupBy groupBy; // ?
 	protected OrderBy orderBy; // ?
 	protected Having having; // ?
 	protected int limit = -1, offset = -1, varCount = -1;  // ?
-
-	public T setBase(Base base) {
-		this.base = base;
-		
-		return (T) this;
-	}
-	
-	public T addPrefix(Prefix prefix) {
-		if(prefixes == null) {
-			prefixes = new PrefixDeclarations();
-		}
-		prefixes.addPrefix(prefix);
-		
-		return (T) this;
-	}
-
-	public T addGraph(FromClause... from) {
-		if(dataset == null) {
-			dataset = new Dataset();
-		}
-		dataset.addGraph(from);
-		
-		return (T) this;
-	}
 	
 	public T where(GraphPattern... queryPatterns) {
 		where.and(queryPatterns);
@@ -96,10 +69,6 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	@Override
 	public String getQueryString() {
 		StringBuilder query = new StringBuilder();
-		
-		appendIfNonNull(base, query);
-		appendIfNonNull(prefixes, query);
-		appendIfNonNull(dataset, query);
 
 		query.append(getQueryActionString()).append("\n");
 		query.append(where.getQueryString()).append("\n");
@@ -131,14 +100,6 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	@Override
 	public String getPrettyQueryString(int indent) {
 		StringBuilder prettyQuery = new StringBuilder();
-		
-		if(base != null) {
-			prettyQuery.append(base.getPrettyQueryString(0)).append("\n");
-		}
-		
-		if(prefixes != null) {
-			prettyQuery.append(prefixes.getPrettyQueryString(0)).append("\n");
-		}
 		
 		prettyQuery.append(getQueryActionString()).append("\n");
 		

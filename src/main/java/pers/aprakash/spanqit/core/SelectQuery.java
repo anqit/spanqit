@@ -1,8 +1,8 @@
 package pers.aprakash.spanqit.core;
 
 
-public class SelectQuery extends Query<SelectQuery> {
-	private Projection select = new Projection();
+public class SelectQuery extends OuterQuery<SelectQuery> {
+	private Projection select = Elements.select();
 	
 	public SelectQuery distinct() {
 		return distinct(true);
