@@ -16,6 +16,16 @@ public class TriplePattern implements GraphPattern {
 	}
 	
 	@Override
+	public boolean isEmpty() {
+		return false;
+	}
+	
+	@Override
+	public int size() {
+		return 1;
+	}
+	
+	@Override
 	public String getQueryString() {
 		StringBuilder triplePattern = new StringBuilder();
 		

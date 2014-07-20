@@ -1,30 +1,41 @@
 package pers.aprakash.spanqit.graphpattern;
 
+import pers.aprakash.spanqit.core.Util;
+
 public class QueryPattern extends GraphPatternNotTriple {
 	private static final String WHERE = "WHERE";
-	
+
+	public QueryPattern() {
+		super(new GroupGraphPattern());
+	}
+
+	// A query pattern is an extension of a group graph pattern, so we need to
+	// ensure that <code>pattern</code> is always a group graph pattern
+	@Override
+	public GraphPatternNotTriple union(GraphPattern... patterns) {
+		super.union(patterns);
+		pattern = new GroupGraphPattern(pattern);
+
+		return this;
+	}
+
 	@Override
 	public String getQueryString() {
 		StringBuilder whereClause = new StringBuilder();
 		whereClause.append(WHERE).append(" ");
 
-		whereClause.append(super.getQueryString());
-		
-		/* TODO: Probably don't need this anymore?
-		 * 
-		// remove unnecessary enclosing brackets if this contains only a single
-		// group graph pattern (which adds its own brackets)
-		if(elements.size() == 1) {
-			GraphPatternIface soloElement = elements.toArray(new GraphPatternIface[1])[0];
-			if(soloElement instanceof GroupGraphPattern && !((GroupGraphPattern) soloElement).isOptional) {
-				whereClause.deleteCharAt(WHERE.length() + 1).deleteCharAt(whereClause.length() - 1);
-			}
-		}
-		*/
+		String innerClause = super.getQueryString();
 
-		return whereClause.toString();
+		// add brackets if there are multiple patterns to enclose, unless
+		// <code>pattern</code> is a non-optional group graph pattern
+		// (which adds its own brackets)
+		if (((GroupGraphPattern) pattern).isOptional /*|| size() > 1*/) {
+			innerClause = Util.getBracketedString(innerClause);
+		}
+
+		return whereClause.append(innerClause).toString();
 	}
-	
+
 	@Override
 	public String getPrettyQueryString(int indent) {
 		return getQueryString();

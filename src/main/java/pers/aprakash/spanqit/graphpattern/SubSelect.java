@@ -42,6 +42,16 @@ public class SubSelect extends BaseQuery<SubSelect> implements GraphPattern {
 		return this;
 	}
 	
+	@Override
+	public boolean isEmpty() {
+		return where.isEmpty();
+	}
+	
+	@Override
+	public int size() {
+		return where.size();
+	}
+	
 	// TODO: Values
 	
 	@Override

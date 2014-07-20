@@ -2,10 +2,13 @@ package pers.aprakash.spanqit.test;
 
 import org.junit.Test;
 
+
+
+import pers.aprakash.spanqit.core.ConstructQuery;
 //import pers.aprakash.spanqit.core.ConstructQuery;
 import pers.aprakash.spanqit.core.SelectQuery;
 import pers.aprakash.spanqit.core.SparqlVariable;
-
+import pers.aprakash.spanqit.graphpattern.GraphPatterns;
 import static pers.aprakash.spanqit.constraint.Functions.*;
 import static pers.aprakash.spanqit.core.Elements.*;
 import static pers.aprakash.spanqit.graphpattern.GraphPatterns.*;
@@ -41,10 +44,10 @@ public class SpanqitTest extends BaseSpanqitTest {
 		SparqlVariable test = query.createQueryVariable();
 		SparqlVariable person = query.createQueryVariable();
 
-		query.setBase(base(uri(namespace, "base")))
-				.addPrefix(prefix("ns", uri(namespace)))
-				.addPrefix(prefix("ns", uri(namespace)))
-				.addPrefix(prefix("", uri("http://www.default.com/#")))
+		query.base(base(uri(namespace, "base")))
+				.prefix(prefix("ns", uri(namespace)))
+				.prefix(prefix("ns", uri(namespace)))
+				.prefix(prefix("", uri("http://www.default.com/#")))
 				.select(name, test, person)
 				.where(and(
 						optional(tp(name, test, person)),
@@ -76,7 +79,7 @@ public class SpanqitTest extends BaseSpanqitTest {
 		p(sq);
 	}
 
-/*	@Test
+	@Test
 	public void constructTest() {
 		String foaf = "http://xmlns.com/foaf/0.1/";
 		String org = "http://example.com/ns#";
@@ -88,7 +91,7 @@ public class SpanqitTest extends BaseSpanqitTest {
 				tp(x, uri(org, "name"), name));
 
 		p(cq);
-	}*/
+	}
 
 	@Test
 	public void regexTest() {
@@ -124,5 +127,14 @@ public class SpanqitTest extends BaseSpanqitTest {
 	@Test
 	public void testEmpty() {
 		p(new SelectQuery());
+	}
+	
+	@Test
+	public void singleGraphPatternInQueryPattern() {
+		SelectQuery select = new SelectQuery();
+		SparqlVariable v1 = select.createQueryVariable(), v2 = select.createQueryVariable(), v3 = select.createQueryVariable();
+//		select.where(and(tp(v2, v2, v3)));
+		select.where(tp(v2, v2, v3), union(tp(v2, v2, v3)));
+		p(select);
 	}
 }

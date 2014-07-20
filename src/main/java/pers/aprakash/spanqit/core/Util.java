@@ -1,6 +1,7 @@
 package pers.aprakash.spanqit.core;
 
 public class Util {
+	private static final String PAD = " ";
 	public static String getIndent(int indent) {
 		StringBuilder sb = new StringBuilder();
 
@@ -33,11 +34,13 @@ public class Util {
 		StringBuilder es = new StringBuilder();
 
 		es.append(open);
-		if (contents != null) {
+		if (contents != null && !contents.isEmpty()) {
 			es.append(contents);
 			if (pad) {
-				es.insert(open.length(), " ").append(" ");
+				es.insert(open.length(), PAD).append(PAD);
 			}
+		} else {
+			es.append(PAD);
 		}
 		es.append(close);
 

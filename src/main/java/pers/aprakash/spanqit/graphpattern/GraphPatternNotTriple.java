@@ -3,7 +3,7 @@ package pers.aprakash.spanqit.graphpattern;
 import pers.aprakash.spanqit.constraint.Expression;
 
 public class GraphPatternNotTriple implements GraphPattern {
-	private GraphPattern pattern;
+	protected GraphPattern pattern;
 
 	GraphPatternNotTriple() {
 //		pattern = new GroupGraphPattern();
@@ -35,6 +35,10 @@ public class GraphPatternNotTriple implements GraphPattern {
 		pattern = alternativePattern;
 		
 		return this;
+	}
+	
+	public GraphPatternNotTriple optional() {
+		return optional(true);
 	}
 	
 	public GraphPatternNotTriple optional(boolean isOptional) {
@@ -77,6 +81,16 @@ public class GraphPatternNotTriple implements GraphPattern {
 		pattern = new NamedGraphPattern(pattern, name);
 		
 		return this;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return pattern.isEmpty();
+	}
+	
+	@Override
+	public int size() {
+		return pattern.size();
 	}
 	
 	private void filterExists(boolean exists, GraphPattern... patterns) {

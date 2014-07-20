@@ -24,11 +24,15 @@ public abstract class QueryElementCollection<T extends QueryElement> implements
 		this.delimeter = delimeter;
 		needsIndent = delimeter.contains("\n");
 	}
-
+	
 	public boolean isEmpty() {
 		return elements.isEmpty();
 	}
 
+	public int size() {
+		return elements.size();
+	}
+	
 	@Override
 	public String getQueryString() {
 		StringBuilder queryElements = new StringBuilder();
@@ -48,11 +52,17 @@ public abstract class QueryElementCollection<T extends QueryElement> implements
 					first = false;
 				}
 			}
+		} else {
+			return getEmptyQueryString();
 		}
 
 		return queryElements.toString();
 	}
 
+	protected String getEmptyQueryString() {
+		return "";
+	}
+	
 	public String getPrettyQueryString(int indent) {
 		StringBuilder queryElements = new StringBuilder();
 

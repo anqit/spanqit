@@ -25,7 +25,7 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern>
 
 		if (original instanceof GroupGraphPattern) {
 			copy((GroupGraphPattern) original);
-		} else if(original != null) {
+		} else if(original != null && !original.isEmpty()) {
 			elements.add(original);
 		}
 	}
@@ -60,6 +60,11 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern>
 	}
 
 	@Override
+	public boolean isEmpty() {
+		return super.isEmpty();
+	}
+	
+	@Override
 	public String getQueryString() {
 		StringBuilder pattern = new StringBuilder();
 		StringBuilder innerPattern = new StringBuilder();
@@ -76,6 +81,11 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern>
 
 		return pattern.append(Util.getBracketedString(innerPattern.toString()))
 				.toString();
+	}
+	
+	@Override
+	protected String getEmptyQueryString() {
+		return Util.getBracketedString(super.getEmptyQueryString());
 	}
 
 	@Override

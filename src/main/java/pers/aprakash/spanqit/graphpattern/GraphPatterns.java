@@ -49,4 +49,8 @@ public class GraphPatterns {
 	public static GraphPatternNotTriple optional(GraphPattern... patterns) {
 		return and(patterns).optional(true);
 	}
+	
+	public static SubSelect select() {
+		return new SubSelect();
+	}
 }

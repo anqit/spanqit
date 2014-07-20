@@ -6,13 +6,13 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends BaseQuery<Oute
 	protected PrefixDeclarations prefixes;  // *
 	protected Dataset from;  // *
 	
-	public T setBase(Base base) {
+	public T base(Base base) {
 		this.base = base;
 		
 		return (T) this;
 	}
 	
-	public T addPrefix(Prefix prefix) {
+	public T prefix(Prefix prefix) {
 		if(prefixes == null) {
 			prefixes = new PrefixDeclarations();
 		}
