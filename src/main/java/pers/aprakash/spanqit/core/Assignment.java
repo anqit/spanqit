@@ -2,6 +2,15 @@ package pers.aprakash.spanqit.core;
 
 import pers.aprakash.spanqit.constraint.Expression;
 
+/**
+ * A SPARQL expression to variable assignment
+ * 
+ * @author Ankit
+ *
+ * @see <a
+ *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#assignment">
+ *      SPARQL Assignments</a>
+ */
 public class Assignment implements Projectable, Groupable {
 	private static final String AS = "AS";
 	private Expression<?> expression;
@@ -14,13 +23,7 @@ public class Assignment implements Projectable, Groupable {
 
 	@Override
 	public String getQueryString() {
-		return Util.getParenthesizedString(expression.getQueryString() + " "
+		return SpanqitStringUtils.getParenthesizedString(expression.getQueryString() + " "
 				+ AS + " " + var.getQueryString());
-	}
-
-	@Override
-	public String getPrettyQueryString(int indent) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

@@ -1,6 +1,6 @@
 package pers.aprakash.spanqit.graphpattern;
 
-import pers.aprakash.spanqit.core.Util;
+import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
 public class QueryPattern extends GraphPatternNotTriple {
 	private static final String WHERE = "WHERE";
@@ -30,7 +30,7 @@ public class QueryPattern extends GraphPatternNotTriple {
 		// <code>pattern</code> is a non-optional group graph pattern
 		// (which adds its own brackets)
 		if (((GroupGraphPattern) pattern).isOptional /*|| size() > 1*/) {
-			innerClause = Util.getBracketedString(innerClause);
+			innerClause = SpanqitStringUtils.getBracketedString(innerClause);
 		}
 
 		return whereClause.append(innerClause).toString();

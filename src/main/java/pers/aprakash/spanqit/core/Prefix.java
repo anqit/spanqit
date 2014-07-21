@@ -2,16 +2,25 @@ package pers.aprakash.spanqit.core;
 
 import pers.aprakash.spanqit.rdf.URI;
 
+/**
+ * A SPARQL Prefix declaration
+ * 
+ * @author Ankit
+ *
+ * @see <a
+ *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#prefNames">
+ *      SPARQL Prefix</a>
+ */
 public class Prefix implements QueryElement {
 	private static final String PREFIX = "PREFIX";
 	private String label;
 	private URI iri;
-	
+
 	Prefix(String alias, URI iri) {
 		this.label = alias;
 		this.iri = iri;
 	}
-	
+
 	@Override
 	public String getQueryString() {
 		return PREFIX + " " + label + ": " + iri.getQueryString();
@@ -22,15 +31,15 @@ public class Prefix implements QueryElement {
 		if (this == obj) {
 			return true;
 		}
-		
+
 		if (obj == null) {
 			return false;
 		}
-		
+
 		if (!(obj instanceof Prefix)) {
 			return false;
 		}
-		
+
 		Prefix other = (Prefix) obj;
 		if (label == null) {
 			if (other.label != null) {
@@ -46,10 +55,10 @@ public class Prefix implements QueryElement {
 		} else if (!iri.equals(other.iri)) {
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -57,11 +66,5 @@ public class Prefix implements QueryElement {
 		result = prime * result + ((label == null) ? 0 : label.hashCode());
 		result = prime * result + ((iri == null) ? 0 : iri.hashCode());
 		return result;
-	}
-
-	@Override
-	public String getPrettyQueryString(int indent) {
-		// TODO Auto-generated method stub
-		return getQueryString();
 	}
 }

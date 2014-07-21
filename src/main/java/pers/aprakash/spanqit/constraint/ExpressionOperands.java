@@ -1,6 +1,6 @@
 package pers.aprakash.spanqit.constraint;
 
-import pers.aprakash.spanqit.core.Util;
+import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
 /**
  * Utility class to create {@link pers.aprakash.spanqit.constraint.ExpressionOperand}
@@ -17,7 +17,7 @@ public class ExpressionOperands {
 	 * wrapped in quotes 
 	 */
 	public static ExpressionOperand quotedStringOperand(final String operand) {
-		return stringOperand(Util.getQuotedString(operand));
+		return stringOperand(SpanqitStringUtils.getQuotedString(operand));
 	}
 	
 	/**

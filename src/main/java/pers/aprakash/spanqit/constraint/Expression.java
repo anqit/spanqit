@@ -8,8 +8,13 @@ import pers.aprakash.spanqit.core.QueryElementCollection;
 
 /**
  * A SPARQL expression. Used by filters, having clauses, order and group by
- * clauses, and as arguments to other expressions.
+ * clauses, assignments, and as arguments to other expressions.
  *
+ * @author Ankit
+ * @param <T>
+ *            the type of Expression (ie, Function or Operation). Used to
+ *            support fluency
+ *            
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#termConstraint">SPARQL
  *      Filters</a>
@@ -24,9 +29,10 @@ import pers.aprakash.spanqit.core.QueryElementCollection;
  *      <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#groupby">
  *      SPARQL GROUP BY</a>
- * @author Ankit
- * @param <T>
- *            the type of Expression (ie, Function or Operation)
+ *      <br>
+ *      <a
+ *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#assignment">
+ *      SPARQL Assignments</a>
  */
 public abstract class Expression<T extends Expression<T>> extends
 		QueryElementCollection<ExpressionOperand> implements ExpressionOperand,

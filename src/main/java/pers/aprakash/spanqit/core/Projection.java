@@ -2,66 +2,122 @@ package pers.aprakash.spanqit.core;
 
 import java.util.ArrayList;
 
+/**
+ * A SPARQL Projection
+ * 
+ * @author Ankit
+ *
+ * @see <a
+ *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#selectproject">
+ *      SPARQL Projections</a>
+ */
 public class Projection extends QueryElementCollection<Projectable> {
 	private static final String SELECT = "SELECT";
 	private static final String DISTINCT = "DISTINCT";
 	private static final String DELIMETER = " ";
-	
+
 	private boolean isDistinct, selectAll;
-	
+
 	Projection() {
 		this(false);
 	}
-	
+
 	Projection(boolean isDistinct) {
 		super(DELIMETER, new ArrayList<Projectable>());
 		all(false);
 		distinct(isDistinct);
 	}
-	
+
+	/**
+	 * Specify this projection to be distinct
+	 * 
+	 * @return this
+	 * 
+	 * @see <a
+	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#modDistinct">
+	 *      SPARQL Distinct modifier</a>
+	 */
 	public Projection distinct() {
 		return distinct(true);
 	}
-	
+
+	/**
+	 * Specify if this projection should be distinct or not
+	 * 
+	 * @param isDistinct
+	 *            if this projection should be distinct
+	 * @return this
+	 * 
+	 * @see <a
+	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#modDistinct">
+	 *      SPARQL Distinct modifier</a>
+	 */
 	public Projection distinct(boolean isDistinct) {
 		this.isDistinct = isDistinct;
-		
+
 		return this;
 	}
-	
+
+	/**
+	 * Specify that this projection should select all in-scope expressions
+	 * 
+	 * @return this
+	 * 
+	 * @see <a
+	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#select">
+	 *      SPARQL Select</a>
+	 */
 	public Projection all() {
 		return all(true);
 	}
-	
+
+	/**
+	 * Specify if this projection should select all in-scope expressions or not
+	 * 
+	 * @param selectAll
+	 *            if this projection should select all expressions
+	 * @return this
+	 * 
+	 * @see <a
+	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#select">
+	 *      SPARQL Select</a>
+	 */
 	public Projection all(boolean selectAll) {
 		this.selectAll = selectAll;
-		
+
 		return this;
 	}
-	
+
+	/**
+	 * Add expressions for this projection to select
+	 * 
+	 * @param projectables
+	 *            the projectable expressions to add
+	 * @return this
+	 */
 	public Projection select(Projectable... projectables) {
-		for(Projectable variable : projectables) {
+		for (Projectable variable : projectables) {
 			elements.add(variable);
 		}
-		
+
 		return this;
 	}
-	
+
 	@Override
 	public String getQueryString() {
 		StringBuilder selectStatement = new StringBuilder();
 		selectStatement.append(SELECT).append(DELIMETER);
-		
-		if(isDistinct) {
+
+		if (isDistinct) {
 			selectStatement.append(DISTINCT).append(DELIMETER);
 		}
 
-		if(selectAll || isEmpty()) {
+		if (selectAll || isEmpty()) {
 			selectStatement.append("*").append(DELIMETER);
 		} else {
 			selectStatement.append(super.getQueryString());
 		}
-		
+
 		return selectStatement.toString();
 	}
 }

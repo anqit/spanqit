@@ -1,6 +1,6 @@
 package pers.aprakash.spanqit.constraint;
 
-import pers.aprakash.spanqit.core.Util;
+import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
 /**
  * Represents a SPARQL operation that takes exactly 2 arguments
@@ -22,6 +22,6 @@ class BinaryOperation extends Operation<BinaryOperation> {
 				.append(getOperand(1).getQueryString());
 		}
 		
-		return Util.getParenthesizedString(expression.toString());
+		return SpanqitStringUtils.getParenthesizedString(expression.toString());
 	}
 }

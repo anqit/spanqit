@@ -1,6 +1,6 @@
 package pers.aprakash.spanqit.constraint;
 
-import pers.aprakash.spanqit.core.Util;
+import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
 /**
  * Represents a SPARQL operation that takes exactly 1 argument
@@ -21,7 +21,7 @@ class UnaryOperation extends Operation<UnaryOperation> {
 		if (!elements.isEmpty()) {
 			op = getOperand(0).getQueryString();
 		}
-		expression.append(Util.getParenthesizedString(op));
+		expression.append(SpanqitStringUtils.getParenthesizedString(op));
 		
 		return expression.toString();
 	}

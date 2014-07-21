@@ -4,7 +4,7 @@ import pers.aprakash.spanqit.core.BaseQuery;
 import pers.aprakash.spanqit.core.Elements;
 import pers.aprakash.spanqit.core.Projectable;
 import pers.aprakash.spanqit.core.Projection;
-import pers.aprakash.spanqit.core.Util;
+import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
 public class SubSelect extends BaseQuery<SubSelect> implements GraphPattern {	
 	private Projection select = Elements.select();
@@ -68,7 +68,7 @@ public class SubSelect extends BaseQuery<SubSelect> implements GraphPattern {
 		// TODO: VALUES
 		// subselect.append(values.getQueryString());
 		
-		return Util.getBracketedString(subSelect.toString());
+		return SpanqitStringUtils.getBracketedString(subSelect.toString());
 	}
 
 	@Override

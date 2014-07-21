@@ -5,7 +5,7 @@ import pers.aprakash.spanqit.graphpattern.GraphPattern;
 import pers.aprakash.spanqit.graphpattern.QueryPattern;
 
 @SuppressWarnings("unchecked") // really wish i didn't have to do this
-public abstract class BaseQuery<T extends BaseQuery<T>> implements QueryElement {
+abstract class BaseQuery<T extends BaseQuery<T>> implements QueryElement {
 	protected static final String LIMIT = "LIMIT";
 	protected static final String OFFSET = "OFFSET";
 	
@@ -91,40 +91,5 @@ public abstract class BaseQuery<T extends BaseQuery<T>> implements QueryElement 
 		if(element != null) {
 			builder.append(element.getQueryString()).append("\n");
 		}
-	}
-	
-	public String getPrettyQueryString() {
-		return getPrettyQueryString(0);
-	}
-	
-	@Override
-	public String getPrettyQueryString(int indent) {
-		StringBuilder prettyQuery = new StringBuilder();
-		
-		prettyQuery.append(getQueryActionString()).append("\n");
-		
-		// TODO: dataset declarations
-//		if(!from.isEmpty()) {
-//			query.append(from.getQueryString()).append("\n");
-//		}
-		
-		prettyQuery.append(where.getPrettyQueryString(0)).append("\n");
-		
-		if(orderBy != null) {
-			prettyQuery.append(orderBy.getPrettyQueryString(0)).append("\n");
-		}
-		
-		if(having != null) {
-			prettyQuery.append(having.getPrettyQueryString(0)).append("\n");
-		}
-		
-		if(limit >= 0) {
-			prettyQuery.append(LIMIT + " ").append(limit).append("\n");
-		}
-		if(offset >= 0) {
-			prettyQuery.append(OFFSET + " ").append(offset).append("\n");
-		}
-		
-		return prettyQuery.toString();
 	}
 }

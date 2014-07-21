@@ -33,7 +33,7 @@ public class SpanqitTest extends BaseSpanqitTest {
 
 		p(sq);
 		p("\n");
-		p(sq.getPrettyQueryString());
+		p(sq.getQueryString());
 	}
 
 	@Test

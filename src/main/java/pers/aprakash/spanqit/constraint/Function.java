@@ -1,6 +1,6 @@
 package pers.aprakash.spanqit.constraint;
 
-import pers.aprakash.spanqit.core.Util;
+import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
 /**
  * A SPARQL Function. Consists of a function name and a parenthesized,
@@ -25,7 +25,7 @@ class Function extends Expression<Function> {
 		StringBuilder function = new StringBuilder();
 
 		function.append(operator.getQueryString()).append(
-				Util.getParenthesizedString(super.getQueryString()));
+				SpanqitStringUtils.getParenthesizedString(super.getQueryString()));
 
 		return function.toString();
 	}

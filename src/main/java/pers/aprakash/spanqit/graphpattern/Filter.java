@@ -2,7 +2,7 @@ package pers.aprakash.spanqit.graphpattern;
 
 import pers.aprakash.spanqit.constraint.Expression;
 import pers.aprakash.spanqit.core.QueryElement;
-import pers.aprakash.spanqit.core.Util;
+import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
 public class Filter implements QueryElement {
 	private static final String FILTER = "FILTER";
@@ -31,7 +31,7 @@ public class Filter implements QueryElement {
 		if(constraint != null) {
 			exp = constraint.getQueryString();
 		}
-		filter.append(Util.getBracketedString(exp));
+		filter.append(SpanqitStringUtils.getBracketedString(exp));
 		
 		return filter.toString();
 	}

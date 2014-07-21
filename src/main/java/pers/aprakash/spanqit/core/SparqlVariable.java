@@ -6,6 +6,15 @@ import pers.aprakash.spanqit.rdf.ObjectPattern;
 import pers.aprakash.spanqit.rdf.PredicatePattern;
 import pers.aprakash.spanqit.rdf.SubjectPattern;
 
+/**
+ * A SPARQL query variable
+ * 
+ * @author Ankit
+ *
+ * @see <a
+ *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynVariables">
+ *      SPARQL Variable Syntax</a>
+ */
 public class SparqlVariable implements Projectable, SubjectPattern,
 		PredicatePattern, ObjectPattern, ExpressionOperand, Orderable,
 		Groupable, GraphName {
@@ -18,11 +27,6 @@ public class SparqlVariable implements Projectable, SubjectPattern,
 	@Override
 	public String getQueryString() {
 		return "?" + alias;
-	}
-
-	@Override
-	public String getPrettyQueryString(int indent) {
-		return getQueryString();
 	}
 
 	@Override

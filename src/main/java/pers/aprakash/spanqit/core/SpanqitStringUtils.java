@@ -1,16 +1,9 @@
 package pers.aprakash.spanqit.core;
 
-public class Util {
+// Utility class. Wish it didn't have to be public at all.
+@SuppressWarnings("javadoc")
+public class SpanqitStringUtils {
 	private static final String PAD = " ";
-	public static String getIndent(int indent) {
-		StringBuilder sb = new StringBuilder();
-
-		for (int i = 1; i <= indent; i++) {
-			sb.append(" ");
-		}
-
-		return sb.toString();
-	}
 
 	public static String getBracketedString(String contents) {
 		return getEnclosedString("{", "}", contents);
@@ -43,28 +36,6 @@ public class Util {
 			es.append(PAD);
 		}
 		es.append(close);
-
-		return es.toString();
-	}
-
-	public static String getPrettyBracketedString(String contents, int indent) {
-		return getPrettyEnclosedString("{", "}", contents, indent);
-	}
-
-	public static String getPrettyParenthesizedString(String contents,
-			int indent) {
-		return getPrettyEnclosedString("(", ")", contents, indent);
-	}
-
-	private static String getPrettyEnclosedString(String open, String close,
-			String contents, int indent) {
-		StringBuilder es = new StringBuilder();
-
-		es.append(getIndent(indent)).append(open).append("\n");
-		if (contents != null) {
-			es.append(" ").append(contents).append(" ");
-		}
-		es.append("\n").append(getIndent(indent)).append(close);
 
 		return es.toString();
 	}

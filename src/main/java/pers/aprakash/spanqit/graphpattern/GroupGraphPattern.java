@@ -2,7 +2,7 @@ package pers.aprakash.spanqit.graphpattern;
 
 import pers.aprakash.spanqit.constraint.Expression;
 import pers.aprakash.spanqit.core.QueryElementCollection;
-import pers.aprakash.spanqit.core.Util;
+import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
 class GroupGraphPattern extends QueryElementCollection<GraphPattern>
 		implements GraphPattern {
@@ -79,13 +79,13 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern>
 			innerPattern.append("\n").append(filter.getQueryString());
 		}
 
-		return pattern.append(Util.getBracketedString(innerPattern.toString()))
+		return pattern.append(SpanqitStringUtils.getBracketedString(innerPattern.toString()))
 				.toString();
 	}
 	
 	@Override
 	protected String getEmptyQueryString() {
-		return Util.getBracketedString(super.getEmptyQueryString());
+		return SpanqitStringUtils.getBracketedString(super.getEmptyQueryString());
 	}
 
 	@Override
@@ -103,12 +103,12 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern>
 
 		if (filter != null) {
 			innerPattern.append("\n")
-					.append(Util.getIndent(indent + subIndent))
+					.append(SpanqitStringUtils.getIndent(indent + subIndent))
 					.append(filter.getQueryString());
 		}
 
 		return pattern.append(
-				Util.getPrettyBracketedString(innerPattern.toString(), 0))
+				SpanqitStringUtils.getPrettyBracketedString(innerPattern.toString(), 0))
 				.toString();
 	}
 }

@@ -1,7 +1,7 @@
 package pers.aprakash.spanqit.graphpattern;
 
 import pers.aprakash.spanqit.core.QueryElementCollection;
-import pers.aprakash.spanqit.core.Util;
+import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
 class AlternativeGraphPattern extends
 		QueryElementCollection<GroupGraphPattern> implements GraphPattern {
@@ -36,6 +36,6 @@ class AlternativeGraphPattern extends
 	
 	@Override
 	protected String getEmptyQueryString() {
-		return Util.getBracketedString(super.getEmptyQueryString());
+		return SpanqitStringUtils.getBracketedString(super.getEmptyQueryString());
 	}
 }

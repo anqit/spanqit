@@ -1,6 +1,15 @@
 package pers.aprakash.spanqit.core;
 
-public class OrderCondition implements QueryElement {
+/**
+ * An ascending or descending order condition
+ * 
+ * @author Ankit
+ *
+ * @see <a
+ *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#modOrderBy">
+ *      SPARQL Order By Clause</a>
+ */
+public class OrderCondition implements Orderable {
 	private static final String ASC = "ASC";
 	private static final String DESC = "DESC";
 	private Orderable orderOn;
@@ -19,12 +28,22 @@ public class OrderCondition implements QueryElement {
 		}
 	}
 
+	/**
+	 * Set this order condition to be ascending
+	 * 
+	 * @return this
+	 */
 	public OrderCondition asc() {
 		this.isAscending = true;
 
 		return this;
 	}
 
+	/**
+	 * Set this order condition to be descending
+	 * 
+	 * @return this
+	 */
 	public OrderCondition desc() {
 		this.isAscending = false;
 
@@ -44,13 +63,7 @@ public class OrderCondition implements QueryElement {
 
 			condition.append("(").append(orderOn.getQueryString()).append(")");
 		}
-		
-		return condition.toString();
-	}
 
-	@Override
-	public String getPrettyQueryString(int indent) {
-		// TODO Auto-generated method stub
-		return getQueryString();
+		return condition.toString();
 	}
 }
