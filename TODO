@@ -1,4 +1,9 @@
 handling Blank nodes
 typed literals
 
-query heirarchy: same methods with sub-class return types 
+custom functions
+values block
+property paths
+complete Functions.java
+fix CONSTRUCT query
+create Queries class as query factory, hide query constructors
