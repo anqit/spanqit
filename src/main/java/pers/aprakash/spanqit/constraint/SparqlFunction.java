@@ -1,6 +1,16 @@
 package pers.aprakash.spanqit.constraint;
 
-enum SparqlFunction implements SparqlOperator {
+/**
+ * The built-in SPARQL Functions. Keeping this public until
+ * {@link pers.aprakash.spanqit.constraint.Functions} is completed.
+ * 
+ * @see <a href=
+ *      "http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#SparqlOps">
+ *      SPARQL Function Definitions</a>
+ * @author Ankit
+ *
+ */
+public enum SparqlFunction implements SparqlOperator {
 	ABS("ABS"),
 	BNODE("BNODE"),
 	BOUND("BOUND"),
@@ -63,11 +73,5 @@ enum SparqlFunction implements SparqlOperator {
 	@Override
 	public String getQueryString() {
 		return function;
-	}
-
-	@Override
-	public String getPrettyQueryString(int indent) {
-		// TODO Auto-generated method stub
-		return getQueryString();
 	}
 }

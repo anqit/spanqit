@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 
-
 public abstract class QueryElementCollection<T extends QueryElement> implements
 		QueryElement {
 	protected Collection<T> elements;
@@ -61,32 +60,5 @@ public abstract class QueryElementCollection<T extends QueryElement> implements
 
 	protected String getEmptyQueryString() {
 		return "";
-	}
-	
-	public String getPrettyQueryString(int indent) {
-		StringBuilder queryElements = new StringBuilder();
-
-		if (!isEmpty()) {
-			Iterator<T> it = elements.iterator();
-
-			while (it.hasNext()) {
-				T next = it.next();
-				if (next != null) {
-					if(needsIndent) {
-						queryElements.append(Util.getIndent(indent));
-					}
-					queryElements.append(next.getPrettyQueryString(indent)).append(
-							delimeter);
-				}
-			}
-
-			if (queryElements.length() > 0) {
-				queryElements.delete(
-						queryElements.length() - delimeter.length(),
-						queryElements.length());
-			}
-		}
-
-		return queryElements.toString();
 	}
 }

@@ -1,5 +1,11 @@
 package pers.aprakash.spanqit.constraint;
 
+/**
+ * The SPARQL connective operators
+ * 
+ * @author Ankit
+ *
+ */
 enum ConnectiveOperator implements SparqlOperator {
 	// Logical
 	AND("&&"),
@@ -20,10 +26,5 @@ enum ConnectiveOperator implements SparqlOperator {
 	@Override
 	public String getQueryString() {
 		return operator;
-	}
-	
-	@Override
-	public String getPrettyQueryString(int indent) {
-		return getQueryString();
 	}
 }

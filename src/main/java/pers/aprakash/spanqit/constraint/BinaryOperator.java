@@ -1,5 +1,11 @@
 package pers.aprakash.spanqit.constraint;
 
+/**
+ * The SPARQL binary operators
+ * 
+ * @author Ankit
+ *
+ */
 enum BinaryOperator implements SparqlOperator {
 	EQUALS("="),
 	GREATER_THAN(">"),
@@ -17,11 +23,5 @@ enum BinaryOperator implements SparqlOperator {
 	@Override
 	public String getQueryString() {
 		return operator;
-	}
-	
-	@Override
-	public String getPrettyQueryString(int indent) {
-		// TODO Auto-generated method stub
-		return getQueryString();
 	}
 }

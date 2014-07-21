@@ -1,5 +1,11 @@
 package pers.aprakash.spanqit.constraint;
 
+/**
+ * The SPARQL unary operators
+ * 
+ * @author Ankit
+ *
+ */
 enum UnaryOperator implements SparqlOperator {
 	NOT("!"),
 	UNARY_PLUS("+"),
@@ -14,10 +20,5 @@ enum UnaryOperator implements SparqlOperator {
 	@Override
 	public String getQueryString() {
 		return operator;
-	}
-	
-	@Override
-	public String getPrettyQueryString(int indent) {
-		return getQueryString();
 	}
 }
