@@ -10,3 +10,4 @@ fix CONSTRUCT query
 create Queries class as query factory, hide query constructors
 
 QueryPattern should not be a GraphPattern, but instead contain one
+Separate OpenRdfAdapter and tests into own projects.
