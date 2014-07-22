@@ -3,8 +3,17 @@ package pers.aprakash.spanqit.graphpattern;
 import pers.aprakash.spanqit.core.QueryElementCollection;
 import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
-class AlternativeGraphPattern extends
-		QueryElementCollection<GroupGraphPattern> implements GraphPattern {
+/**
+ * A SPARQL Alternative Graph Pattern.
+ * 
+ * @author Ankit
+ * 
+ * @see <a
+ *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#alternatives">
+ *      SPARQL Alternative Graph Patterns</a>
+ */
+class AlternativeGraphPattern extends QueryElementCollection<GroupGraphPattern>
+		implements GraphPattern {
 	private static final String UNION = "UNION";
 	private static final String DELIMETER = " " + UNION + " ";
 
@@ -14,14 +23,14 @@ class AlternativeGraphPattern extends
 
 	AlternativeGraphPattern(GraphPattern original) {
 		super(DELIMETER);
-		
-		if(original instanceof AlternativeGraphPattern) {
+
+		if (original instanceof AlternativeGraphPattern) {
 			copy((AlternativeGraphPattern) original);
-		} else if(original != null && !original.isEmpty()){
+		} else if (original != null && !original.isEmpty()) {
 			elements.add(new GroupGraphPattern(original));
 		}
 	}
-	
+
 	private void copy(AlternativeGraphPattern original) {
 		this.elements = original.elements;
 	}
@@ -33,9 +42,10 @@ class AlternativeGraphPattern extends
 
 		return this;
 	}
-	
+
 	@Override
 	protected String getEmptyQueryString() {
-		return SpanqitStringUtils.getBracketedString(super.getEmptyQueryString());
+		return SpanqitStringUtils.getBracketedString(super
+				.getEmptyQueryString());
 	}
 }

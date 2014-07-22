@@ -1,6 +1,6 @@
 package pers.aprakash.spanqit.core;
 
-import pers.aprakash.spanqit.rdf.URI;
+import pers.aprakash.spanqit.rdf.IRI;
 
 /**
  * A SPARQL Prefix declaration
@@ -14,9 +14,9 @@ import pers.aprakash.spanqit.rdf.URI;
 public class Prefix implements QueryElement {
 	private static final String PREFIX = "PREFIX";
 	private String label;
-	private URI iri;
+	private IRI iri;
 
-	Prefix(String alias, URI iri) {
+	Prefix(String alias, IRI iri) {
 		this.label = alias;
 		this.iri = iri;
 	}

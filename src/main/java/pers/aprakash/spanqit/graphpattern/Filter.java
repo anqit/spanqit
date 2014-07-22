@@ -4,40 +4,50 @@ import pers.aprakash.spanqit.constraint.Expression;
 import pers.aprakash.spanqit.core.QueryElement;
 import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
-public class Filter implements QueryElement {
+/**
+ * A SPARQL Filter Clause
+ * 
+ * @author Ankit
+ * 
+ * @see <a href="http://www.w3.org/TR/sparql11-query/#termConstraint"> SPARQL
+ *      Filter</a>
+ */
+class Filter implements QueryElement {
 	private static final String FILTER = "FILTER";
 	private Expression<?> constraint;
-	
-	public Filter() {
+
+	Filter() {
 		this(null);
 	}
-	
+
 	Filter(Expression<?> expression) {
 		setConstraint(expression);
 	}
-	
-	public Filter setConstraint(Expression<?> expression) {
+
+	/**
+	 * Set the constraint for this Filter clause
+	 * 
+	 * @param expression
+	 *            the constraint to set
+	 * @return this
+	 */
+	Filter setConstraint(Expression<?> expression) {
 		constraint = expression;
-		
+
 		return this;
 	}
-	
+
 	@Override
 	public String getQueryString() {
 		StringBuilder filter = new StringBuilder();
-		
+
 		filter.append(FILTER).append(" ");
 		String exp = "";
-		if(constraint != null) {
+		if (constraint != null) {
 			exp = constraint.getQueryString();
 		}
 		filter.append(SpanqitStringUtils.getBracketedString(exp));
-		
+
 		return filter.toString();
-	}
-	
-	@Override
-	public String getPrettyQueryString(int indent) {
-		return getQueryString();
 	}
 }

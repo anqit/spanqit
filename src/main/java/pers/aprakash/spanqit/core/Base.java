@@ -1,6 +1,6 @@
 package pers.aprakash.spanqit.core;
 
-import pers.aprakash.spanqit.rdf.URI;
+import pers.aprakash.spanqit.rdf.IRI;
 
 /**
  * A SPARQL Base declaration
@@ -14,9 +14,9 @@ import pers.aprakash.spanqit.rdf.URI;
 public class Base implements QueryElement {
 	private static final String BASE = "BASE";
 
-	private URI iri;
+	private IRI iri;
 
-	Base(URI iri) {
+	Base(IRI iri) {
 		this.iri = iri;
 	}
 

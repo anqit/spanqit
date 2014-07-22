@@ -4,7 +4,7 @@ import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.ValueFactoryImpl;
 
 import pers.aprakash.spanqit.core.QueryElement;
-import pers.aprakash.spanqit.rdf.URI;
+import pers.aprakash.spanqit.rdf.IRI;
 import pers.aprakash.spanqit.rdf.Value;
 import pers.aprakash.spanqit.rdf.adapter.OpenRdfAdapter;
 
@@ -20,12 +20,12 @@ public class BaseSpanqitTest {
 		System.out.println(s);
 	}
 	
-	protected URI uri(String uri) {
-		return OpenRdfAdapter.toSpanqitUri(vf.createURI(uri));
+	protected IRI uri(String uri) {
+		return OpenRdfAdapter.iri(vf.createURI(uri));
 	}
 	
-	protected URI uri(String ns, String localName) {
-		return OpenRdfAdapter.toSpanqitUri(vf.createURI(ns, localName));
+	protected IRI uri(String ns, String localName) {
+		return OpenRdfAdapter.iri(vf.createURI(ns, localName));
 	}
 	
 	protected Value blankNode() {
@@ -37,6 +37,6 @@ public class BaseSpanqitTest {
 	}
 	
 	private Value value(org.openrdf.model.Value value) {
-		return OpenRdfAdapter.toSpanqitValue(value);
+		return OpenRdfAdapter.value(value);
 	}
 }

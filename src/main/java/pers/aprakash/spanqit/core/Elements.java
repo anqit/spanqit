@@ -1,15 +1,18 @@
 package pers.aprakash.spanqit.core;
 
 import pers.aprakash.spanqit.constraint.Expression;
-import pers.aprakash.spanqit.rdf.URI;
+import pers.aprakash.spanqit.rdf.IRI;
 
 /**
- * A utility class to create SPARQL query elements
+ * A class to with static methods to create SPARQL query elements.
  * 
  * @author Ankit
- *
+ * 
  */
 public class Elements {
+	// prevent instantiation of this class
+	private Elements() { }
+	
 	/**
 	 * Create a SPARQL variable
 	 * 
@@ -41,7 +44,7 @@ public class Elements {
 	 *            the base iri
 	 * @return a Base object
 	 */
-	public static Base base(URI iri) {
+	public static Base base(IRI iri) {
 		return new Base(iri);
 	}
 
@@ -54,7 +57,7 @@ public class Elements {
 	 *            the iri the alias refers to
 	 * @return a Prefix object
 	 */
-	public static Prefix prefix(String alias, URI iri) {
+	public static Prefix prefix(String alias, IRI iri) {
 		return new Prefix(alias, iri);
 	}
 
@@ -65,7 +68,7 @@ public class Elements {
 	 *            the source of the graph
 	 * @return a From clause
 	 */
-	public static FromClause from(URI iri) {
+	public static FromClause from(IRI iri) {
 		return new FromClause(iri);
 	}
 
@@ -76,7 +79,7 @@ public class Elements {
 	 *            the source of the graph
 	 * @return a named From clause
 	 */
-	public static FromClause fromNamed(URI iri) {
+	public static FromClause fromNamed(IRI iri) {
 		return new FromClause(iri, true);
 	}
 

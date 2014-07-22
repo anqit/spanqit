@@ -5,7 +5,7 @@ import pers.aprakash.spanqit.graphpattern.GraphPattern;
 import pers.aprakash.spanqit.graphpattern.QueryPattern;
 
 @SuppressWarnings("unchecked") // really wish i didn't have to do this
-abstract class BaseQuery<T extends BaseQuery<T>> implements QueryElement {
+public abstract class BaseQuery<T extends BaseQuery<T>> implements QueryElement {
 	protected static final String LIMIT = "LIMIT";
 	protected static final String OFFSET = "OFFSET";
 	
@@ -15,6 +15,12 @@ abstract class BaseQuery<T extends BaseQuery<T>> implements QueryElement {
 	protected Having having; // ?
 	protected int limit = -1, offset = -1, varCount = -1;  // ?
 	
+	/**
+	 * Set the query pattern for this query
+	 * 
+	 * @param queryPatterns
+	 * @return this
+	 */
 	public T where(GraphPattern... queryPatterns) {
 		where.and(queryPatterns);
 		

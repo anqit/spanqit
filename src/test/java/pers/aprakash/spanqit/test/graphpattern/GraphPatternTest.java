@@ -8,7 +8,7 @@ import pers.aprakash.spanqit.graphpattern.GraphPattern;
 import pers.aprakash.spanqit.graphpattern.GraphPatternNotTriple;
 import pers.aprakash.spanqit.graphpattern.QueryPattern;
 import pers.aprakash.spanqit.graphpattern.SubSelect;
-import pers.aprakash.spanqit.rdf.URI;
+import pers.aprakash.spanqit.rdf.IRI;
 import pers.aprakash.spanqit.test.BaseSpanqitTest;
 import pers.aprakash.spanqit.graphpattern.GraphPatterns;
 import static pers.aprakash.spanqit.constraint.Functions.*;
@@ -19,7 +19,7 @@ public class GraphPatternTest extends BaseSpanqitTest {
 	SparqlVariable address = var("address");
 	SparqlVariable name2 = var("name2");
 	SparqlVariable name3 = var("name3");
-	URI hasAddress = uri(namespace, "hasAddress");
+	IRI hasAddress = uri(namespace, "hasAddress");
 
 	@Test
 	public void testFilterOnAGP() {

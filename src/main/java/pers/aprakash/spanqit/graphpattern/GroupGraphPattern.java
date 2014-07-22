@@ -4,8 +4,17 @@ import pers.aprakash.spanqit.constraint.Expression;
 import pers.aprakash.spanqit.core.QueryElementCollection;
 import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
-class GroupGraphPattern extends QueryElementCollection<GraphPattern>
-		implements GraphPattern {
+/**
+ * A SPARQL Group Graph Pattern
+ * 
+ * @author Ankit
+ *
+ * @see <a
+ *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#GroupPatterns">
+ *      SPARQL Group Graph Patterns</a>
+ */
+class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
+		GraphPattern {
 	private static final String OPTIONAL = "OPTIONAL";
 	private static final String DELIMITER = " . ";
 	private Filter filter;
@@ -25,7 +34,7 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern>
 
 		if (original instanceof GroupGraphPattern) {
 			copy((GroupGraphPattern) original);
-		} else if(original != null && !original.isEmpty()) {
+		} else if (original != null && !original.isEmpty()) {
 			elements.add(original);
 		}
 	}
@@ -43,7 +52,7 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern>
 
 		return this;
 	}
-	
+
 	GroupGraphPattern optional(boolean isOptional) {
 		this.isOptional = isOptional;
 
@@ -63,7 +72,7 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern>
 	public boolean isEmpty() {
 		return super.isEmpty();
 	}
-	
+
 	@Override
 	public String getQueryString() {
 		StringBuilder pattern = new StringBuilder();
@@ -79,36 +88,14 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern>
 			innerPattern.append("\n").append(filter.getQueryString());
 		}
 
-		return pattern.append(SpanqitStringUtils.getBracketedString(innerPattern.toString()))
+		return pattern.append(
+				SpanqitStringUtils.getBracketedString(innerPattern.toString()))
 				.toString();
 	}
-	
+
 	@Override
 	protected String getEmptyQueryString() {
-		return SpanqitStringUtils.getBracketedString(super.getEmptyQueryString());
-	}
-
-	@Override
-	public String getPrettyQueryString(int indent) {
-		int subIndent = 0;
-		StringBuilder pattern = new StringBuilder();
-		StringBuilder innerPattern = new StringBuilder();
-
-		if (isOptional) {
-			pattern.append(OPTIONAL + " ");
-			subIndent += OPTIONAL.length() + 4;
-		}
-
-		innerPattern.append(super.getPrettyQueryString(indent + subIndent));
-
-		if (filter != null) {
-			innerPattern.append("\n")
-					.append(SpanqitStringUtils.getIndent(indent + subIndent))
-					.append(filter.getQueryString());
-		}
-
-		return pattern.append(
-				SpanqitStringUtils.getPrettyBracketedString(innerPattern.toString(), 0))
-				.toString();
+		return SpanqitStringUtils.getBracketedString(super
+				.getEmptyQueryString());
 	}
 }

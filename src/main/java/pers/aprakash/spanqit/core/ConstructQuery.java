@@ -1,6 +1,5 @@
 package pers.aprakash.spanqit.core;
 
-import pers.aprakash.spanqit.graphpattern.GraphTemplate;
 import pers.aprakash.spanqit.graphpattern.TriplePattern;
 
 /**

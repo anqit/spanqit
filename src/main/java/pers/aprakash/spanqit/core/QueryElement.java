@@ -8,7 +8,7 @@ package pers.aprakash.spanqit.core;
  */
 public interface QueryElement {
 	/**
-	 * @return the string representing the SPARQL syntax of this element
+	 * @return the String representing the SPARQL syntax of this element
 	 */
 	public String getQueryString();
 }

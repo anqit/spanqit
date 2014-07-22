@@ -1,3 +1,4 @@
+
 handling Blank nodes
 typed literals
 
@@ -7,3 +8,5 @@ property paths
 complete Functions.java
 fix CONSTRUCT query
 create Queries class as query factory, hide query constructors
+
+QueryPattern should not be a GraphPattern, but instead contain one

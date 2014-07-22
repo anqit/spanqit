@@ -1,6 +1,6 @@
 package pers.aprakash.spanqit.core;
 
-import pers.aprakash.spanqit.rdf.URI;
+import pers.aprakash.spanqit.rdf.IRI;
 
 /**
  * A SPARQL Dataset specifier.
@@ -14,14 +14,14 @@ import pers.aprakash.spanqit.rdf.URI;
 public class FromClause implements QueryElement {
 	private static final String FROM = "FROM";
 	private static final String NAMED = "NAMED";
-	private URI iri;
+	private IRI iri;
 	private boolean isNamed;
 
-	FromClause(URI iri) {
+	FromClause(IRI iri) {
 		this(iri, false);
 	}
 
-	FromClause(URI iri, boolean isNamed) {
+	FromClause(IRI iri, boolean isNamed) {
 		this.iri = iri;
 		this.isNamed = isNamed;
 	}

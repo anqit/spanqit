@@ -7,7 +7,7 @@ import static pers.aprakash.spanqit.constraint.ExpressionOperands.*;
 import static pers.aprakash.spanqit.constraint.SparqlFunction.*;
 
 /**
- * A utility class to create SPARQL functions. Obviously there's some more
+ * A class with static methods to create SPARQL functions. Obviously there's some more
  * flushing out TODO still
  * 
  * @see <a
@@ -17,6 +17,9 @@ import static pers.aprakash.spanqit.constraint.SparqlFunction.*;
  *
  */
 public class Functions {
+	// prevent instantiation of this class
+	private Functions() { }
+	
 	/**
 	 * <code>ABS(operand</code>)
 	 * 

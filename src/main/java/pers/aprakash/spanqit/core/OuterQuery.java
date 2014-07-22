@@ -10,7 +10,7 @@ package pers.aprakash.spanqit.core;
  */
 // argh, so frustrating
 @SuppressWarnings("unchecked")
-abstract class OuterQuery<T extends OuterQuery<T>> extends
+public abstract class OuterQuery<T extends OuterQuery<T>> extends
 		BaseQuery<OuterQuery<T>> {
 	protected Base base; // ?
 	protected PrefixDeclarations prefixes; // *
