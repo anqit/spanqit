@@ -18,11 +18,4 @@ public interface GraphPattern extends QueryElement {
 	 *         patterns
 	 */
 	public boolean isEmpty();
-
-	/**
-	 * @return if this pattern is a collection of GraphPatterns (ie., Group or
-	 *         Alternative patterns), the number of graph patterns the
-	 *         collection contains
-	 */
-	public int size();
 }

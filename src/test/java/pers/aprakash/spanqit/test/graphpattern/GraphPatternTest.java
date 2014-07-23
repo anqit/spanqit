@@ -1,19 +1,21 @@
 package pers.aprakash.spanqit.test.graphpattern;
 
+import static pers.aprakash.spanqit.constraint.Expressions.not;
+import static pers.aprakash.spanqit.core.Elements.var;
+
 import org.junit.Test;
 
-import pers.aprakash.spanqit.constraint.Functions;
+import pers.aprakash.spanqit.constraint.Expressions;
+import pers.aprakash.spanqit.core.Elements;
+import pers.aprakash.spanqit.core.QueryPattern;
 import pers.aprakash.spanqit.core.SparqlVariable;
-import pers.aprakash.spanqit.graphpattern.GraphPattern;
 import pers.aprakash.spanqit.graphpattern.GraphPatternNotTriple;
-import pers.aprakash.spanqit.graphpattern.QueryPattern;
+import pers.aprakash.spanqit.graphpattern.GraphPatterns;
 import pers.aprakash.spanqit.graphpattern.SubSelect;
 import pers.aprakash.spanqit.rdf.IRI;
 import pers.aprakash.spanqit.test.BaseSpanqitTest;
-import pers.aprakash.spanqit.graphpattern.GraphPatterns;
-import static pers.aprakash.spanqit.constraint.Functions.*;
-import static pers.aprakash.spanqit.core.Elements.*;
 
+@SuppressWarnings("javadoc")
 public class GraphPatternTest extends BaseSpanqitTest {
 	SparqlVariable name = var("name");
 	SparqlVariable address = var("address");
@@ -62,22 +64,27 @@ public class GraphPatternTest extends BaseSpanqitTest {
 //
 //		p(GraphPatterns.and(and1, and2));
 		
-		QueryPattern where = new QueryPattern();
-		where.union().optional();
+		GraphPatternNotTriple patternA = GraphPatterns.union().optional();
+		
+		QueryPattern where = Elements.where();
+		where.where(patternA);
+		
 		p(where);
 		
-		where.union().filter(Functions.bnode());
+		patternA.union().filter(Expressions.bnode());
 		p(where);
-		where.union(and1.optional());
+		patternA.union(and1.optional());
 		p(where);
-		where.union(and2);
+		patternA.union(and2);
 		p(where);
 		
-		where = new QueryPattern();
-		p(where.and(and1, and2));
+		where = Elements.where();
+		GraphPatternNotTriple patternB = GraphPatterns.and(and1, and2);
+		p(where.where(patternB));
 		
-		where = new QueryPattern();
-		p(where.and(GraphPatterns.tp(name, address, name2)));
+		where = Elements.where();
+		GraphPatternNotTriple patternC = GraphPatterns.and(GraphPatterns.tp(name, address, name2)); 
+		p(where.where(patternC));
 	}
 
 	@Test

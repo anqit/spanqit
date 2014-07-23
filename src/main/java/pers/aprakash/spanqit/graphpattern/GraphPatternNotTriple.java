@@ -15,7 +15,7 @@ public class GraphPatternNotTriple implements GraphPattern {
 	protected GraphPattern pattern;
 
 	GraphPatternNotTriple() {
-		// pattern = new GroupGraphPattern();
+		this(null);
 	}
 
 	GraphPatternNotTriple(GraphPattern other) {
@@ -263,11 +263,6 @@ public class GraphPatternNotTriple implements GraphPattern {
 	@Override
 	public boolean isEmpty() {
 		return pattern.isEmpty();
-	}
-
-	@Override
-	public int size() {
-		return pattern.size();
 	}
 
 	private void filterExists(boolean exists, GraphPattern... patterns) {

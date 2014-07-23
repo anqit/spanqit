@@ -63,7 +63,7 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 		if (filter == null) {
 			filter = new Filter();
 		}
-		filter.setConstraint(constraint);
+		filter.filter(constraint);
 
 		return this;
 	}

@@ -26,7 +26,7 @@ public class Having extends QueryElementCollection<Expression<?>> {
 	 *            the conditions to add
 	 * @return this
 	 */
-	public Having addConstraint(Expression<?>... expressions) {
+	public Having having(Expression<?>... expressions) {
 		for (Expression<?> expression : expressions) {
 			elements.add(expression);
 		}

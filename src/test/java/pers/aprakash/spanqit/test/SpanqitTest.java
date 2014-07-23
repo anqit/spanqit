@@ -1,18 +1,28 @@
 package pers.aprakash.spanqit.test;
 
+import static pers.aprakash.spanqit.constraint.Expressions.bnode;
+import static pers.aprakash.spanqit.constraint.Expressions.lt;
+import static pers.aprakash.spanqit.constraint.Expressions.not;
+import static pers.aprakash.spanqit.constraint.Expressions.or;
+import static pers.aprakash.spanqit.constraint.Expressions.regex;
+import static pers.aprakash.spanqit.core.Elements.asc;
+import static pers.aprakash.spanqit.core.Elements.base;
+import static pers.aprakash.spanqit.core.Elements.desc;
+import static pers.aprakash.spanqit.core.Elements.prefix;
+import static pers.aprakash.spanqit.graphpattern.GraphPatterns.and;
+import static pers.aprakash.spanqit.graphpattern.GraphPatterns.optional;
+import static pers.aprakash.spanqit.graphpattern.GraphPatterns.tp;
+import static pers.aprakash.spanqit.graphpattern.GraphPatterns.union;
+
 import org.junit.Test;
 
-
-
 import pers.aprakash.spanqit.core.ConstructQuery;
+import pers.aprakash.spanqit.core.Queries;
 //import pers.aprakash.spanqit.core.ConstructQuery;
 import pers.aprakash.spanqit.core.SelectQuery;
 import pers.aprakash.spanqit.core.SparqlVariable;
-import pers.aprakash.spanqit.graphpattern.GraphPatterns;
-import static pers.aprakash.spanqit.constraint.Functions.*;
-import static pers.aprakash.spanqit.core.Elements.*;
-import static pers.aprakash.spanqit.graphpattern.GraphPatterns.*;
 
+@SuppressWarnings("javadoc")
 public class SpanqitTest extends BaseSpanqitTest {
 	String namespace = "http://www.spanqit.com/#";
 
@@ -61,8 +71,6 @@ public class SpanqitTest extends BaseSpanqitTest {
 				.offset(654);
 
 		System.out.println(query.getQueryString());
-
-		System.out.println(query.getPrettyQueryString());
 	}
 
 	@Test
@@ -83,7 +91,9 @@ public class SpanqitTest extends BaseSpanqitTest {
 	public void constructTest() {
 		String foaf = "http://xmlns.com/foaf/0.1/";
 		String org = "http://example.com/ns#";
-		ConstructQuery cq = new ConstructQuery();
+		
+		ConstructQuery cq = Queries.CONSTRUCT();
+
 		SparqlVariable x = cq.createQueryVariable();
 		SparqlVariable name = cq.createQueryVariable();
 
@@ -134,7 +144,7 @@ public class SpanqitTest extends BaseSpanqitTest {
 		SelectQuery select = new SelectQuery();
 		SparqlVariable v1 = select.createQueryVariable(), v2 = select.createQueryVariable(), v3 = select.createQueryVariable();
 //		select.where(and(tp(v2, v2, v3)));
-		select.where(tp(v2, v2, v3), union(tp(v2, v2, v3)));
+		select.where(tp(v1, v2, v3), union(tp(v2, v2, v3)));
 		p(select);
 	}
 }

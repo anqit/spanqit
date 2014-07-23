@@ -7,6 +7,7 @@ import java.util.Iterator;
 /**
  * A logical collection of query elements. Provides common functionality for
  * elements which are collections of other elements, especially in printing.
+ * Would have loved to have avoided making this public.
  * 
  * @author Ankit
  *
@@ -36,13 +37,6 @@ public abstract class QueryElementCollection<T extends QueryElement> implements
 	 */
 	public boolean isEmpty() {
 		return elements.isEmpty();
-	}
-
-	/**
-	 * @return the number of elements in this collection
-	 */
-	public int size() {
-		return elements.size();
 	}
 
 	@Override

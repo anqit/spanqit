@@ -2,7 +2,7 @@ package pers.aprakash.spanqit.constraint;
 
 /**
  * The built-in SPARQL Functions. Keeping this public until
- * {@link pers.aprakash.spanqit.constraint.Functions} is completed.
+ * {@link Expressions} is completed.
  * 
  * @see <a href=
  *      "http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#SparqlOps">
@@ -10,6 +10,7 @@ package pers.aprakash.spanqit.constraint;
  * @author Ankit
  *
  */
+@SuppressWarnings("javadoc") // acceptable, as this won't be public for long
 public enum SparqlFunction implements SparqlOperator {
 	ABS("ABS"),
 	BNODE("BNODE"),

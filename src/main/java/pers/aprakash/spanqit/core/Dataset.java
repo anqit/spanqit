@@ -1,5 +1,7 @@
 package pers.aprakash.spanqit.core;
 
+import pers.aprakash.spanqit.rdf.IRI;
+
 /**
  * A SPARQL dataset specification
  * 
@@ -10,16 +12,35 @@ package pers.aprakash.spanqit.core;
  *      RDF Datasets</a>
  */
 public class Dataset extends QueryElementCollection<FromClause> {
+	// package-protect instantiation of this class
+	Dataset() {
+
+	}
+
 	/**
-	 * Add graphs to this dataset
+	 * Add graph references to this dataset
 	 * 
-	 * @param datasets
+	 * @param graphs
 	 *            the datasets to add
 	 * @return this object
 	 */
-	public Dataset addGraph(FromClause... datasets) {
-		for (FromClause from : datasets) {
-			elements.add(from);
+	public Dataset from(FromClause... graphs) {
+		for (FromClause graph : graphs) {
+			elements.add(graph);
+		}
+
+		return this;
+	}
+
+	/**
+	 * Add unnamed graph references to this dataset
+	 * 
+	 * @param iris the IRI's of the graphs to add
+	 * @return this
+	 */
+	public Dataset from(IRI... iris) {
+		for (IRI iri : iris) {
+			elements.add(Elements.from(iri));
 		}
 
 		return this;

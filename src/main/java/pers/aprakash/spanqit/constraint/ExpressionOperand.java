@@ -9,5 +9,4 @@ import pers.aprakash.spanqit.core.QueryElement;
  * @author Ankit
  *
  */
-public interface ExpressionOperand extends QueryElement {
-}
+public interface ExpressionOperand extends QueryElement { }

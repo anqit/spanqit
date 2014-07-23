@@ -3,7 +3,7 @@ package pers.aprakash.spanqit.constraint;
 import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
 /**
- * Utility class to create {@link pers.aprakash.spanqit.constraint.ExpressionOperand}
+ * Utility class to create {@link ExpressionOperand}s
  * from standard objects
  * 
  * @author Ankit

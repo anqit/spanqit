@@ -21,7 +21,7 @@ class Filter implements QueryElement {
 	}
 
 	Filter(Expression<?> expression) {
-		setConstraint(expression);
+		filter(expression);
 	}
 
 	/**
@@ -31,7 +31,7 @@ class Filter implements QueryElement {
 	 *            the constraint to set
 	 * @return this
 	 */
-	Filter setConstraint(Expression<?> expression) {
+	public Filter filter(Expression<?> expression) {
 		constraint = expression;
 
 		return this;
@@ -46,7 +46,7 @@ class Filter implements QueryElement {
 		if (constraint != null) {
 			exp = constraint.getQueryString();
 		}
-		filter.append(SpanqitStringUtils.getBracketedString(exp));
+		filter.append(SpanqitStringUtils.getParenthesizedString(exp));
 
 		return filter.toString();
 	}

@@ -31,11 +31,6 @@ public class TriplePattern implements GraphPattern {
 	}
 
 	@Override
-	public int size() {
-		return 1;
-	}
-
-	@Override
 	public String getQueryString() {
 		StringBuilder triplePattern = new StringBuilder();
 

@@ -1,5 +1,7 @@
 package pers.aprakash.spanqit.core;
 
+import pers.aprakash.spanqit.rdf.IRI;
+
 /**
  * A non-subquery query.
  * 
@@ -17,9 +19,23 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	protected Dataset from; // *
 
 	/**
-	 * Set the base of this query
+	 * Set the base IRI of this query
+	 * 
+	 * @param iri
+	 *            the base IRI
+	 * @return this
+	 */
+	public T base(IRI iri) {
+		this.base = Elements.base(iri);
+
+		return (T) this;
+	}
+
+	/**
+	 * Set the Base clause of this query
 	 * 
 	 * @param base
+	 *            the {@link Base} clause to set
 	 * @return this
 	 */
 	public T base(Base base) {
@@ -37,10 +53,23 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 */
 	public T prefix(Prefix... prefixes) {
 		if (this.prefixes == null) {
-			this.prefixes = new PrefixDeclarations();
+			this.prefixes = Elements.prefixes();
 		}
 
 		this.prefixes.addPrefix(prefixes);
+
+		return (T) this;
+	}
+
+	/**
+	 * Set the Prefix declarations of this query
+	 * 
+	 * @param prefixes
+	 *            the {@link PrefixDeclarations} to set
+	 * @return this
+	 */
+	public T prefix(PrefixDeclarations prefixes) {
+		this.prefixes = prefixes;
 
 		return (T) this;
 	}
@@ -54,9 +83,22 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 */
 	public T from(FromClause... graphs) {
 		if (from == null) {
-			from = new Dataset();
+			from = Elements.dataset();
 		}
-		from.addGraph(graphs);
+		from.from(graphs);
+
+		return (T) this;
+	}
+
+	/**
+	 * Set the Dataset clause for this query
+	 * 
+	 * @param from
+	 *            the {@link Dataset} clause to set
+	 * @return this
+	 */
+	public T from(Dataset from) {
+		this.from = from;
 
 		return (T) this;
 	}

@@ -12,7 +12,12 @@ import pers.aprakash.spanqit.graphpattern.TriplePattern;
  *      SPARQL CONSTRUCT Query</a>
  */
 public class ConstructQuery extends BaseQuery<ConstructQuery> {
-	private GraphTemplate construct = new GraphTemplate();
+	// package-protect instantiation of this class
+	ConstructQuery() {
+
+	}
+
+	private GraphTemplate construct = Elements.construct();
 
 	/**
 	 * Add triples to this query's graph template
@@ -23,6 +28,19 @@ public class ConstructQuery extends BaseQuery<ConstructQuery> {
 	 */
 	public ConstructQuery construct(TriplePattern... patterns) {
 		construct.construct(patterns);
+
+		return this;
+	}
+
+	/**
+	 * Set this query's graph template
+	 * 
+	 * @param construct
+	 *            the {@link GraphTemplate} to set
+	 * @return this
+	 */
+	public ConstructQuery construct(GraphTemplate construct) {
+		this.construct = construct;
 
 		return this;
 	}

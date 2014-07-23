@@ -4,6 +4,7 @@ import pers.aprakash.spanqit.core.QueryElement;
 
 /**
  * Interface to denote an Expression operator
+ * 
  * @author Ankit
  *
  */

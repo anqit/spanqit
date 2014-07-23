@@ -75,10 +75,10 @@ public class SelectQuery extends OuterQuery<SelectQuery> {
 	/**
 	 * Add expressions to the query's projection
 	 * <p>
-	 * NOTE: if SELECT * has been specified (by {@link #all()} or calling {@link
-	 * #all(boolean)} with <code>true</code>), that will take precedence over
-	 * specified expressions when converting to string via {@link
-	 * #getQueryString()}
+	 * NOTE: if SELECT * has been specified (by {@link #all()} or calling
+	 * {@link #all(boolean)} with <code>true</code>), that will take precedence
+	 * over specified expressions when converting to string via
+	 * {@link #getQueryString()}
 	 * 
 	 * @param projectables
 	 *            expressions to add
@@ -88,6 +88,19 @@ public class SelectQuery extends OuterQuery<SelectQuery> {
 	 */
 	public SelectQuery select(Projectable... projectables) {
 		select.select(projectables);
+
+		return this;
+	}
+
+	/**
+	 * Set this query's projection
+	 * 
+	 * @param select
+	 *            the {@link Projection} to set
+	 * @return this
+	 */
+	public SelectQuery select(Projection select) {
+		this.select = select;
 
 		return this;
 	}
