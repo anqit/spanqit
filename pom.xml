@@ -4,29 +4,4 @@
 	<groupId>pers.mprakash.rdf</groupId>
 	<artifactId>Spanqit</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<dependencies>
-		<dependency>
-			<groupId>org.openrdf.sesame</groupId>
-			<artifactId>sesame-runtime</artifactId>
-			<version>2.6.10</version>
-			<type>pom</type>
-		</dependency>
-	</dependencies>
-	<repositories>
-		<!-- <repository> <id>org.openrdf.sesame</id> <name>OpenRDFLocal</name> 
-			<url>C:\Users\mayank\.m2\repository</url> </repository> -->
-		<repository>
-			<releases>
-				<updatePolicy>interval:30</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</releases>
-			<snapshots>
-				<updatePolicy>daily</updatePolicy>
-				<checksumPolicy>warn</checksumPolicy>
-			</snapshots>
-			<id>org.openrdf.sesame.source</id>
-			<name>OpenRDF</name>
-			<url>http://repo.aduna-software.org/maven2/releases/</url>
-		</repository>
-	</repositories>
 </project>

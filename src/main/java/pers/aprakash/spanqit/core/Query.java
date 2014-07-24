@@ -14,7 +14,7 @@ import pers.aprakash.spanqit.graphpattern.GraphPattern;
  */
 @SuppressWarnings("unchecked")
 // really wish i didn't have to do this
-public abstract class BaseQuery<T extends BaseQuery<T>> implements QueryElement {
+public abstract class Query<T extends Query<T>> implements QueryElement {
 	protected static final String LIMIT = "LIMIT";
 	protected static final String OFFSET = "OFFSET";
 

@@ -11,7 +11,7 @@ import pers.aprakash.spanqit.graphpattern.TriplePattern;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#construct">
  *      SPARQL CONSTRUCT Query</a>
  */
-public class ConstructQuery extends BaseQuery<ConstructQuery> {
+public class ConstructQuery extends Query<ConstructQuery> {
 	// package-protect instantiation of this class
 	ConstructQuery() {
 

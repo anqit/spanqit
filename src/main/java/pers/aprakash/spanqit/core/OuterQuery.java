@@ -13,7 +13,7 @@ import pers.aprakash.spanqit.rdf.IRI;
 // argh, so frustrating
 @SuppressWarnings("unchecked")
 public abstract class OuterQuery<T extends OuterQuery<T>> extends
-		BaseQuery<OuterQuery<T>> {
+		Query<OuterQuery<T>> {
 	protected Base base; // ?
 	protected PrefixDeclarations prefixes; // *
 	protected Dataset from; // *

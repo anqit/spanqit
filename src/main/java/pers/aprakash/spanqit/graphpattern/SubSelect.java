@@ -1,9 +1,9 @@
 package pers.aprakash.spanqit.graphpattern;
 
-import pers.aprakash.spanqit.core.BaseQuery;
 import pers.aprakash.spanqit.core.Elements;
 import pers.aprakash.spanqit.core.Projectable;
 import pers.aprakash.spanqit.core.Projection;
+import pers.aprakash.spanqit.core.Query;
 import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
 /**
@@ -15,7 +15,7 @@ import pers.aprakash.spanqit.core.SpanqitStringUtils;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#subqueries">
  *      SPARQL Subquery</a>
  */
-public class SubSelect extends BaseQuery<SubSelect> implements GraphPattern {
+public class SubSelect extends Query<SubSelect> implements GraphPattern {
 	private Projection select = Elements.select();
 
 	/*
@@ -25,28 +25,96 @@ public class SubSelect extends BaseQuery<SubSelect> implements GraphPattern {
 	 * awesome.
 	 */
 
+	/**
+	 * Specify the query's projection to be distinct
+	 * 
+	 * @return this
+	 * 
+	 * @see pers.aprakash.spanqit.core.Projection#distinct()
+	 */
 	public SubSelect distinct() {
 		return distinct(true);
 	}
 
+	/**
+	 * Specify if the query's projection should be distinct or not
+	 * 
+	 * @param isDistinct
+	 *            if this query's projection should be distinct
+	 * @return this
+	 * 
+	 * @see pers.aprakash.spanqit.core.Projection#distinct(boolean)
+	 */
 	public SubSelect distinct(boolean isDistinct) {
 		select.distinct(isDistinct);
 
 		return this;
 	}
 
+	/**
+	 * Specify that this query's projection should select all in-scope
+	 * expressions
+	 * <p>
+	 * NOTE: setting this takes precedence over any expressions added to the
+	 * projection via {@link #select(Projectable...)} when printing
+	 * 
+	 * @return this
+	 * 
+	 * @see Projection#all()
+	 */
 	public SubSelect all() {
 		return all(true);
 	}
 
+	/**
+	 * Specify if this query's projection should select all in-scope expressions
+	 * or not.
+	 * <p>
+	 * NOTE: if called with <code>true</code>, this setting will take precedence
+	 * over any expressions added to the projection via
+	 * {@link #select(Projectable...)} when printing
+	 * 
+	 * @param selectAll
+	 *            if all in-scope expressions should be selected
+	 * @return this
+	 * 
+	 * @see Projection#all(boolean)
+	 */
 	public SubSelect all(boolean selectAll) {
 		select.all(selectAll);
 
 		return this;
 	}
 
+	/**
+	 * Add expressions to the query's projection
+	 * <p>
+	 * NOTE: if SELECT * has been specified (by {@link #all()} or calling
+	 * {@link #all(boolean)} with <code>true</code>), that will take precedence
+	 * over specified expressions when converting to string via
+	 * {@link #getQueryString()}
+	 * 
+	 * @param projectables
+	 *            expressions to add
+	 * @return this
+	 * 
+	 * @see Projection#select(Projectable...)
+	 */
 	public SubSelect select(Projectable... projectables) {
 		select.select(projectables);
+
+		return this;
+	}
+
+	/**
+	 * Set this query's projection
+	 * 
+	 * @param select
+	 *            the {@link Projection} to set
+	 * @return this
+	 */
+	public SubSelect select(Projection select) {
+		this.select = select;
 
 		return this;
 	}
