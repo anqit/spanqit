@@ -17,7 +17,7 @@ public class Elements {
 	}
 
 	/**
-	 * Create a SPARQL variable
+	 * Create a SPARQL variable with a specific alias.
 	 * 
 	 * @param varName
 	 *            the alias of the variable

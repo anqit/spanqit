@@ -1,7 +1,6 @@
 package pers.aprakash.spanqit.graphpattern;
 
 import pers.aprakash.spanqit.core.QueryElementCollection;
-import pers.aprakash.spanqit.core.SpanqitStringUtils;
 
 /**
  * A SPARQL Alternative Graph Pattern.
@@ -41,11 +40,5 @@ class AlternativeGraphPattern extends QueryElementCollection<GroupGraphPattern>
 		}
 
 		return this;
-	}
-
-	@Override
-	protected String getEmptyQueryString() {
-		return SpanqitStringUtils.getBracketedString(super
-				.getEmptyQueryString());
 	}
 }

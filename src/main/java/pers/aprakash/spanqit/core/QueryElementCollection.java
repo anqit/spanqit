@@ -58,14 +58,8 @@ public abstract class QueryElementCollection<T extends QueryElement> implements
 					first = false;
 				}
 			}
-		} else {
-			return getEmptyQueryString();
 		}
 
 		return queryElements.toString();
-	}
-
-	protected String getEmptyQueryString() {
-		return "";
 	}
 }

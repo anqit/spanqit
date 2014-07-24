@@ -140,6 +140,21 @@ public class Expressions {
 	}
 
 	/**
+	 * <code>CONCAT(operand1, operand2, ... , operandN)</code>
+	 * 
+	 * @param operands
+	 *            the arguments to the function
+	 * @return a CONCAT() function
+	 * 
+	 * @see <a
+	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-concat">
+	 *      SPARQL CONCAT Function</a>
+	 */
+	public static Expression<?> concat(ExpressionOperand... operands) {
+		return function(CONCAT, operands);
+	}
+	
+	/**
 	 * <code>REGEX(testString, pattern)<code>
 	 * 
 	 * @param testString

@@ -1,14 +1,13 @@
 package pers.aprakash.spanqit.graphpattern;
 
 import pers.aprakash.spanqit.core.Projectable;
-import pers.aprakash.spanqit.core.SparqlVariable;
-import pers.aprakash.spanqit.rdf.Resource;
-import pers.aprakash.spanqit.rdf.IRI;
-import pers.aprakash.spanqit.rdf.Value;
+import pers.aprakash.spanqit.rdf.ObjectPattern;
+import pers.aprakash.spanqit.rdf.PredicatePattern;
+import pers.aprakash.spanqit.rdf.SubjectPattern;
 
 /**
- * A class with static methods to create graph patterns. Obviously there's some more
- * flushing out TODO still
+ * A class with static methods to create graph patterns. Obviously there's some
+ * more flushing out TODO still
  * 
  * @author Ankit
  *
@@ -34,133 +33,8 @@ public class GraphPatterns {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
 	 *      Triple pattern syntax</a>
 	 */
-	public static TriplePattern tp(Resource subject, IRI predicate, Value object) {
-		return new TriplePattern(subject, predicate, object);
-	}
-
-	/**
-	 * Create a triple pattern with the given subject, predicate, and object
-	 * 
-	 * @param subject
-	 * @param predicate
-	 * @param object
-	 * 
-	 * @return a new triple pattern
-	 * 
-	 * @see <a
-	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
-	 *      Triple pattern syntax</a>
-	 */
-	public static TriplePattern tp(Resource subject, IRI predicate,
-			SparqlVariable object) {
-		return new TriplePattern(subject, predicate, object);
-	}
-
-	/**
-	 * Create a triple pattern with the given subject, predicate, and object
-	 * 
-	 * @param subject
-	 * @param predicate
-	 * @param object
-	 * 
-	 * @return a new triple pattern
-	 * 
-	 * @see <a
-	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
-	 *      Triple pattern syntax</a>
-	 */
-	public static TriplePattern tp(Resource subject, SparqlVariable predicate,
-			Value object) {
-		return new TriplePattern(subject, predicate, object);
-	}
-
-	/**
-	 * Create a triple pattern with the given subject, predicate, and object
-	 * 
-	 * @param subject
-	 * @param predicate
-	 * @param object
-	 * 
-	 * @return a new triple pattern
-	 * 
-	 * @see <a
-	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
-	 *      Triple pattern syntax</a>
-	 */
-	public static TriplePattern tp(Resource subject, SparqlVariable predicate,
-			SparqlVariable object) {
-		return new TriplePattern(subject, predicate, object);
-	}
-
-	/**
-	 * Create a triple pattern with the given subject, predicate, and object
-	 * 
-	 * @param subject
-	 * @param predicate
-	 * @param object
-	 * 
-	 * @return a new triple pattern
-	 * 
-	 * @see <a
-	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
-	 *      Triple pattern syntax</a>
-	 */
-	public static TriplePattern tp(SparqlVariable subject, IRI predicate,
-			Value object) {
-		return new TriplePattern(subject, predicate, object);
-	}
-
-	/**
-	 * Create a triple pattern with the given subject, predicate, and object
-	 * 
-	 * @param subject
-	 * @param predicate
-	 * @param object
-	 * 
-	 * @return a new triple pattern
-	 * 
-	 * @see <a
-	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
-	 *      Triple pattern syntax</a>
-	 */
-	public static TriplePattern tp(SparqlVariable subject, IRI predicate,
-			SparqlVariable object) {
-		return new TriplePattern(subject, predicate, object);
-	}
-
-	/**
-	 * Create a triple pattern with the given subject, predicate, and object
-	 * 
-	 * @param subject
-	 * @param predicate
-	 * @param object
-	 * 
-	 * @return a new triple pattern
-	 * 
-	 * @see <a
-	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
-	 *      Triple pattern syntax</a>
-	 */
-	public static TriplePattern tp(SparqlVariable subject,
-			SparqlVariable predicate, Value object) {
-		return new TriplePattern(subject, predicate, object);
-	}
-
-	/**
-	 * Create a triple pattern with the given subject, predicate, and object
-	 * 
-	 * @param subject
-	 * @param predicate
-	 * @param object
-	 * 
-	 * @return a new triple pattern
-	 * 
-	 * @see <a
-	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
-	 *      Triple pattern syntax</a>
-	 */
-	public static TriplePattern tp(SparqlVariable subject,
-			SparqlVariable predicate, SparqlVariable object) {
+	public static TriplePattern tp(SubjectPattern subject,
+			PredicatePattern predicate, ObjectPattern object) {
 		return new TriplePattern(subject, predicate, object);
 	}
 

@@ -15,7 +15,7 @@ public class GraphPatternNotTriple implements GraphPattern {
 	protected GraphPattern pattern;
 
 	GraphPatternNotTriple() {
-		this(null);
+		this(new GroupGraphPattern());
 	}
 
 	GraphPatternNotTriple(GraphPattern other) {
@@ -45,14 +45,16 @@ public class GraphPatternNotTriple implements GraphPattern {
 	 *      Group Graph Pattern</a>
 	 */
 	public GraphPatternNotTriple and(GraphPattern... patterns) {
-		GroupGraphPattern groupPattern = new GroupGraphPattern(pattern);
+		if (patterns != null && patterns.length > 0) {
+			GroupGraphPattern groupPattern = new GroupGraphPattern(pattern);
 
-		for (GraphPattern p : patterns) {
-			groupPattern.and(getPattern(p));
+			for (GraphPattern p : patterns) {
+				groupPattern.and(getPattern(p));
+			}
+
+			pattern = groupPattern;
 		}
-
-		pattern = groupPattern;
-
+		
 		return this;
 	}
 
@@ -111,7 +113,8 @@ public class GraphPatternNotTriple implements GraphPattern {
 	/**
 	 * Specify if this graph pattern should be optional.
 	 * 
-	 * <p>NOTE: This converts this graph pattern into a group graph pattern.
+	 * <p>
+	 * NOTE: This converts this graph pattern into a group graph pattern.
 	 * 
 	 * @param isOptional
 	 *            if this graph pattern should be optional or not

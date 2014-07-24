@@ -39,7 +39,7 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 		}
 	}
 
-	private void copy(GroupGraphPattern original) {
+	protected void copy(GroupGraphPattern original) {
 		this.elements = original.elements;
 		this.isOptional = original.isOptional;
 		this.filter = original.filter;
@@ -78,6 +78,12 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 		StringBuilder pattern = new StringBuilder();
 		StringBuilder innerPattern = new StringBuilder();
 
+		// Prevent extra brackets being added in the case of this graph pattern
+		// containing only one group graph pattern. Resulting syntax is
+		// logically equivalent and easier to read (and hopefully parse by query
+		// parsers)
+		boolean bracketize = !(elements.size() == 1 && elements.toArray()[0] instanceof GroupGraphPattern);
+
 		if (isOptional) {
 			pattern.append(OPTIONAL + " ");
 		}
@@ -88,14 +94,13 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 			innerPattern.append("\n").append(filter.getQueryString());
 		}
 
-		return pattern.append(
-				SpanqitStringUtils.getBracketedString(innerPattern.toString()))
-				.toString();
-	}
+		if (bracketize) {
+			pattern.append(SpanqitStringUtils.getBracketedString(innerPattern
+					.toString()));
+		} else {
+			pattern.append(innerPattern.toString());
+		}
 
-	@Override
-	protected String getEmptyQueryString() {
-		return SpanqitStringUtils.getBracketedString(super
-				.getEmptyQueryString());
+		return pattern.toString();
 	}
 }

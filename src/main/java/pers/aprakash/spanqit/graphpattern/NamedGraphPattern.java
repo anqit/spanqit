@@ -19,6 +19,12 @@ class NamedGraphPattern extends GroupGraphPattern {
 	}
 
 	@Override
+	protected void copy(GroupGraphPattern original) {
+		super.copy(original);
+		this.name = ((NamedGraphPattern) original).name;
+	}
+	
+	@Override
 	public String getQueryString() {
 		StringBuilder namedGraphPattern = new StringBuilder();
 		namedGraphPattern.append(GRAPH).append(" ")

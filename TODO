@@ -5,9 +5,17 @@ typed literals
 custom functions
 values block
 property paths
+maybe handle prefixed iri's?
+put BIND as a graph pattern i guess? or allow a list of BIND expressions in GroupGraphPattern?
+stop WHERE clause inception
+add has(predicate, object) method to SubjectPattern to ease creating triples?
+RDF collection syntax '(el1, el2, ...) :pred ?object'
+
 complete Functions.java
 fix CONSTRUCT query
 create Queries class as query factory, hide query constructors
 
 QueryPattern should not be a GraphPattern, but instead contain one
 Separate OpenRdfAdapter and tests into own projects.
+
+

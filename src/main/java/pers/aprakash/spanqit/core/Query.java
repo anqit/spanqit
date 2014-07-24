@@ -70,16 +70,17 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 
 		return (T) this;
 	}
-	
+
 	/**
 	 * Set this query's Group By clause
 	 * 
-	 * @param groupBy the {@link GroupBy} clause to set
+	 * @param groupBy
+	 *            the {@link GroupBy} clause to set
 	 * @return this
 	 */
 	public T groupBy(GroupBy groupBy) {
 		this.groupBy = groupBy;
-		
+
 		return (T) this;
 	}
 
@@ -104,14 +105,16 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	/**
 	 * Set this query's Order By clause
 	 * 
-	 * @param orderBy the {@link OrderBy} clause to set
+	 * @param orderBy
+	 *            the {@link OrderBy} clause to set
 	 * @return this
 	 */
 	public T orderBy(OrderBy orderBy) {
 		this.orderBy = orderBy;
-		
+
 		return (T) this;
 	}
+
 	/**
 	 * Specify constraints for this query's Having clause.
 	 * 
@@ -129,16 +132,17 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 
 		return (T) this;
 	}
-	
+
 	/**
 	 * Set this query's Having clause
 	 * 
-	 * @param having the Having clause to set
+	 * @param having
+	 *            the Having clause to set
 	 * @return this
 	 */
 	public T having(Having having) {
 		this.having = having;
-		
+
 		return (T) this;
 	}
 
@@ -175,11 +179,12 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	}
 
 	/**
-	 * Create a variable unique to this query.
+	 * A shortcut. Each call to this method returns a new {@link SparqlVariable}
+	 * that is unique (i.e., has a unique alias) to this query instance.
 	 * 
 	 * @return a SparqlVariable object that is unique to this query
 	 */
-	public SparqlVariable createQueryVariable() {
+	public SparqlVariable var() {
 		return new SparqlVariable("x" + ++varCount);
 	}
 
