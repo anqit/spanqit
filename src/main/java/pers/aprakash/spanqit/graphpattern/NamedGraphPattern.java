@@ -21,7 +21,9 @@ class NamedGraphPattern extends GroupGraphPattern {
 	@Override
 	protected void copy(GroupGraphPattern original) {
 		super.copy(original);
-		this.name = ((NamedGraphPattern) original).name;
+		if(original instanceof NamedGraphPattern) {
+			this.name = ((NamedGraphPattern) original).name;
+		}
 	}
 	
 	@Override

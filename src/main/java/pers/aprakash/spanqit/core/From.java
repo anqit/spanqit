@@ -11,17 +11,17 @@ import pers.aprakash.spanqit.rdf.IRI;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#specifyingDataset">
  *      Specifying RDF Datasets</a>
  */
-public class FromClause implements QueryElement {
+public class From implements QueryElement {
 	private static final String FROM = "FROM";
 	private static final String NAMED = "NAMED";
 	private IRI iri;
 	private boolean isNamed;
 
-	FromClause(IRI iri) {
+	From(IRI iri) {
 		this(iri, false);
 	}
 
-	FromClause(IRI iri, boolean isNamed) {
+	From(IRI iri, boolean isNamed) {
 		this.iri = iri;
 		this.isNamed = isNamed;
 	}

@@ -15,12 +15,12 @@ import pers.aprakash.spanqit.rdf.SubjectPattern;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynVariables">
  *      SPARQL Variable Syntax</a>
  */
-public class SparqlVariable implements Projectable, SubjectPattern,
+public class Variable implements Projectable, SubjectPattern,
 		PredicatePattern, ObjectPattern, ExpressionOperand, Orderable,
-		Groupable, GraphName {
+		Groupable, GraphName, Assignable {
 	private String alias;
 
-	SparqlVariable(String varName) {
+	Variable(String varName) {
 		this.alias = varName;
 	}
 
@@ -37,11 +37,11 @@ public class SparqlVariable implements Projectable, SubjectPattern,
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof SparqlVariable)) {
+		if (!(obj instanceof Variable)) {
 			return false;
 		}
 
-		SparqlVariable other = (SparqlVariable) obj;
+		Variable other = (Variable) obj;
 		if (alias == null) {
 			if (other.alias != null) {
 				return false;

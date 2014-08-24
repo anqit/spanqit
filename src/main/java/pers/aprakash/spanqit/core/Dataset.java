@@ -11,7 +11,7 @@ import pers.aprakash.spanqit.rdf.IRI;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#rdfDataset">
  *      RDF Datasets</a>
  */
-public class Dataset extends QueryElementCollection<FromClause> {
+public class Dataset extends QueryElementCollection<From> {
 	// package-protect instantiation of this class
 	Dataset() {
 
@@ -24,8 +24,8 @@ public class Dataset extends QueryElementCollection<FromClause> {
 	 *            the datasets to add
 	 * @return this object
 	 */
-	public Dataset from(FromClause... graphs) {
-		for (FromClause graph : graphs) {
+	public Dataset from(From... graphs) {
+		for (From graph : graphs) {
 			elements.add(graph);
 		}
 
@@ -40,15 +40,9 @@ public class Dataset extends QueryElementCollection<FromClause> {
 	 */
 	public Dataset from(IRI... iris) {
 		for (IRI iri : iris) {
-			elements.add(Elements.from(iri));
+			elements.add(Spanqit.from(iri));
 		}
 
 		return this;
-	}
-
-	@Override
-	public String getQueryString() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

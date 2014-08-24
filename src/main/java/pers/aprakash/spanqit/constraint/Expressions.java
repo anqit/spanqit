@@ -1,6 +1,6 @@
 package pers.aprakash.spanqit.constraint;
 
-import pers.aprakash.spanqit.core.SparqlVariable;
+import pers.aprakash.spanqit.core.Variable;
 import pers.aprakash.spanqit.rdf.Literal;
 
 import static pers.aprakash.spanqit.constraint.ExpressionOperands.*;
@@ -105,7 +105,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-bound">
 	 *      SPARQL BOUND Function</a>
 	 */
-	public static Expression<?> bound(SparqlVariable var) {
+	public static Expression<?> bound(Variable var) {
 		return function(BOUND, var);
 	}
 
@@ -229,6 +229,10 @@ public class Expressions {
 			ExpressionOperand pattern, ExpressionOperand flags) {
 		return function(REGEX, testString, pattern, flags);
 	}
+	
+	public static Expression<?> str(ExpressionOperand operand) {
+		return function(SparqlFunction.STRING, operand);
+	}
 
 	// ... etc...
 
@@ -331,6 +335,57 @@ public class Expressions {
 		return binaryExpression(BinaryOperator.NOT_EQUALS, left, right);
 	}
 
+	/**
+	 * <code>left > right</code>
+	 * 
+	 * @param left
+	 *            the left operand
+	 * @param right
+	 *            the right operand
+	 * @return logical greater than operation
+	 * @see <a
+	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
+	 *      Operators</a>
+	 */
+	public static Expression<?> gt(Number left, Number right) {
+		return binaryExpression(BinaryOperator.GREATER_THAN, numberOperand(left),
+				numberOperand(right));
+	}
+
+	/**
+	 * <code>left > right</code>
+	 * 
+	 * @param left
+	 *            the left operand
+	 * @param right
+	 *            the right operand
+	 * @return logical greater than operation
+	 * @see <a
+	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
+	 *      Operators</a>
+	 */
+	public static Expression<?> gt(Number left, ExpressionOperand right) {
+		return binaryExpression(BinaryOperator.GREATER_THAN, numberOperand(left),
+				right);
+	}
+
+	/**
+	 * <code>left > right</code>
+	 * 
+	 * @param left
+	 *            the left operand
+	 * @param right
+	 *            the right operand
+	 * @return logical greater than operation
+	 * @see <a
+	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
+	 *      Operators</a>
+	 */
+	public static Expression<?> gt(ExpressionOperand left, Number right) {
+		return binaryExpression(BinaryOperator.GREATER_THAN, left,
+				numberOperand(right));
+	}
+	
 	/**
 	 * <code>left > right</code>
 	 * 
@@ -559,5 +614,55 @@ public class Expressions {
 		}
 
 		return op;
+	}
+	
+	/**
+	 * Aggregates
+	 */
+	
+	/**
+	 * 
+	 * @param operand
+	 * @return
+	 */
+	public static Aggregate avg(ExpressionOperand operand) {
+		return new Aggregate(SparqlAggregate.AVG).addOperand(operand);
+	}
+	
+	/**
+	 * 
+	 * @param operand
+	 * @return
+	 */
+	public static Aggregate count(ExpressionOperand operand) {
+		return new Aggregate(SparqlAggregate.COUNT).addOperand(operand);
+	}
+	
+	public static Aggregate countAll() {
+		return new Aggregate(SparqlAggregate.COUNT).countAll();
+	}
+	
+	public static Aggregate group_concat(ExpressionOperand... operands) {
+		return new Aggregate(SparqlAggregate.GROUP_CONCAT).addOperand(operands);
+	}
+	
+	public static Aggregate group_concat(String separator, ExpressionOperand... operands) {
+		return new Aggregate(SparqlAggregate.GROUP_CONCAT).addOperand(operands).separator(separator);
+	}
+	
+	public static Aggregate max(ExpressionOperand operand) {
+		return new Aggregate(SparqlAggregate.MAX).addOperand(operand);
+	}
+	
+	public static Aggregate min(ExpressionOperand operand) {
+		return new Aggregate(SparqlAggregate.MIN).addOperand(operand);
+	}
+	
+	public static Aggregate sample(ExpressionOperand operand) {
+		return new Aggregate(SparqlAggregate.SAMPLE).addOperand(operand);
+	}
+	
+	public static Aggregate sum(ExpressionOperand operand) {
+		return new Aggregate(SparqlAggregate.SUM).addOperand(operand);
 	}
 }

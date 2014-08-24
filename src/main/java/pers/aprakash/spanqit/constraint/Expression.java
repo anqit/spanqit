@@ -2,9 +2,13 @@ package pers.aprakash.spanqit.constraint;
 
 import java.util.ArrayList;
 
+import pers.aprakash.spanqit.core.Assignable;
+import pers.aprakash.spanqit.core.Assignment;
+import pers.aprakash.spanqit.core.Spanqit;
 import pers.aprakash.spanqit.core.Groupable;
 import pers.aprakash.spanqit.core.Orderable;
 import pers.aprakash.spanqit.core.QueryElementCollection;
+import pers.aprakash.spanqit.core.Variable;
 
 /**
  * A SPARQL expression. Used by filters, having clauses, order and group by
@@ -36,7 +40,7 @@ import pers.aprakash.spanqit.core.QueryElementCollection;
  */
 public abstract class Expression<T extends Expression<T>> extends
 		QueryElementCollection<ExpressionOperand> implements ExpressionOperand,
-		Orderable, Groupable {
+		Orderable, Groupable, Assignable {
 	protected SparqlOperator operator;
 
 	Expression(SparqlOperator operator) {

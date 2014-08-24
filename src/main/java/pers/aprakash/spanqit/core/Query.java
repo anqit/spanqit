@@ -18,7 +18,7 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	protected static final String LIMIT = "LIMIT";
 	protected static final String OFFSET = "OFFSET";
 
-	protected QueryPattern where = Elements.where();
+	protected QueryPattern where = Spanqit.where();
 	protected GroupBy groupBy;
 	protected OrderBy orderBy;
 	protected Having having;
@@ -64,7 +64,7 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	 */
 	public T groupBy(Groupable... groupables) {
 		if (groupBy == null) {
-			groupBy = Elements.groupBy();
+			groupBy = Spanqit.groupBy();
 		}
 		groupBy.by(groupables);
 
@@ -93,9 +93,9 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	 * 
 	 * @see OrderBy
 	 */
-	public T orderBy(OrderCondition... conditions) {
+	public T orderBy(Orderable... conditions) {
 		if (orderBy == null) {
-			orderBy = Elements.orderBy();
+			orderBy = Spanqit.orderBy();
 		}
 		orderBy.by(conditions);
 
@@ -126,7 +126,7 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	 */
 	public T having(Expression<?>... constraints) {
 		if (having == null) {
-			having = Elements.having();
+			having = Spanqit.having();
 		}
 		having.having(constraints);
 
@@ -179,13 +179,13 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	}
 
 	/**
-	 * A shortcut. Each call to this method returns a new {@link SparqlVariable}
+	 * A shortcut. Each call to this method returns a new {@link Variable}
 	 * that is unique (i.e., has a unique alias) to this query instance.
 	 * 
 	 * @return a SparqlVariable object that is unique to this query
 	 */
-	public SparqlVariable var() {
-		return new SparqlVariable("x" + ++varCount);
+	public Variable var() {
+		return new Variable("x" + ++varCount);
 	}
 
 	protected abstract String getQueryActionString();
@@ -197,8 +197,9 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 		query.append(getQueryActionString()).append("\n");
 		query.append(where.getQueryString()).append("\n");
 
-		appendIfNonNull(orderBy, query);
+		appendIfNonNull(groupBy, query);
 		appendIfNonNull(having, query);
+		appendIfNonNull(orderBy, query);
 
 		if (limit >= 0) {
 			query.append(LIMIT + " ").append(limit).append("\n");

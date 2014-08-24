@@ -17,7 +17,7 @@ public class ConstructQuery extends OuterQuery<ConstructQuery> {
 
 	}
 
-	private GraphTemplate construct = Elements.construct();
+	private GraphTemplate construct = Spanqit.construct();
 
 	/**
 	 * Add triples to this query's graph template

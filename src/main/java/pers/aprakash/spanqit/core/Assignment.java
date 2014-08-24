@@ -1,7 +1,5 @@
 package pers.aprakash.spanqit.core;
 
-import pers.aprakash.spanqit.constraint.Expression;
-
 /**
  * A SPARQL expression to variable assignment
  * 
@@ -13,10 +11,10 @@ import pers.aprakash.spanqit.constraint.Expression;
  */
 public class Assignment implements Projectable, Groupable {
 	private static final String AS = "AS";
-	private Expression<?> expression;
-	private SparqlVariable var;
+	private Assignable expression;
+	private Variable var;
 
-	Assignment(Expression<?> exp, SparqlVariable var) {
+	Assignment(Assignable exp, Variable var) {
 		this.expression = exp;
 		this.var = var;
 	}

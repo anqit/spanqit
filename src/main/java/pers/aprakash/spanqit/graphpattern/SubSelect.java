@@ -1,6 +1,6 @@
 package pers.aprakash.spanqit.graphpattern;
 
-import pers.aprakash.spanqit.core.Elements;
+import pers.aprakash.spanqit.core.Spanqit;
 import pers.aprakash.spanqit.core.Projectable;
 import pers.aprakash.spanqit.core.Projection;
 import pers.aprakash.spanqit.core.Query;
@@ -16,7 +16,7 @@ import pers.aprakash.spanqit.core.SpanqitStringUtils;
  *      SPARQL Subquery</a>
  */
 public class SubSelect extends Query<SubSelect> implements GraphPattern {
-	private Projection select = Elements.select();
+	private Projection select = Spanqit.select();
 
 	/*
 	 * If someone has any ideas how I can eliminate the need for repeating the

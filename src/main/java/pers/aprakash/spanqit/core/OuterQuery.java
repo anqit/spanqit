@@ -26,7 +26,7 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 * @return this
 	 */
 	public T base(IRI iri) {
-		this.base = Elements.base(iri);
+		this.base = Spanqit.base(iri);
 
 		return (T) this;
 	}
@@ -53,7 +53,7 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 */
 	public T prefix(Prefix... prefixes) {
 		if (this.prefixes == null) {
-			this.prefixes = Elements.prefixes();
+			this.prefixes = Spanqit.prefixes();
 		}
 
 		this.prefixes.addPrefix(prefixes);
@@ -81,9 +81,9 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 *            the graph specifiers to add
 	 * @return this
 	 */
-	public T from(FromClause... graphs) {
+	public T from(From... graphs) {
 		if (from == null) {
-			from = Elements.dataset();
+			from = Spanqit.dataset();
 		}
 		from.from(graphs);
 

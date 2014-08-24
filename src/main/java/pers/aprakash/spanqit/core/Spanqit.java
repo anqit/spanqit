@@ -11,9 +11,9 @@ import pers.aprakash.spanqit.rdf.IRI;
  * @author Ankit
  * 
  */
-public class Elements {
+public class Spanqit {
 	// prevent instantiation of this class
-	private Elements() {
+	private Spanqit() {
 	}
 
 	/**
@@ -23,8 +23,8 @@ public class Elements {
 	 *            the alias of the variable
 	 * @return a new SPARQL variable
 	 */
-	public static SparqlVariable var(String varName) {
-		return new SparqlVariable(varName);
+	public static Variable var(String varName) {
+		return new Variable(varName);
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class Elements {
 	 *            the variable to bind the expression value to
 	 * @return an Assignment object
 	 */
-	public static Assignment as(Expression<?> exp, SparqlVariable var) {
+	public static Assignment as(Assignable exp, Variable var) {
 		return new Assignment(exp, var);
 	}
 
@@ -65,6 +65,17 @@ public class Elements {
 	}
 
 	/**
+	 * Create a SPARQL default Prefix declaration
+	 * 
+	 * @param iri
+	 *            the iri the alias refers to
+	 * @return a Prefix object
+	 */
+	public static Prefix prefix(IRI iri) {
+		return new Prefix("", iri);
+	}
+	
+	/**
 	 * Create a SPARQL Prefix clause
 	 * 
 	 * @param prefixes
@@ -86,8 +97,8 @@ public class Elements {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#rdfDataset">
 	 *      RDF Datasets</a>
 	 */
-	public static FromClause from(IRI iri) {
-		return new FromClause(iri);
+	public static From from(IRI iri) {
+		return new From(iri);
 	}
 
 	/**
@@ -101,8 +112,8 @@ public class Elements {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#rdfDataset">
 	 *      RDF Datasets</a>
 	 */
-	public static FromClause fromNamed(IRI iri) {
-		return new FromClause(iri, true);
+	public static From fromNamed(IRI iri) {
+		return new From(iri, true);
 	}
 
 	/**
@@ -115,7 +126,7 @@ public class Elements {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#rdfDataset">
 	 *      RDF Datasets</a>
 	 */
-	public static Dataset dataset(FromClause... graphs) {
+	public static Dataset dataset(From... graphs) {
 		return new Dataset().from(graphs);
 	}
 
@@ -170,7 +181,7 @@ public class Elements {
 	 *            the order conditions
 	 * @return an Order By clause
 	 */
-	public static OrderBy orderBy(OrderCondition... conditions) {
+	public static OrderBy orderBy(Orderable... conditions) {
 		return new OrderBy().by(conditions);
 	}
 

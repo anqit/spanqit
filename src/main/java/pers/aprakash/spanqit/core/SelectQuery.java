@@ -9,7 +9,7 @@ package pers.aprakash.spanqit.core;
  *      SPARQL Select Query</a>
  */
 public class SelectQuery extends OuterQuery<SelectQuery> {
-	private Projection select = Elements.select();
+	private Projection select = Spanqit.select();
 
 	/**
 	 * Specify the query's projection to be distinct
