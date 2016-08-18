@@ -3,12 +3,10 @@ package com.anqit.spanqit.constraint;
 import java.util.ArrayList;
 
 import com.anqit.spanqit.core.Assignable;
-import com.anqit.spanqit.core.Assignment;
 import com.anqit.spanqit.core.Groupable;
 import com.anqit.spanqit.core.Orderable;
 import com.anqit.spanqit.core.QueryElementCollection;
-import com.anqit.spanqit.core.Spanqit;
-import com.anqit.spanqit.core.Variable;
+import com.anqit.spanqit.core.SpanqitStringUtils;
 
 /**
  * A SPARQL expression. Used by filters, having clauses, order and group by
@@ -39,9 +37,10 @@ import com.anqit.spanqit.core.Variable;
  *      SPARQL Assignments</a>
  */
 public abstract class Expression<T extends Expression<T>> extends
-		QueryElementCollection<ExpressionOperand> implements ExpressionOperand,
+		QueryElementCollection<T, ExpressionOperand> implements ExpressionOperand,
 		Orderable, Groupable, Assignable {
 	protected SparqlOperator operator;
+	private boolean parenthesize;
 
 	Expression(SparqlOperator operator) {
 		this(operator, " " + operator.getQueryString() + " ");
@@ -50,6 +49,7 @@ public abstract class Expression<T extends Expression<T>> extends
 	Expression(SparqlOperator operator, String delimeter) {
 		super(delimeter, new ArrayList<ExpressionOperand>());
 		this.operator = operator;
+		parenthesize(false);
 	}
 
 	// ugh, wish the compiler dug just a little deeper...
@@ -62,7 +62,42 @@ public abstract class Expression<T extends Expression<T>> extends
 		return (T) this;
 	}
 
+	/**
+	 * Indicate that this expression should be wrapped in parentheses
+	 * when converted to a query string
+	 * 
+	 * @return this
+	 */
+	public T parenthesize() {
+		return parenthesize(true);
+	}
+	
+	/**
+	 * Indicate if this expression should be wrapped in parentheses
+	 * when converted to a query string
+	 * 
+	 * @param parenthesize
+	 * @return this
+	 */
+	@SuppressWarnings("unchecked")
+	public T parenthesize(boolean parenthesize) {
+		this.parenthesize = parenthesize;
+		
+		return (T) this;
+	}
+	
 	ExpressionOperand getOperand(int index) {
 		return ((ArrayList<ExpressionOperand>) elements).get(index);
+	}
+	
+	@Override
+	public String getQueryString() {
+		String queryString = super.getQueryString();
+		
+		if(parenthesize) {
+			return SpanqitStringUtils.getParenthesizedString(queryString);
+		} else {
+			return queryString;
+		}
 	}
 }
