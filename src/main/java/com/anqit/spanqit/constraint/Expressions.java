@@ -1,11 +1,18 @@
 package com.anqit.spanqit.constraint;
 
-import com.anqit.spanqit.core.Variable;
-import com.anqit.spanqit.rdf.IRI;
-import com.anqit.spanqit.rdf.Literal;
+import static com.anqit.spanqit.constraint.ExpressionOperands.numberOperand;
+import static com.anqit.spanqit.constraint.ExpressionOperands.quotedStringOperand;
+import static com.anqit.spanqit.constraint.ExpressionOperands.stringOperand;
+import static com.anqit.spanqit.constraint.SparqlFunction.ABS;
+import static com.anqit.spanqit.constraint.SparqlFunction.BNODE;
+import static com.anqit.spanqit.constraint.SparqlFunction.BOUND;
+import static com.anqit.spanqit.constraint.SparqlFunction.CEIL;
+import static com.anqit.spanqit.constraint.SparqlFunction.COALESCE;
+import static com.anqit.spanqit.constraint.SparqlFunction.CONCAT;
+import static com.anqit.spanqit.constraint.SparqlFunction.REGEX;
 
-import static com.anqit.spanqit.constraint.ExpressionOperands.*;
-import static com.anqit.spanqit.constraint.SparqlFunction.*;
+import com.anqit.spanqit.core.Variable;
+import com.anqit.spanqit.rdf.Literal;
 
 /**
  * A class with static methods to create SPARQL expressions.

@@ -1,10 +1,16 @@
 package com.anqit.spanqit.core;
 
+import java.util.Optional;
+
 // Utility class. Wish it didn't have to be public at all.
 @SuppressWarnings("javadoc")
 public class SpanqitStringUtils {
 	private static final String PAD = " ";
 
+	public static void appendAndNewlineIfNonNull(QueryElement element, StringBuilder builder) {
+		builder.append(Optional.ofNullable(element).map(e -> e.getQueryString() + "\n").orElse(""));
+	}
+	
 	public static String getBracketedString(String contents) {
 		return getEnclosedString("{", "}", contents);
 	}

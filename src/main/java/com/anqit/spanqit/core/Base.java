@@ -8,11 +8,11 @@ import com.anqit.spanqit.rdf.IRI;
  * @author Ankit
  *
  * @see <a
- *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#relIRIs">
- *      SPARQL Relative IRIs</a>
+ *      	href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#relIRIs">
+ *      	SPARQL Relative IRIs</a>
  */
 public class Base implements QueryElement {
-	private static final String BASE = "BASE";
+	private static final String BASE = "BASE ";
 
 	private IRI iri;
 
@@ -22,6 +22,6 @@ public class Base implements QueryElement {
 
 	@Override
 	public String getQueryString() {
-		return iri == null ? "" : BASE + " " + iri.getQueryString();
+		return iri == null ? "" : BASE + iri.getQueryString();
 	}
 }

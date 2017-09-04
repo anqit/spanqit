@@ -11,12 +11,13 @@ import java.util.ArrayList;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#modOrderBy">
  *      SPARQL Order By Clause</a>
  */
-public class OrderBy extends QueryElementCollection<Orderable> {
-	private static final String DELIMETER = " ";
+public class OrderBy extends StandardQueryElementCollection<OrderBy, Orderable> {
 	private static final String ORDER_BY = "ORDER BY";
+	private static final String DELIMETER = " ";
 
 	OrderBy() {
-		super(DELIMETER, new ArrayList<Orderable>());
+		super(ORDER_BY, DELIMETER, new ArrayList<Orderable>());
+		printNameIfEmpty(false);
 	}
 
 	/**
@@ -27,22 +28,6 @@ public class OrderBy extends QueryElementCollection<Orderable> {
 	 * @return this
 	 */
 	public OrderBy by(Orderable... conditions) {
-		for (Orderable condition : conditions) {
-			elements.add(condition);
-		}
-
-		return this;
-	}
-
-	@Override
-	public String getQueryString() {
-		StringBuilder orderBy = new StringBuilder();
-
-		if (!isEmpty()) {
-			orderBy.append(ORDER_BY).append(DELIMETER);
-			orderBy.append(super.getQueryString());
-		}
-
-		return orderBy.toString();
+		return addElements(conditions);
 	}
 }
