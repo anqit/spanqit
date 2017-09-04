@@ -52,7 +52,6 @@ public abstract class Expression<T extends Expression<T>> extends
 		parenthesize(false);
 	}
 
-	// ugh, wish the compiler dug just a little deeper...
 	@SuppressWarnings("unchecked")
 	T addOperand(ExpressionOperand... operands) {
 		for (ExpressionOperand operand : operands) {
@@ -94,10 +93,6 @@ public abstract class Expression<T extends Expression<T>> extends
 	public String getQueryString() {
 		String queryString = super.getQueryString();
 		
-		if(parenthesize) {
-			return SpanqitStringUtils.getParenthesizedString(queryString);
-		} else {
-			return queryString;
-		}
+		return parenthesize ? SpanqitStringUtils.getParenthesizedString(queryString) : queryString;
 	}
 }

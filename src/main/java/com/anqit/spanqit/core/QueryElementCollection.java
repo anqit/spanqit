@@ -2,7 +2,7 @@ package com.anqit.spanqit.core;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.stream.Collectors;
 
 /**
  * A logical collection of query elements. Provides common functionality for
@@ -41,25 +41,6 @@ public abstract class QueryElementCollection<T extends QueryElement> implements
 
 	@Override
 	public String getQueryString() {
-		StringBuilder queryElements = new StringBuilder();
-
-		if (!isEmpty()) {
-			Iterator<T> it = elements.iterator();
-			boolean first = true;
-
-			while (it.hasNext()) {
-				T next = it.next();
-				if (next != null) {
-					if (!first) {
-						queryElements.append(delimeter);
-					}
-					queryElements.append(next.getQueryString());
-
-					first = false;
-				}
-			}
-		}
-
-		return queryElements.toString();
+		return elements.stream().map(QueryElement::getQueryString).collect(Collectors.joining(delimeter));
 	}
 }

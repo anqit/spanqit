@@ -1,11 +1,15 @@
 package com.anqit.spanqit.constraint;
 
-import com.anqit.spanqit.core.Variable;
-import com.anqit.spanqit.rdf.IRI;
-import com.anqit.spanqit.rdf.Literal;
+import static com.anqit.spanqit.constraint.SparqlFunction.ABS;
+import static com.anqit.spanqit.constraint.SparqlFunction.BNODE;
+import static com.anqit.spanqit.constraint.SparqlFunction.BOUND;
+import static com.anqit.spanqit.constraint.SparqlFunction.CEIL;
+import static com.anqit.spanqit.constraint.SparqlFunction.COALESCE;
+import static com.anqit.spanqit.constraint.SparqlFunction.CONCAT;
+import static com.anqit.spanqit.constraint.SparqlFunction.REGEX;
 
-import static com.anqit.spanqit.constraint.ExpressionOperands.*;
-import static com.anqit.spanqit.constraint.SparqlFunction.*;
+import com.anqit.spanqit.core.Variable;
+import com.anqit.spanqit.rdf.RdfLiteral;
 
 /**
  * A class with static methods to create SPARQL expressions.
@@ -19,8 +23,7 @@ import static com.anqit.spanqit.constraint.SparqlFunction.*;
  */
 public class Expressions {
 	// prevent instantiation of this class
-	private Expressions() {
-	}
+	private Expressions() { }
 
 	/**
 	 * <code>ABS(operand</code>)
@@ -34,7 +37,7 @@ public class Expressions {
 	 *      SPARQL ABS Function</a>
 	 */
 	public static Expression<?> abs(Number operand) {
-		return abs(numberOperand(operand));
+		return abs(RdfLiteral.of(operand));
 	}
 
 	/**
@@ -76,7 +79,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-bnode">
 	 *      SPARQL BNODE Function</a>
 	 */
-	public static Expression<?> bnode(Literal literal) {
+	public static Expression<?> bnode(RdfLiteral<?> literal) {
 		return function(BNODE, literal);
 	}
 
@@ -92,7 +95,7 @@ public class Expressions {
 	 *      SPARQL BNODE Function</a>
 	 */
 	public static Expression<?> bnode(String literal) {
-		return function(BNODE, stringOperand(literal));
+		return function(BNODE, RdfLiteral.of(literal));
 	}
 
 	/**
@@ -169,7 +172,7 @@ public class Expressions {
 	 *      SPARQL REGEX Function</a>
 	 */
 	public static Expression<?> regex(ExpressionOperand testString, String pattern) {
-		return regex(testString, quotedStringOperand(pattern));
+		return regex(testString, RdfLiteral.of(pattern));
 	}
 
 	/**
@@ -189,8 +192,7 @@ public class Expressions {
 	 */
 	public static Expression<?> regex(ExpressionOperand testString, String pattern,
 			String flags) {
-		return regex(testString, quotedStringOperand(pattern),
-				quotedStringOperand(flags));
+		return regex(testString, RdfLiteral.of(pattern), RdfLiteral.of(flags));
 	}
 
 	/**
@@ -353,8 +355,8 @@ public class Expressions {
 	 *      Operators</a>
 	 */
 	public static Expression<?> gt(Number left, Number right) {
-		return binaryExpression(BinaryOperator.GREATER_THAN, numberOperand(left),
-				numberOperand(right));
+		return binaryExpression(BinaryOperator.GREATER_THAN, RdfLiteral.of(left),
+				RdfLiteral.of(right));
 	}
 
 	/**
@@ -370,7 +372,7 @@ public class Expressions {
 	 *      Operators</a>
 	 */
 	public static Expression<?> gt(Number left, ExpressionOperand right) {
-		return binaryExpression(BinaryOperator.GREATER_THAN, numberOperand(left),
+		return binaryExpression(BinaryOperator.GREATER_THAN, RdfLiteral.of(left),
 				right);
 	}
 
@@ -388,7 +390,7 @@ public class Expressions {
 	 */
 	public static Expression<?> gt(ExpressionOperand left, Number right) {
 		return binaryExpression(BinaryOperator.GREATER_THAN, left,
-				numberOperand(right));
+				RdfLiteral.of(right));
 	}
 	
 	/**
@@ -438,8 +440,8 @@ public class Expressions {
 	 *      Operators</a>
 	 */
 	public static Expression<?> lt(Number left, Number right) {
-		return binaryExpression(BinaryOperator.LESS_THAN, numberOperand(left),
-				numberOperand(right));
+		return binaryExpression(BinaryOperator.LESS_THAN, RdfLiteral.of(left),
+				RdfLiteral.of(right));
 	}
 
 	/**
@@ -455,7 +457,7 @@ public class Expressions {
 	 *      Operators</a>
 	 */
 	public static Expression<?> lt(Number left, ExpressionOperand right) {
-		return binaryExpression(BinaryOperator.LESS_THAN, numberOperand(left),
+		return binaryExpression(BinaryOperator.LESS_THAN, RdfLiteral.of(left),
 				right);
 	}
 
@@ -473,7 +475,7 @@ public class Expressions {
 	 */
 	public static Expression<?> lt(ExpressionOperand left, Number right) {
 		return binaryExpression(BinaryOperator.LESS_THAN, left,
-				numberOperand(right));
+				RdfLiteral.of(right));
 	}
 
 	/**

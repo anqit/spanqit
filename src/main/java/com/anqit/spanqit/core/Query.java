@@ -3,6 +3,8 @@ package com.anqit.spanqit.core;
 import com.anqit.spanqit.constraint.Expression;
 import com.anqit.spanqit.graphpattern.GraphPattern;
 
+import static com.anqit.spanqit.core.SpanqitStringUtils.appendAndNewlineIfNonNull;
+
 /**
  * The base class for all SPARQL Queries. Contains elements and methods common
  * to all queries.
@@ -196,9 +198,9 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 		query.append(getQueryActionString()).append("\n");
 		query.append(where.getQueryString()).append("\n");
 
-		appendIfNonNull(groupBy, query);
-		appendIfNonNull(having, query);
-		appendIfNonNull(orderBy, query);
+		appendAndNewlineIfNonNull(groupBy, query);
+		appendAndNewlineIfNonNull(having, query);
+		appendAndNewlineIfNonNull(orderBy, query);
 
 		if (limit >= 0) {
 			query.append(LIMIT + " ").append(limit).append("\n");
@@ -209,11 +211,5 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 		}
 
 		return query.toString();
-	}
-
-	protected void appendIfNonNull(QueryElement element, StringBuilder builder) {
-		if (element != null) {
-			builder.append(element.getQueryString()).append("\n");
-		}
-	}
+	}	
 }

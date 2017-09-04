@@ -1,6 +1,8 @@
 package com.anqit.spanqit.core;
 
-import com.anqit.spanqit.rdf.IRI;
+import com.anqit.spanqit.rdf.Iri;
+
+import static com.anqit.spanqit.core.SpanqitStringUtils.appendAndNewlineIfNonNull;
 
 /**
  * A non-subquery query.
@@ -25,7 +27,7 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 *            the base IRI
 	 * @return this
 	 */
-	public T base(IRI iri) {
+	public T base(Iri iri) {
 		this.base = Spanqit.base(iri);
 
 		return (T) this;
@@ -107,9 +109,9 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	public String getQueryString() {
 		StringBuilder query = new StringBuilder();
 
-		appendIfNonNull(base, query);
-		appendIfNonNull(prefixes, query);
-		appendIfNonNull(from, query);
+		appendAndNewlineIfNonNull(base, query);
+		appendAndNewlineIfNonNull(prefixes, query);
+		appendAndNewlineIfNonNull(from, query);
 
 		query.append(super.getQueryString());
 

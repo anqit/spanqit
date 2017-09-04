@@ -1,6 +1,6 @@
 package com.anqit.spanqit.core;
 
-import com.anqit.spanqit.rdf.IRI;
+import com.anqit.spanqit.rdf.Iri;
 
 /**
  * A SPARQL Dataset specifier.
@@ -14,14 +14,14 @@ import com.anqit.spanqit.rdf.IRI;
 public class From implements QueryElement {
 	private static final String FROM = "FROM";
 	private static final String NAMED = "NAMED";
-	private IRI iri;
+	private Iri iri;
 	private boolean isNamed;
 
-	From(IRI iri) {
+	From(Iri iri) {
 		this(iri, false);
 	}
 
-	From(IRI iri, boolean isNamed) {
+	From(Iri iri, boolean isNamed) {
 		this.iri = iri;
 		this.isNamed = isNamed;
 	}

@@ -14,15 +14,16 @@ class UnaryOperation extends Operation<UnaryOperation> {
 
 	@Override
 	public String getQueryString() {
-		StringBuilder expression = new StringBuilder();
-		
-		expression.append(operator.getQueryString());
-		String op = "";
-		if (!elements.isEmpty()) {
-			op = getOperand(0).getQueryString();
+		if(isAtOperatorLimit()) {
+			StringBuilder expression = new StringBuilder();
+			
+			expression.append(operator.getQueryString());
+			String op = getOperand(0).getQueryString();
+			expression.append(SpanqitStringUtils.getParenthesizedString(op));
+			
+			return expression.toString();
+		} else {
+			return "";
 		}
-		expression.append(SpanqitStringUtils.getParenthesizedString(op));
-		
-		return expression.toString();
 	}
 }

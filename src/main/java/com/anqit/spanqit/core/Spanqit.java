@@ -3,7 +3,7 @@ package com.anqit.spanqit.core;
 import com.anqit.spanqit.constraint.Expression;
 import com.anqit.spanqit.graphpattern.GraphPattern;
 import com.anqit.spanqit.graphpattern.TriplePattern;
-import com.anqit.spanqit.rdf.IRI;
+import com.anqit.spanqit.rdf.Iri;
 
 /**
  * A class to with static methods to create SPARQL query elements.
@@ -13,8 +13,7 @@ import com.anqit.spanqit.rdf.IRI;
  */
 public class Spanqit {
 	// prevent instantiation of this class
-	private Spanqit() {
-	}
+	private Spanqit() { }
 
 	/**
 	 * Create a SPARQL variable with a specific alias.
@@ -47,7 +46,7 @@ public class Spanqit {
 	 *            the base iri
 	 * @return a Base object
 	 */
-	public static Base base(IRI iri) {
+	public static Base base(Iri iri) {
 		return new Base(iri);
 	}
 
@@ -60,7 +59,7 @@ public class Spanqit {
 	 *            the iri the alias refers to
 	 * @return a Prefix object
 	 */
-	public static Prefix prefix(String alias, IRI iri) {
+	public static Prefix prefix(String alias, Iri iri) {
 		return new Prefix(alias, iri);
 	}
 
@@ -68,11 +67,11 @@ public class Spanqit {
 	 * Create a SPARQL default Prefix declaration
 	 * 
 	 * @param iri
-	 *            the iri the alias refers to
+	 *            the default iri prefix
 	 * @return a Prefix object
 	 */
-	public static Prefix prefix(IRI iri) {
-		return new Prefix("", iri);
+	public static Prefix prefix(Iri iri) {
+		return prefix("", iri);
 	}
 	
 	/**
@@ -97,7 +96,7 @@ public class Spanqit {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#rdfDataset">
 	 *      RDF Datasets</a>
 	 */
-	public static From from(IRI iri) {
+	public static From from(Iri iri) {
 		return new From(iri);
 	}
 
@@ -112,7 +111,7 @@ public class Spanqit {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#rdfDataset">
 	 *      RDF Datasets</a>
 	 */
-	public static From fromNamed(IRI iri) {
+	public static From fromNamed(Iri iri) {
 		return new From(iri, true);
 	}
 
@@ -164,7 +163,7 @@ public class Spanqit {
 	}
 
 	/**
-	 * Create a SPARQL Group clause
+	 * Create a SPARQL Group By clause
 	 * 
 	 * @param groupables
 	 *            the group conditions

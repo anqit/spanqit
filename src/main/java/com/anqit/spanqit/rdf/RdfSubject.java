@@ -11,7 +11,7 @@ import com.anqit.spanqit.graphpattern.TriplePattern;
  * @author Ankit
  *
  */
-public interface SubjectPattern extends QueryElement {
+public interface RdfSubject extends QueryElement {
 	/**
 	 * Create a triple pattern from this subject and the given predicate and
 	 * object
@@ -27,19 +27,12 @@ public interface SubjectPattern extends QueryElement {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
 	 *      Triple pattern syntax</a>
 	 */
-	default public TriplePattern has(PredicatePattern predicate,
-			ObjectPattern object) {
+	default public TriplePattern has(RdfPredicate predicate,
+			RdfObject object) {
 		return GraphPatterns.tp(this, predicate, object);
 	}
 	
-	default public TriplePattern isA(ObjectPattern object) {
-		PredicatePattern a = new PredicatePattern() {
-			@Override
-			public String getQueryString() {
-				return "a";
-			}
-		};
-		
-		return has(a, object);
+	default public TriplePattern isA(RdfObject object) {
+		return has(RdfPredicate.isA, object);
 	}
 }

@@ -19,8 +19,8 @@ public class QueryPattern implements QueryElement {
 	private GraphPatternNotTriple where;
 
 	// Package-protect default constructor
-	QueryPattern() {
-		
+	QueryPattern() { 
+		where = GraphPatterns.and();
 	}
 
 	/**
@@ -32,11 +32,7 @@ public class QueryPattern implements QueryElement {
 	 * @return this
 	 */
 	public QueryPattern where(GraphPattern... patterns) {
-		if(where == null) {
-			where = GraphPatterns.and(patterns);
-		} else {
-			where.and(patterns);
-		}
+		where.and(patterns);
 
 		return this;
 	}

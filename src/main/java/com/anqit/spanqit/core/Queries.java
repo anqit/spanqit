@@ -10,9 +10,7 @@ package com.anqit.spanqit.core;
  */
 public class Queries {
 	// prevent instantiation of this class
-	private Queries() {
-
-	}
+	private Queries() { }
 
 	/**
 	 * Create a SPARQL Select query

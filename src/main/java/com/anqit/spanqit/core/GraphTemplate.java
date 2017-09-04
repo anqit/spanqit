@@ -11,8 +11,12 @@ import com.anqit.spanqit.graphpattern.TriplePattern;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#construct">
  *      SPARQL CONSTRUCT Query</a>
  */
-public class GraphTemplate extends QueryElementCollection<TriplePattern> {
+public class GraphTemplate extends StandardQueryElementCollection<GraphTemplate, TriplePattern> {
 	private static final String CONSTRUCT = "CONSTRUCT";
+	
+	GraphTemplate() {
+		super(CONSTRUCT, SpanqitStringUtils::getBracketedString);
+	}
 
 	/**
 	 * Add triple patterns to this graph template
@@ -22,23 +26,6 @@ public class GraphTemplate extends QueryElementCollection<TriplePattern> {
 	 * @return this
 	 */
 	public GraphTemplate construct(TriplePattern... patterns) {
-		for (TriplePattern pattern : patterns) {
-			elements.add(pattern);
-		}
-
-		return this;
-	}
-
-	@Override
-	public String getQueryString() {
-		StringBuilder constructStatement = new StringBuilder();
-
-		constructStatement.append(CONSTRUCT).append(" ");
-		if (!isEmpty()) {
-			constructStatement.append(SpanqitStringUtils
-					.getBracketedString(super.getQueryString()));
-		}
-
-		return constructStatement.toString();
+		return addElements(patterns);
 	}
 }

@@ -1,7 +1,5 @@
 package com.anqit.spanqit.constraint;
 
-import com.anqit.spanqit.core.SpanqitStringUtils;
-
 /**
  * A SPARQL Function. Consists of a function name and a parenthesized,
  * comma-separated list of arguments.
@@ -18,14 +16,14 @@ import com.anqit.spanqit.core.SpanqitStringUtils;
 class Function extends Expression<Function> {
 	Function(SparqlFunction function) {
 		super(function, ", ");
+		parenthesize();
 	}
 
 	@Override
 	public String getQueryString() {
 		StringBuilder function = new StringBuilder();
 
-		function.append(operator.getQueryString()).append(
-				SpanqitStringUtils.getParenthesizedString(super.getQueryString()));
+		function.append(operator.getQueryString()).append(super.getQueryString());
 
 		return function.toString();
 	}

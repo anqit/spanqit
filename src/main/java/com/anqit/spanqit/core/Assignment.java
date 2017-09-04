@@ -10,7 +10,7 @@ package com.anqit.spanqit.core;
  *      SPARQL Assignments</a>
  */
 public class Assignment implements Projectable, Groupable {
-	private static final String AS = "AS";
+	private static final String AS = " AS ";
 	private Assignable expression;
 	private Variable var;
 
@@ -21,7 +21,6 @@ public class Assignment implements Projectable, Groupable {
 
 	@Override
 	public String getQueryString() {
-		return SpanqitStringUtils.getParenthesizedString(expression.getQueryString() + " "
-				+ AS + " " + var.getQueryString());
+		return SpanqitStringUtils.getParenthesizedString(expression.getQueryString() + AS + var.getQueryString());
 	}
 }

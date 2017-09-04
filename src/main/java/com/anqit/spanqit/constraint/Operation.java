@@ -18,16 +18,30 @@ abstract class Operation<T extends Operation<T>> extends Expression<T> {
 	Operation(SparqlOperator operator, int operandLimit) {
 		super(operator);
 		this.operandLimit = operandLimit;
+		parenthesize();
 	}
 
 	@SuppressWarnings("unchecked")
 	// ugh, wish the compiler dug just a little deeper...
 	T addOperand(ExpressionOperand operand) /* throws Exception */{
-		if (operandLimit < 0 || elements.size() < operandLimit) {
+		if (isBelowOperatorLimit()) {
 			return super.addOperand(operand);
 		}
 		// TODO: throw exception for out of bounds
 		// throw new Exception();
 		return (T) this;
+	}
+	
+	@Override
+	public String getQueryString() {
+		return isAtOperatorLimit() ? super.getQueryString() : "";
+	}
+	
+	protected boolean isBelowOperatorLimit() {
+		return operandLimit < 0 || elements.size() < operandLimit;
+	}
+	
+	protected boolean isAtOperatorLimit() {
+		return operandLimit < 0 || elements.size() == operandLimit;
 	}
 }

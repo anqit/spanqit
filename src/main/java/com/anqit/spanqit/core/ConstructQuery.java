@@ -13,9 +13,7 @@ import com.anqit.spanqit.graphpattern.TriplePattern;
  */
 public class ConstructQuery extends OuterQuery<ConstructQuery> {
 	// package-protect instantiation of this class
-	ConstructQuery() {
-
-	}
+	ConstructQuery() { }
 
 	private GraphTemplate construct = Spanqit.construct();
 

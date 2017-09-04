@@ -1,8 +1,12 @@
 package com.anqit.spanqit.graphpattern;
 
-import com.anqit.spanqit.rdf.ObjectPattern;
-import com.anqit.spanqit.rdf.PredicatePattern;
-import com.anqit.spanqit.rdf.SubjectPattern;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import com.anqit.spanqit.core.QueryElement;
+import com.anqit.spanqit.rdf.RdfObject;
+import com.anqit.spanqit.rdf.RdfPredicate;
+import com.anqit.spanqit.rdf.RdfSubject;
 
 /**
  * A SPARQL Triple Pattern.
@@ -14,12 +18,12 @@ import com.anqit.spanqit.rdf.SubjectPattern;
  *      Triple pattern syntax</a>
  */
 public class TriplePattern implements GraphPattern {
-	private SubjectPattern subject;
-	private PredicatePattern predicate;
-	private ObjectPattern object;
+	private RdfSubject subject;
+	private RdfPredicate predicate;
+	private RdfObject object;
 
-	TriplePattern(SubjectPattern subject, PredicatePattern predicate,
-			ObjectPattern object) {
+	TriplePattern(RdfSubject subject, RdfPredicate predicate,
+			RdfObject object) {
 		this.subject = subject;
 		this.predicate = predicate;
 		this.object = object;
@@ -32,19 +36,8 @@ public class TriplePattern implements GraphPattern {
 
 	@Override
 	public String getQueryString() {
-		StringBuilder triplePattern = new StringBuilder();
-
-		// subject
-		triplePattern.append(subject.getQueryString());
-		triplePattern.append(" ");
-
-		// predicate
-		triplePattern.append(predicate.getQueryString());
-		triplePattern.append(" ");
-
-		// object
-		triplePattern.append(object.getQueryString());
-
-		return triplePattern.toString();
+		return Arrays.asList(subject, predicate, object).stream()
+				.map(QueryElement::getQueryString)
+				.collect(Collectors.joining(" "));
 	}
 }
