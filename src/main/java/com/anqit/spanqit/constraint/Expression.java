@@ -37,7 +37,7 @@ import com.anqit.spanqit.core.SpanqitStringUtils;
  *      SPARQL Assignments</a>
  */
 public abstract class Expression<T extends Expression<T>> extends
-		QueryElementCollection<T, ExpressionOperand> implements ExpressionOperand,
+		QueryElementCollection<ExpressionOperand> implements ExpressionOperand,
 		Orderable, Groupable, Assignable {
 	protected SparqlOperator operator;
 	private boolean parenthesize;
