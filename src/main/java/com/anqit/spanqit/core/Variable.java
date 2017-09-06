@@ -2,9 +2,9 @@ package com.anqit.spanqit.core;
 
 import com.anqit.spanqit.constraint.ExpressionOperand;
 import com.anqit.spanqit.graphpattern.GraphName;
-import com.anqit.spanqit.rdf.ObjectPattern;
-import com.anqit.spanqit.rdf.PredicatePattern;
-import com.anqit.spanqit.rdf.SubjectPattern;
+import com.anqit.spanqit.rdf.RdfObject;
+import com.anqit.spanqit.rdf.RdfPredicate;
+import com.anqit.spanqit.rdf.RdfSubject;
 
 /**
  * A SPARQL query variable
@@ -15,8 +15,8 @@ import com.anqit.spanqit.rdf.SubjectPattern;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynVariables">
  *      SPARQL Variable Syntax</a>
  */
-public class Variable implements Projectable, SubjectPattern,
-		PredicatePattern, ObjectPattern, ExpressionOperand, Orderable,
+public class Variable implements Projectable, RdfSubject,
+		RdfPredicate, RdfObject, ExpressionOperand, Orderable,
 		Groupable, GraphName, Assignable {
 	private String alias;
 

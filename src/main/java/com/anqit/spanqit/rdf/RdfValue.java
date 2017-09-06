@@ -8,4 +8,4 @@ import com.anqit.spanqit.constraint.ExpressionOperand;
  * @author Ankit
  *
  */
-public interface Value extends ObjectPattern, ExpressionOperand { }
+public interface RdfValue extends RdfObject, ExpressionOperand { }

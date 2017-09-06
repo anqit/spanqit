@@ -1,6 +1,6 @@
 package com.anqit.spanqit.core;
 
-import com.anqit.spanqit.rdf.IRI;
+import com.anqit.spanqit.rdf.Iri;
 
 import static com.anqit.spanqit.core.SpanqitStringUtils.appendAndNewlineIfNonNull;
 
@@ -27,7 +27,7 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 *            the base IRI
 	 * @return this
 	 */
-	public T base(IRI iri) {
+	public T base(Iri iri) {
 		this.base = Spanqit.base(iri);
 
 		return (T) this;

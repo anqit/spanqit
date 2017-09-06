@@ -2,7 +2,7 @@ package com.anqit.spanqit.core;
 
 import java.util.Arrays;
 
-import com.anqit.spanqit.rdf.IRI;
+import com.anqit.spanqit.rdf.Iri;
 
 /**
  * A SPARQL dataset specification
@@ -31,7 +31,7 @@ public class Dataset extends StandardQueryElementCollection<Dataset, From> {
 	 * @param iris the IRI's of the graphs to add
 	 * @return this
 	 */
-	public Dataset from(IRI... iris) {
+	public Dataset from(Iri... iris) {
 		return addElements(Arrays.stream(iris).map(Spanqit::from).toArray(From[]::new));
 	}
 }

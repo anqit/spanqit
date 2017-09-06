@@ -1,9 +1,9 @@
 package com.anqit.spanqit.graphpattern;
 
 import com.anqit.spanqit.core.Projectable;
-import com.anqit.spanqit.rdf.ObjectPattern;
-import com.anqit.spanqit.rdf.PredicatePattern;
-import com.anqit.spanqit.rdf.SubjectPattern;
+import com.anqit.spanqit.rdf.RdfObject;
+import com.anqit.spanqit.rdf.RdfPredicate;
+import com.anqit.spanqit.rdf.RdfSubject;
 
 /**
  * A class with static methods to create graph patterns. Obviously there's some
@@ -33,8 +33,8 @@ public class GraphPatterns {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
 	 *      Triple pattern syntax</a>
 	 */
-	public static TriplePattern tp(SubjectPattern subject,
-			PredicatePattern predicate, ObjectPattern object) {
+	public static TriplePattern tp(RdfSubject subject,
+			RdfPredicate predicate, RdfObject object) {
 		return new TriplePattern(subject, predicate, object);
 	}
 

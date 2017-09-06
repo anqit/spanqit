@@ -1,6 +1,6 @@
 package com.anqit.spanqit.core;
 
-import com.anqit.spanqit.rdf.IRI;
+import com.anqit.spanqit.rdf.Iri;
 
 /**
  * A SPARQL Prefix declaration
@@ -14,9 +14,9 @@ import com.anqit.spanqit.rdf.IRI;
 public class Prefix implements QueryElement {
 	private static final String PREFIX = "PREFIX";
 	private String label;
-	private IRI iri;
+	private Iri iri;
 
-	Prefix(String alias, IRI iri) {
+	Prefix(String alias, Iri iri) {
 		this.label = alias;
 		this.iri = iri;
 	}
@@ -29,8 +29,8 @@ public class Prefix implements QueryElement {
 	 * @return a prefixed IRI reference, with this prefix's label as the base,
 	 *         and the given string for the local part
 	 */
-	public IRI iri(String localName) {
-		return new IRI() {
+	public Iri iri(String localName) {
+		return new Iri() {
 			@Override
 			public String getQueryString() {
 				return label + ":" + localName;

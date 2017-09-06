@@ -11,4 +11,4 @@ import com.anqit.spanqit.graphpattern.GraphName;
  *      href="http://www.w3.org/TR/2014/NOTE-rdf11-primer-20140624/#section-IRI">
  *      RDF IRIs</a>
  */
-public interface IRI extends Resource, PredicatePattern, GraphName { }
+public interface Iri extends RdfResource, RdfPredicate, GraphName { }

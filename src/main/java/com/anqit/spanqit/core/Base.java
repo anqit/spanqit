@@ -1,6 +1,6 @@
 package com.anqit.spanqit.core;
 
-import com.anqit.spanqit.rdf.IRI;
+import com.anqit.spanqit.rdf.Iri;
 
 /**
  * A SPARQL Base declaration
@@ -14,9 +14,9 @@ import com.anqit.spanqit.rdf.IRI;
 public class Base implements QueryElement {
 	private static final String BASE = "BASE ";
 
-	private IRI iri;
+	private Iri iri;
 
-	Base(IRI iri) {
+	Base(Iri iri) {
 		this.iri = iri;
 	}
 
