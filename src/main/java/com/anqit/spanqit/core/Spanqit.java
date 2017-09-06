@@ -13,8 +13,7 @@ import com.anqit.spanqit.rdf.IRI;
  */
 public class Spanqit {
 	// prevent instantiation of this class
-	private Spanqit() {
-	}
+	private Spanqit() { }
 
 	/**
 	 * Create a SPARQL variable with a specific alias.

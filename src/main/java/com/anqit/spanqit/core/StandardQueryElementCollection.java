@@ -14,7 +14,7 @@ abstract class StandardQueryElementCollection<C extends StandardQueryElementColl
 	private boolean printNameIfEmpty = true;
 
 	StandardQueryElementCollection() {
-		this(null, (Function<String, String>) null);
+		this(null, null);
 	}
 	
 	StandardQueryElementCollection(String operatorName, Function<String, String> wrapperMethod) {

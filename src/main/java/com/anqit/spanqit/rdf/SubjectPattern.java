@@ -33,13 +33,6 @@ public interface SubjectPattern extends QueryElement {
 	}
 	
 	default public TriplePattern isA(ObjectPattern object) {
-		PredicatePattern a = new PredicatePattern() {
-			@Override
-			public String getQueryString() {
-				return "a";
-			}
-		};
-		
-		return has(a, object);
+		return has(PredicatePattern.isA, object);
 	}
 }

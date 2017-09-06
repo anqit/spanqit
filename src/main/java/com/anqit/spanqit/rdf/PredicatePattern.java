@@ -9,4 +9,6 @@ import com.anqit.spanqit.core.QueryElement;
  * @author Ankit
  *
  */
-public interface PredicatePattern extends QueryElement { }
+public interface PredicatePattern extends QueryElement {
+	public static PredicatePattern isA = () -> "a";
+}

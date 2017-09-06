@@ -19,9 +19,7 @@ public class QueryPattern implements QueryElement {
 	private GraphPatternNotTriple where;
 
 	// Package-protect default constructor
-	QueryPattern() {
-		
-	}
+	QueryPattern() { }
 
 	/**
 	 * Add graph patterns to this query pattern. Adds the given patterns into

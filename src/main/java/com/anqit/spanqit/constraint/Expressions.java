@@ -1,8 +1,5 @@
 package com.anqit.spanqit.constraint;
 
-import static com.anqit.spanqit.constraint.ExpressionOperands.numberOperand;
-import static com.anqit.spanqit.constraint.ExpressionOperands.quotedStringOperand;
-import static com.anqit.spanqit.constraint.ExpressionOperands.stringOperand;
 import static com.anqit.spanqit.constraint.SparqlFunction.ABS;
 import static com.anqit.spanqit.constraint.SparqlFunction.BNODE;
 import static com.anqit.spanqit.constraint.SparqlFunction.BOUND;
@@ -26,8 +23,7 @@ import com.anqit.spanqit.rdf.Literal;
  */
 public class Expressions {
 	// prevent instantiation of this class
-	private Expressions() {
-	}
+	private Expressions() { }
 
 	/**
 	 * <code>ABS(operand</code>)
@@ -41,7 +37,7 @@ public class Expressions {
 	 *      SPARQL ABS Function</a>
 	 */
 	public static Expression<?> abs(Number operand) {
-		return abs(numberOperand(operand));
+		return abs(Literal.of(operand));
 	}
 
 	/**
@@ -99,7 +95,7 @@ public class Expressions {
 	 *      SPARQL BNODE Function</a>
 	 */
 	public static Expression<?> bnode(String literal) {
-		return function(BNODE, stringOperand(literal));
+		return function(BNODE, Literal.of(literal));
 	}
 
 	/**
@@ -176,7 +172,7 @@ public class Expressions {
 	 *      SPARQL REGEX Function</a>
 	 */
 	public static Expression<?> regex(ExpressionOperand testString, String pattern) {
-		return regex(testString, quotedStringOperand(pattern));
+		return regex(testString, Literal.ofQuoted(pattern));
 	}
 
 	/**
@@ -196,8 +192,7 @@ public class Expressions {
 	 */
 	public static Expression<?> regex(ExpressionOperand testString, String pattern,
 			String flags) {
-		return regex(testString, quotedStringOperand(pattern),
-				quotedStringOperand(flags));
+		return regex(testString, Literal.ofQuoted(pattern), Literal.ofQuoted(flags));
 	}
 
 	/**
@@ -360,8 +355,8 @@ public class Expressions {
 	 *      Operators</a>
 	 */
 	public static Expression<?> gt(Number left, Number right) {
-		return binaryExpression(BinaryOperator.GREATER_THAN, numberOperand(left),
-				numberOperand(right));
+		return binaryExpression(BinaryOperator.GREATER_THAN, Literal.of(left),
+				Literal.of(right));
 	}
 
 	/**
@@ -377,7 +372,7 @@ public class Expressions {
 	 *      Operators</a>
 	 */
 	public static Expression<?> gt(Number left, ExpressionOperand right) {
-		return binaryExpression(BinaryOperator.GREATER_THAN, numberOperand(left),
+		return binaryExpression(BinaryOperator.GREATER_THAN, Literal.of(left),
 				right);
 	}
 
@@ -395,7 +390,7 @@ public class Expressions {
 	 */
 	public static Expression<?> gt(ExpressionOperand left, Number right) {
 		return binaryExpression(BinaryOperator.GREATER_THAN, left,
-				numberOperand(right));
+				Literal.of(right));
 	}
 	
 	/**
@@ -445,8 +440,8 @@ public class Expressions {
 	 *      Operators</a>
 	 */
 	public static Expression<?> lt(Number left, Number right) {
-		return binaryExpression(BinaryOperator.LESS_THAN, numberOperand(left),
-				numberOperand(right));
+		return binaryExpression(BinaryOperator.LESS_THAN, Literal.of(left),
+				Literal.of(right));
 	}
 
 	/**
@@ -462,7 +457,7 @@ public class Expressions {
 	 *      Operators</a>
 	 */
 	public static Expression<?> lt(Number left, ExpressionOperand right) {
-		return binaryExpression(BinaryOperator.LESS_THAN, numberOperand(left),
+		return binaryExpression(BinaryOperator.LESS_THAN, Literal.of(left),
 				right);
 	}
 
@@ -480,7 +475,7 @@ public class Expressions {
 	 */
 	public static Expression<?> lt(ExpressionOperand left, Number right) {
 		return binaryExpression(BinaryOperator.LESS_THAN, left,
-				numberOperand(right));
+				Literal.of(right));
 	}
 
 	/**
