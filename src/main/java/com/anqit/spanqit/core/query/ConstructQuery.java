@@ -1,5 +1,7 @@
-package com.anqit.spanqit.core;
+package com.anqit.spanqit.core.query;
 
+import com.anqit.spanqit.core.GraphTemplate;
+import com.anqit.spanqit.core.Spanqit;
 import com.anqit.spanqit.graphpattern.TriplePattern;
 
 /**

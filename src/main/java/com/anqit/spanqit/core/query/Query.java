@@ -1,6 +1,15 @@
-package com.anqit.spanqit.core;
+package com.anqit.spanqit.core.query;
 
 import com.anqit.spanqit.constraint.Expression;
+import com.anqit.spanqit.core.GroupBy;
+import com.anqit.spanqit.core.Groupable;
+import com.anqit.spanqit.core.Having;
+import com.anqit.spanqit.core.OrderBy;
+import com.anqit.spanqit.core.Orderable;
+import com.anqit.spanqit.core.QueryElement;
+import com.anqit.spanqit.core.QueryPattern;
+import com.anqit.spanqit.core.Spanqit;
+import com.anqit.spanqit.core.Variable;
 import com.anqit.spanqit.graphpattern.GraphPattern;
 
 import static com.anqit.spanqit.core.SpanqitStringUtils.appendAndNewlineIfNonNull;

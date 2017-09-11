@@ -1,8 +1,15 @@
-package com.anqit.spanqit.core;
+package com.anqit.spanqit.core.query;
 
 import com.anqit.spanqit.rdf.Iri;
 
 import static com.anqit.spanqit.core.SpanqitStringUtils.appendAndNewlineIfNonNull;
+
+import com.anqit.spanqit.core.Base;
+import com.anqit.spanqit.core.Dataset;
+import com.anqit.spanqit.core.From;
+import com.anqit.spanqit.core.Prefix;
+import com.anqit.spanqit.core.PrefixDeclarations;
+import com.anqit.spanqit.core.Spanqit;
 
 /**
  * A non-subquery query.

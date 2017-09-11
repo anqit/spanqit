@@ -74,7 +74,7 @@ public abstract class RdfLiteral<T> implements RdfValue {
 	}
 	
 	/**
-	 * create am RDF boolean literal
+	 * create an RDF boolean literal
 	 * 
 	 * @param boolValue the boolean to create a literal from
 	 * @return a BooleanLiteral instance representing the given boolean
@@ -83,6 +83,9 @@ public abstract class RdfLiteral<T> implements RdfValue {
 		return new BooleanLiteral(boolValue);
 	}
 
+	/**
+	 * Represents an RDF string literal
+	 */
 	public static class StringLiteral extends RdfLiteral<String> {
 		private StringLiteral(String stringValue) {
 			super(stringValue);
@@ -98,12 +101,18 @@ public abstract class RdfLiteral<T> implements RdfValue {
 		}
 	}
 	
+	/**
+	 * Represents an RDF number literal
+	 */
 	public static class NumericLiteral extends RdfLiteral<Number> {
 		private NumericLiteral(Number numbervalue) {
 			super(numbervalue);
 		}
 	}
 	
+	/**
+	 * Represents an RDF boolean literal
+	 */
 	public static class BooleanLiteral extends RdfLiteral<Boolean> {
 		private BooleanLiteral(Boolean boolValue) {
 			super(boolValue);

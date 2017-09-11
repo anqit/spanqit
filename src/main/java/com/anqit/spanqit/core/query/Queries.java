@@ -1,4 +1,4 @@
-package com.anqit.spanqit.core;
+package com.anqit.spanqit.core.query;
 
 /**
  * A class with static methods to create SPARQL queries
@@ -36,5 +36,18 @@ public class Queries {
 	 */
 	public static ConstructQuery CONSTRUCT() {
 		return new ConstructQuery();
+	}
+	
+	/**
+	 * Create a SPARQL Update Query
+	 * 
+	 * @return a new Construct Query
+	 * 
+	 * @see <a
+	 * 		 href="https://www.w3.org/TR/sparql11-update/">
+	 * 		 SPARQL Update Query</a>
+	 */
+	public static UpdateQuery UPDATE() {
+		return new UpdateQuery();
 	}
 }

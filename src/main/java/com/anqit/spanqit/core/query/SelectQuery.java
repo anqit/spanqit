@@ -1,4 +1,8 @@
-package com.anqit.spanqit.core;
+package com.anqit.spanqit.core.query;
+
+import com.anqit.spanqit.core.Projectable;
+import com.anqit.spanqit.core.Projection;
+import com.anqit.spanqit.core.Spanqit;
 
 /**
  * A SPARQL Select query
@@ -11,6 +15,9 @@ package com.anqit.spanqit.core;
 public class SelectQuery extends OuterQuery<SelectQuery> {
 	private Projection select = Spanqit.select();
 
+	// package-protect instantiation of this class
+	SelectQuery() { }
+	
 	/**
 	 * Specify the query's projection to be distinct
 	 * 
