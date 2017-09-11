@@ -29,13 +29,8 @@ public class Prefix implements QueryElement {
 	 * @return a prefixed IRI reference, with this prefix's label as the base,
 	 *         and the given string for the local part
 	 */
-	public Iri iri(String localName) {
-		return new Iri() {
-			@Override
-			public String getQueryString() {
-				return label + ":" + localName;
-			}
-		};
+	public Iri iri(String localName) {		
+		return () -> label + ":" + localName;
 	}
 
 	@Override

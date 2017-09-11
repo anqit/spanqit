@@ -40,7 +40,7 @@ abstract class StandardQueryElementCollection<C extends StandardQueryElementColl
 
 	@SuppressWarnings("unchecked")
 	protected C addElements(T... queryElements) {
-		Collections.addAll(super.elements, queryElements);
+		Collections.addAll(elements, queryElements);
 
 		return (C) this;
 	}

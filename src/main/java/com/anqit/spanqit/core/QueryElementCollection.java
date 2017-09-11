@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
  * A logical collection of query elements. Provides common functionality for
  * elements which are collections of other elements, especially in printing.
  * Would have loved to have avoided making this public.
- * 
- * @author Ankit
  *
  * @param <T>
  *            the type of elements in the collection

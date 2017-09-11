@@ -21,11 +21,11 @@ public class GraphPatterns {
 	}
 
 	/**
-	 * Create a triple pattern with the given subject, predicate, and object
+	 * Create a triple pattern with the given subject, predicate, and object(s)
 	 * 
 	 * @param subject
 	 * @param predicate
-	 * @param object
+	 * @param objects
 	 * 
 	 * @return a new triple pattern
 	 * 
@@ -34,8 +34,8 @@ public class GraphPatterns {
 	 *      Triple pattern syntax</a>
 	 */
 	public static TriplePattern tp(RdfSubject subject,
-			RdfPredicate predicate, RdfObject object) {
-		return new TriplePattern(subject, predicate, object);
+			RdfPredicate predicate, RdfObject... objects) {
+		return new TriplePattern(subject, predicate, objects);
 	}
 
 	/**

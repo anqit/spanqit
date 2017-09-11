@@ -70,8 +70,8 @@ public abstract class RdfLiteral<T> implements RdfValue {
 	 * @param numberValue the Number instance to create a literal from
 	 * @return a NumberLiteral instance representing the given Number
 	 */
-	public static NumberLiteral of(Number numberValue) {
-		return new NumberLiteral(numberValue);
+	public static NumericLiteral of(Number numberValue) {
+		return new NumericLiteral(numberValue);
 	}
 	
 	/**
@@ -99,8 +99,8 @@ public abstract class RdfLiteral<T> implements RdfValue {
 		}
 	}
 	
-	public static class NumberLiteral extends RdfLiteral<Number> {
-		private NumberLiteral(Number numbervalue) {
+	public static class NumericLiteral extends RdfLiteral<Number> {
+		private NumericLiteral(Number numbervalue) {
 			super(numbervalue);
 		}
 	}

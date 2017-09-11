@@ -612,8 +612,7 @@ public class Expressions {
 		return connectiveExpression(ConnectiveOperator.DIVIDE, operands);
 	}
 	
-	private static ConnectiveOperation connectiveExpression(
-			ConnectiveOperator operator, ExpressionOperand... operands) {
+	private static ConnectiveOperation connectiveExpression(ConnectiveOperator operator, ExpressionOperand... operands) {
 		ConnectiveOperation op = new ConnectiveOperation(operator);
 
 		for (ExpressionOperand operand : operands) {
