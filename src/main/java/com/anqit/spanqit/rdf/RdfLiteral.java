@@ -1,6 +1,11 @@
 package com.anqit.spanqit.rdf;
 
-import com.anqit.spanqit.core.SpanqitStringUtils;
+import java.util.Optional;
+
+import com.anqit.spanqit.core.SpanqitUtils;
+
+import static com.anqit.spanqit.core.SpanqitUtils.appendQueryElementIfPresent;
+import static com.anqit.spanqit.core.SpanqitUtils.appendStringIfPresent;
 
 /**
  * Denotes an RDF literal
@@ -17,7 +22,7 @@ import com.anqit.spanqit.core.SpanqitStringUtils;
 public abstract class RdfLiteral<T> implements RdfValue { 
 	protected T value;
 	
-	protected RdfLiteral(T value) {
+	private RdfLiteral(T value) {
 		this.value = value;
 	}
 
@@ -54,58 +59,60 @@ public abstract class RdfLiteral<T> implements RdfValue {
 	}
 
 	/**
-	 * create an RDF string literal
-	 * 
-	 * @param stringValue the String instance to create a literal from
-	 * @return a StringLiteral instance representing the given String
+	 * Represents an RDF string literal
 	 */
-	public static StringLiteral of(String stringValue) {
-		return new StringLiteral(stringValue);
-	}
-	
-	/**
-	 * create an RDF numeric literal
-	 * 
-	 * @param numberValue the Number instance to create a literal from
-	 * @return a NumberLiteral instance representing the given Number
-	 */
-	public static NumericLiteral of(Number numberValue) {
-		return new NumericLiteral(numberValue);
-	}
-	
-	/**
-	 * create am RDF boolean literal
-	 * 
-	 * @param boolValue the boolean to create a literal from
-	 * @return a BooleanLiteral instance representing the given boolean
-	 */
-	public static BooleanLiteral of(Boolean boolValue) {
-		return new BooleanLiteral(boolValue);
-	}
-
 	public static class StringLiteral extends RdfLiteral<String> {
-		private StringLiteral(String stringValue) {
+		private static final String DATATYPE_SPECIFIER = "^^";
+		private static final String LANG_TAG_SPECIFIER = "@";
+		
+		private Optional<Iri> dataType = Optional.empty();
+		private Optional<String> languageTag = Optional.empty();
+		
+		StringLiteral(String stringValue) {
 			super(stringValue);
 		}
 		
+		StringLiteral(String stringValue, Iri dataType) {
+			super(stringValue);
+			this.dataType = Optional.ofNullable(dataType);
+		}
+		
+		StringLiteral(String stringValue, String languageTag) {
+			super(stringValue);
+			this.languageTag = Optional.ofNullable(languageTag);
+		}
+				
 		@Override
 		public String getQueryString() {
+			StringBuilder literal = new StringBuilder();
+			
 			if(value.contains("'") || value.contains("\"")) {
-				return SpanqitStringUtils.getLongQuotedString(value);
+				literal.append(SpanqitUtils.getLongQuotedString(value));
 			} else {
-				return SpanqitStringUtils.getQuotedString(value);
+				literal.append(SpanqitUtils.getQuotedString(value));
 			}
+			
+			appendQueryElementIfPresent(dataType, literal, DATATYPE_SPECIFIER, null);
+			appendStringIfPresent(languageTag, literal, LANG_TAG_SPECIFIER, null);
+			
+			return literal.toString();
 		}
 	}
 	
+	/**
+	 * Represents an RDF number literal
+	 */
 	public static class NumericLiteral extends RdfLiteral<Number> {
-		private NumericLiteral(Number numbervalue) {
+		NumericLiteral(Number numbervalue) {
 			super(numbervalue);
 		}
 	}
 	
+	/**
+	 * Represents an RDF boolean literal
+	 */
 	public static class BooleanLiteral extends RdfLiteral<Boolean> {
-		private BooleanLiteral(Boolean boolValue) {
+		BooleanLiteral(Boolean boolValue) {
 			super(boolValue);
 		}
 	}

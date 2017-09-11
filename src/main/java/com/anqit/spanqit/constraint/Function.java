@@ -10,8 +10,6 @@ package com.anqit.spanqit.constraint;
  *      <a href=
  *      "http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#SparqlOps">
  *      SPARQL Function Definitions</a>
- * 
- * @author Ankit
  */
 class Function extends Expression<Function> {
 	Function(SparqlFunction function) {

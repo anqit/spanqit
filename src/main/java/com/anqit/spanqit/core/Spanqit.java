@@ -22,7 +22,7 @@ public class Spanqit {
 	public static Variable var(String varName) {
 		return new Variable(varName);
 	}
-
+	
 	/**
 	 * Create a SPARQL assignment
 	 * 
@@ -212,5 +212,16 @@ public class Spanqit {
 	 */
 	public static OrderCondition desc(Orderable orderOn) {
 		return new OrderCondition(orderOn, false);
+	}
+	
+	/**
+	 * Create a TriplesTemplate instance, for use with Construct and Update queries
+	 * 
+	 * @param triples
+	 * 			the triples to include in the triples template
+	 * @return a TriplesTemplate of the given triples
+	 */
+	public static TriplesTemplate triplesTemplate(TriplePattern... triples) {
+		return new TriplesTemplate(triples);
 	}
 }

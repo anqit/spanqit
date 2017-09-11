@@ -1,20 +1,20 @@
 package com.anqit.spanqit.graphpattern;
 
+import java.util.Optional;
+
 import com.anqit.spanqit.constraint.Expression;
 import com.anqit.spanqit.core.QueryElement;
-import com.anqit.spanqit.core.SpanqitStringUtils;
+import com.anqit.spanqit.core.SpanqitUtils;
 
 /**
  * A SPARQL Filter Clause
- * 
- * @author Ankit
  * 
  * @see <a href="http://www.w3.org/TR/sparql11-query/#termConstraint"> SPARQL
  *      Filter</a>
  */
 class Filter implements QueryElement {
 	private static final String FILTER = "FILTER";
-	private Expression<?> constraint;
+	private Optional<Expression<?>> constraint = Optional.empty();
 
 	Filter() {
 		this(null);
@@ -32,7 +32,7 @@ class Filter implements QueryElement {
 	 * @return this
 	 */
 	public Filter filter(Expression<?> expression) {
-		constraint = expression;
+		constraint = Optional.ofNullable(expression);
 
 		return this;
 	}
@@ -42,11 +42,8 @@ class Filter implements QueryElement {
 		StringBuilder filter = new StringBuilder();
 
 		filter.append(FILTER).append(" ");
-		String exp = "";
-		if (constraint != null) {
-			exp = constraint.getQueryString();
-		}
-		filter.append(SpanqitStringUtils.getParenthesizedString(exp));
+		String exp = constraint.map(QueryElement::getQueryString).orElse("");
+		filter.append(SpanqitUtils.getParenthesizedString(exp));
 
 		return filter.toString();
 	}

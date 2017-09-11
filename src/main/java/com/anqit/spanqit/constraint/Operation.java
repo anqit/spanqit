@@ -4,8 +4,6 @@ package com.anqit.spanqit.constraint;
  * A SPARQL Operation. Differs from a {@link Function} in the way operators and
  * arguments are printed.
  * 
- * @author Ankit
- *
  * @param <T> The type of operation. Used to support fluency.
  */
 abstract class Operation<T extends Operation<T>> extends Expression<T> {
@@ -22,8 +20,7 @@ abstract class Operation<T extends Operation<T>> extends Expression<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	// ugh, wish the compiler dug just a little deeper...
-	T addOperand(ExpressionOperand operand) /* throws Exception */{
+	T addOperand(Operand operand) /* throws Exception */ {
 		if (isBelowOperatorLimit()) {
 			return super.addOperand(operand);
 		}

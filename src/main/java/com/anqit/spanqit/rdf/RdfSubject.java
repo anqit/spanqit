@@ -1,5 +1,7 @@
 package com.anqit.spanqit.rdf;
 
+import static com.anqit.spanqit.rdf.Rdf.toRdfLiteralArray;
+
 import com.anqit.spanqit.core.QueryElement;
 import com.anqit.spanqit.graphpattern.GraphPatterns;
 import com.anqit.spanqit.graphpattern.TriplePattern;
@@ -17,8 +19,7 @@ public interface RdfSubject extends QueryElement {
 	 *            the predicate of the triple pattern
 	 * @param objects
 	 *            the object(s) of the triple pattern
-	 * @return a new triple pattern with this subject, and the given predicate
-	 *         and object(s)
+	 * @return a new {@link TriplePattern} with this subject, and the given predicate and object(s)
 	 * 
 	 * @see <a
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
@@ -26,6 +27,55 @@ public interface RdfSubject extends QueryElement {
 	 */
 	default public TriplePattern has(RdfPredicate predicate, RdfObject... objects) {
 		return GraphPatterns.tp(this, predicate, objects);
+	}
+	
+	/**
+	 * Create a triple pattern from this subject and the given predicate-object list(s) 
+	 * @param lists
+	 * 		the {@link RdfPredicateObjectList}(s) to describing this subject
+	 * @return a new {@link TriplePattern} with this subject, and the given predicate-object list(s)
+	 */
+	default public TriplePattern has(RdfPredicateObjectList... lists) {
+		return GraphPatterns.tp(this, lists);
+	}
+	
+	/**
+	 * Wrapper for {@link #has(RdfPredicate, RdfObject...)} that converts String objects into RdfLiteral instances
+	 * 
+	 * @param predicate
+	 * 			the predicate of the triple pattern
+	 * @param objects
+	 * 			the String object(s) of the triple pattern
+	 * @return a new {@link TriplePattern} with this subject, and the given predicate and object(s)
+	 */
+	default public TriplePattern has(RdfPredicate predicate, String... objects) {
+		return GraphPatterns.tp(this, predicate, toRdfLiteralArray(objects));
+	}
+	
+	/**
+	 * Wrapper for {@link #has(RdfPredicate, RdfObject...)} that converts Number objects into RdfLiteral instances
+	 * 
+	 * @param predicate
+	 * 			the predicate of the triple pattern
+	 * @param objects
+	 * 			the Number object(s) of the triple pattern
+	 * @return a new {@link TriplePattern} with this subject, and the given predicate and object(s)
+	 */
+	default public TriplePattern has(RdfPredicate predicate, Number... objects) {
+		return GraphPatterns.tp(this, predicate, toRdfLiteralArray(objects));
+	}
+	
+	/**
+	 * Wrapper for {@link #has(RdfPredicate, RdfObject...)} that converts Boolean objects into RdfLiteral instances
+	 * 
+	 * @param predicate
+	 * 			the predicate of the triple pattern
+	 * @param objects
+	 * 			the Boolean object(s) of the triple pattern
+	 * @return a new {@link TriplePattern} with this subject, and the given predicate and object(s)
+	 */
+	default public TriplePattern has(RdfPredicate predicate, Boolean... objects) {
+		return GraphPatterns.tp(this, predicate, toRdfLiteralArray(objects));
 	}
 	
 	/**
@@ -38,6 +88,6 @@ public interface RdfSubject extends QueryElement {
 	 * 		RDF Type abbreviation</a>
 	 */
 	default public TriplePattern isA(RdfObject... objects) {
-		return has(RdfPredicate.isA, objects);
+		return has(RdfPredicate.a, objects);
 	}
 }

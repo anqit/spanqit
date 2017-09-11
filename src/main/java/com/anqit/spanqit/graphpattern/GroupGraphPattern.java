@@ -1,14 +1,16 @@
 package com.anqit.spanqit.graphpattern;
 
+import java.util.Optional;
+
 import com.anqit.spanqit.constraint.Expression;
 import com.anqit.spanqit.core.QueryElementCollection;
-import com.anqit.spanqit.core.SpanqitStringUtils;
+import com.anqit.spanqit.core.SpanqitUtils;
+
+import static com.anqit.spanqit.core.SpanqitUtils.appendQueryElementIfPresent;
 
 /**
  * A SPARQL Group Graph Pattern
  * 
- * @author Ankit
- *
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#GroupPatterns">
  *      SPARQL Group Graph Patterns</a>
@@ -16,8 +18,11 @@ import com.anqit.spanqit.core.SpanqitStringUtils;
 class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 		GraphPattern {
 	private static final String OPTIONAL = "OPTIONAL";
-	private static final String DELIMITER = " . ";
-	private Filter filter;
+//	private static final String DELIMITER = " . ";
+	private static final String GRAPH = "GRAPH ";
+	
+	private Optional<GraphName> from = Optional.empty();
+	private Optional<Filter> filter = Optional.empty();
 	protected boolean isOptional = false;
 
 	GroupGraphPattern() {
@@ -25,12 +30,12 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 	}
 
 	GroupGraphPattern(boolean isOptional) {
-		super(DELIMITER);
+//		super(DELIMITER);
 		this.isOptional = isOptional;
 	}
 
 	GroupGraphPattern(GraphPattern original) {
-		super(DELIMITER);
+//		super(DELIMITER);
 
 		if (original instanceof GroupGraphPattern) {
 			copy((GroupGraphPattern) original);
@@ -42,6 +47,7 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 	protected void copy(GroupGraphPattern original) {
 		this.elements = original.elements;
 		this.isOptional = original.isOptional;
+		this.from = original.from;
 		this.filter = original.filter;
 	}
 
@@ -58,12 +64,18 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 
 		return this;
 	}
+	
+	GroupGraphPattern from(GraphName name) {
+		from = Optional.of(name);
+		
+		return this;
+	}
 
 	GroupGraphPattern filter(Expression<?> constraint) {
-		if (filter == null) {
-			filter = new Filter();
+		if (!filter.isPresent()) {
+			filter = Optional.of(new Filter());
 		}
-		filter.filter(constraint);
+		filter.get().filter(constraint);
 
 		return this;
 	}
@@ -85,17 +97,17 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 		boolean bracketize = !(elements.size() == 1 && elements.toArray()[0] instanceof GroupGraphPattern);
 
 		if (isOptional) {
-			pattern.append(OPTIONAL + " ");
+			pattern.append(OPTIONAL).append(" ");
 		}
 
+		appendQueryElementIfPresent(from, pattern, GRAPH, " ");
+		
 		innerPattern.append(super.getQueryString());
 
-		if (filter != null) {
-			innerPattern.append("\n").append(filter.getQueryString());
-		}
+		appendQueryElementIfPresent(filter, innerPattern, "\n", null);
 
 		if (bracketize) {
-			pattern.append(SpanqitStringUtils.getBracedString(innerPattern
+			pattern.append(SpanqitUtils.getBracedString(innerPattern
 					.toString()));
 		} else {
 			pattern.append(innerPattern.toString());

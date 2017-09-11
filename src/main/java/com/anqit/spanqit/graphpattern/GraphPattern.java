@@ -15,5 +15,5 @@ public interface GraphPattern extends QueryElement {
 	 *         Alternative patterns), returns if the collection contains any
 	 *         patterns
 	 */
-	public boolean isEmpty();
+	default public boolean isEmpty() { return true; }
 }
