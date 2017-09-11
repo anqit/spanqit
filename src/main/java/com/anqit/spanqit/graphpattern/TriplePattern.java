@@ -1,8 +1,9 @@
 package com.anqit.spanqit.graphpattern;
 
-import com.anqit.spanqit.core.QueryElementCollection;
+import com.anqit.spanqit.rdf.Rdf;
 import com.anqit.spanqit.rdf.RdfObject;
 import com.anqit.spanqit.rdf.RdfPredicate;
+import com.anqit.spanqit.rdf.RdfPredicateObjectListCollection;
 import com.anqit.spanqit.rdf.RdfSubject;
 
 /**
@@ -12,12 +13,11 @@ import com.anqit.spanqit.rdf.RdfSubject;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
  *      Triple pattern syntax</a>
  */
-public class TriplePattern extends QueryElementCollection<RdfPredicateRdfObjectListPair> implements GraphPattern {
+public class TriplePattern implements GraphPattern {
 	private RdfSubject subject;
+	private RdfPredicateObjectListCollection predicateObjectLists = Rdf.predicateObjectListCollection();
 
-	TriplePattern(RdfSubject subject, RdfPredicate predicate,
-			RdfObject... objects) {
-		super(" ;\n\t");
+	TriplePattern(RdfSubject subject, RdfPredicate predicate, RdfObject... objects) {
 		this.subject = subject;
 		andHas(predicate, objects);
 	}
@@ -37,7 +37,7 @@ public class TriplePattern extends QueryElementCollection<RdfPredicateRdfObjectL
 	 * 		Object Lists</a>
 	 */
 	public TriplePattern andHas(RdfPredicate predicate, RdfObject... objects) {
-		elements.add(new RdfPredicateRdfObjectListPair(predicate, objects));
+		predicateObjectLists.andHas(predicate, objects);
 		
 		return this;
 	}
@@ -49,6 +49,6 @@ public class TriplePattern extends QueryElementCollection<RdfPredicateRdfObjectL
 
 	@Override
 	public String getQueryString() {
-		return subject.getQueryString() + " " + super.getQueryString() + " .";
+		return subject.getQueryString() + " " + predicateObjectLists.getQueryString() + " .";
 	}
 }

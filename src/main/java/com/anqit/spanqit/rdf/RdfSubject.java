@@ -7,9 +7,6 @@ import com.anqit.spanqit.graphpattern.TriplePattern;
 /**
  * Denotes an element that can represent a subject in a
  * {@link com.anqit.spanqit.graphpattern.TriplePattern}
- * 
- * @author Ankit
- *
  */
 public interface RdfSubject extends QueryElement {
 	/**
@@ -18,7 +15,7 @@ public interface RdfSubject extends QueryElement {
 	 * 
 	 * @param predicate
 	 *            the predicate of the triple pattern
-	 * @param object
+	 * @param objects
 	 *            the object(s) of the triple pattern
 	 * @return a new triple pattern with this subject, and the given predicate
 	 *         and object(s)

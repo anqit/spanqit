@@ -9,16 +9,13 @@ import com.anqit.spanqit.rdf.RdfSubject;
  * A class with static methods to create graph patterns. Obviously there's some
  * more flushing out TODO still
  * 
- * @author Ankit
- *
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#GraphPattern">SPARQL
  *      Graph Pattern</a>
  */
 public class GraphPatterns {
 	// prevent instantiation of this class
-	private GraphPatterns() {
-	}
+	private GraphPatterns() { }
 
 	/**
 	 * Create a triple pattern with the given subject, predicate, and object(s)

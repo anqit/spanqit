@@ -1,21 +1,19 @@
-package com.anqit.spanqit.graphpattern;
+package com.anqit.spanqit.rdf;
 
 import java.util.Collections;
 
 import com.anqit.spanqit.core.QueryElementCollection;
-import com.anqit.spanqit.rdf.RdfObject;
-import com.anqit.spanqit.rdf.RdfPredicate;
 
-class RdfPredicateRdfObjectListPair extends QueryElementCollection<RdfObject> {
+class RdfPredicateObjectList extends QueryElementCollection<RdfObject> {
 	private RdfPredicate predicate;
 	
-	RdfPredicateRdfObjectListPair(RdfPredicate predicate, RdfObject... objects) {
+	RdfPredicateObjectList(RdfPredicate predicate, RdfObject... objects) {
 		super(", ");
 		this.predicate = predicate;
 		and(objects);
 	}
 	
-	public RdfPredicateRdfObjectListPair and(RdfObject... objects) {
+	public RdfPredicateObjectList and(RdfObject... objects) {
 		Collections.addAll(elements, objects);
 		
 		return this;

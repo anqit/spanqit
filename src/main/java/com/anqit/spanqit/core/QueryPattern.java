@@ -7,8 +7,6 @@ import com.anqit.spanqit.graphpattern.GraphPatterns;
 /**
  * A SPARQL Query Pattern (<code>WHERE</code> clause)
  * 
- * @author Ankit
- *
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#GraphPattern">
  *      Query Pattern Definition</a>
