@@ -95,7 +95,7 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 		}
 
 		if (bracketize) {
-			pattern.append(SpanqitStringUtils.getBracketedString(innerPattern
+			pattern.append(SpanqitStringUtils.getBracedString(innerPattern
 					.toString()));
 		} else {
 			pattern.append(innerPattern.toString());

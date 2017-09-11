@@ -138,6 +138,6 @@ public class SubSelect extends Query<SubSelect> implements GraphPattern {
 		// TODO: VALUES
 		// subselect.append(values.getQueryString());
 
-		return SpanqitStringUtils.getBracketedString(subSelect.toString());
+		return SpanqitStringUtils.getBracedString(subSelect.toString());
 	}
 }

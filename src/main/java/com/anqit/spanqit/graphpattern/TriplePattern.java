@@ -14,6 +14,8 @@ import com.anqit.spanqit.rdf.RdfSubject;
  *      Triple pattern syntax</a>
  */
 public class TriplePattern implements GraphPattern {
+	protected static final String SUFFIX = " .";
+
 	private RdfSubject subject;
 	private RdfPredicateObjectListCollection predicateObjectLists = Rdf.predicateObjectListCollection();
 
@@ -49,6 +51,6 @@ public class TriplePattern implements GraphPattern {
 
 	@Override
 	public String getQueryString() {
-		return subject.getQueryString() + " " + predicateObjectLists.getQueryString() + " .";
+		return subject.getQueryString() + " " + predicateObjectLists.getQueryString() + SUFFIX;
 	}
 }

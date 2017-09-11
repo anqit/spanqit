@@ -1,6 +1,8 @@
 package com.anqit.spanqit.rdf;
 
 import com.anqit.spanqit.core.SpanqitStringUtils;
+import com.anqit.spanqit.graphpattern.BNodeTriplePattern;
+import com.anqit.spanqit.graphpattern.GraphPatterns;
 
 /**
  * Denotes an RDF Blank Node
@@ -28,8 +30,8 @@ public interface RdfBlankNode extends RdfResource {
 	 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynBlankNodes">
 	 * 		Blank node syntax</a>
 	 */
-	public static AnonymousBlankNode bNode(RdfPredicate predicate, RdfObject... objects) {
-		return new AnonymousBlankNode(predicate, objects);
+	public static PropertiesBlankNode bNode(RdfPredicate predicate, RdfObject... objects) {
+		return new PropertiesBlankNode(predicate, objects);
 	}
 	
 	/**
@@ -62,10 +64,22 @@ public interface RdfBlankNode extends RdfResource {
 	 * 		Blank node syntax</a>
 	 */
 	public static class AnonymousBlankNode implements RdfBlankNode {
+		@Override
+		public String getQueryString() {
+			return SpanqitStringUtils.getBracketedString(" ");
+		}	
+	}
+	
+	/**
+	 * A blank node representing a resource that matches a set of predicate-object lists
+	 * 
+	 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynBlankNodes">
+	 * 		blank node syntax</a>
+	 */
+	public static class PropertiesBlankNode implements RdfBlankNode {
 		private RdfPredicateObjectListCollection predicateObjectLists = Rdf.predicateObjectListCollection();
 
-		AnonymousBlankNode() { }
-		AnonymousBlankNode(RdfPredicate predicate, RdfObject... objects) {
+		private PropertiesBlankNode(RdfPredicate predicate, RdfObject... objects) {
 			andHas(predicate, objects);
 		}
 		
@@ -83,11 +97,24 @@ public interface RdfBlankNode extends RdfResource {
 		 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#objLists">
 		 * 		Object Lists</a>
 		 */
-		public AnonymousBlankNode andHas(RdfPredicate predicate, RdfObject... objects) {
+		public PropertiesBlankNode andHas(RdfPredicate predicate, RdfObject... objects) {
 			predicateObjectLists.andHas(predicate, objects);
 			
 			return this;
 		}
+		
+		/**
+		 * convert this blank node to a triple pattern
+		 * 
+		 * @return the triple pattern identified by this blank node
+		 * 
+		 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynBlankNodes">
+		 * 		blank node syntax</a>
+		 */
+		public BNodeTriplePattern toTp() {
+			return GraphPatterns.tp(this);
+		}
+
 		@Override
 		public String getQueryString() {
 			return SpanqitStringUtils.getBracketedString(predicateObjectLists.getQueryString());

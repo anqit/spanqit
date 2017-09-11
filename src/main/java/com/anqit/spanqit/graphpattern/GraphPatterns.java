@@ -1,6 +1,7 @@
 package com.anqit.spanqit.graphpattern;
 
 import com.anqit.spanqit.core.Projectable;
+import com.anqit.spanqit.rdf.RdfBlankNode.PropertiesBlankNode;
 import com.anqit.spanqit.rdf.RdfObject;
 import com.anqit.spanqit.rdf.RdfPredicate;
 import com.anqit.spanqit.rdf.RdfSubject;
@@ -30,9 +31,21 @@ public class GraphPatterns {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
 	 *      Triple pattern syntax</a>
 	 */
-	public static TriplePattern tp(RdfSubject subject,
-			RdfPredicate predicate, RdfObject... objects) {
+	public static TriplePattern tp(RdfSubject subject, RdfPredicate predicate, RdfObject... objects) {
 		return new TriplePattern(subject, predicate, objects);
+	}
+	
+	/**
+	 * Create a triple pattern from a property-list blank node
+	 * @param bnode the PropertiesBlankNode instance to convert to a triple pattern
+	 * 
+	 * @return the triple pattern represented by the expansion of this blank node
+	 * 
+	 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynBlankNodes">
+	 * 		blank node syntax</a>
+	 */
+	public static BNodeTriplePattern tp(PropertiesBlankNode bnode) {
+		return new BNodeTriplePattern(bnode);
 	}
 
 	/**
