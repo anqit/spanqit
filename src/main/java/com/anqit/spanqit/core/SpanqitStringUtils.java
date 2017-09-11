@@ -10,10 +10,14 @@ public class SpanqitStringUtils {
 		builder.append(Optional.ofNullable(element).map(e -> e.getQueryString() + "\n").orElse(""));
 	}
 	
-	public static String getBracketedString(String contents) {
+	public static String getBracedString(String contents) {
 		return getEnclosedString("{", "}", contents);
 	}
 
+	public static String getBracketedString(String contents) {
+		return getEnclosedString("[", "]", contents);
+	}
+	
 	public static String getParenthesizedString(String contents) {
 		return getEnclosedString("(", ")", contents);
 	}

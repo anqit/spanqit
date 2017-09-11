@@ -9,8 +9,6 @@ import com.anqit.spanqit.core.SpanqitStringUtils;
 /**
  * A SPARQL subquery
  * 
- * @author Ankit
- * 
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#subqueries">
  *      SPARQL Subquery</a>
@@ -140,6 +138,6 @@ public class SubSelect extends Query<SubSelect> implements GraphPattern {
 		// TODO: VALUES
 		// subselect.append(values.getQueryString());
 
-		return SpanqitStringUtils.getBracketedString(subSelect.toString());
+		return SpanqitStringUtils.getBracedString(subSelect.toString());
 	}
 }

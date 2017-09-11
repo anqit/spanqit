@@ -18,8 +18,6 @@ import com.anqit.spanqit.rdf.RdfLiteral;
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#SparqlOps">
  *      SPARQL Function Definitions</a>
- * @author Ankit
- *
  */
 public class Expressions {
 	// prevent instantiation of this class

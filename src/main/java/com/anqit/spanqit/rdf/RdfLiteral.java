@@ -5,7 +5,6 @@ import com.anqit.spanqit.core.SpanqitStringUtils;
 /**
  * Denotes an RDF literal
  * 
- * @author Ankit
  * @param <T> the datatype of the literal
  * 
  * @see <a
