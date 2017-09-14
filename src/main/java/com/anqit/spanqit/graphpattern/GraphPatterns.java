@@ -7,8 +7,7 @@ import com.anqit.spanqit.rdf.RdfPredicate;
 import com.anqit.spanqit.rdf.RdfSubject;
 
 /**
- * A class with static methods to create graph patterns. Obviously there's some
- * more flushing out TODO still
+ * A class with static methods to create graph patterns.
  * 
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#GraphPattern">SPARQL
@@ -31,7 +30,7 @@ public class GraphPatterns {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
 	 *      Triple pattern syntax</a>
 	 */
-	public static TriplesSameSubject tp(RdfSubject subject, RdfPredicate predicate, RdfObject... objects) {
+	public static TriplePattern tp(RdfSubject subject, RdfPredicate predicate, RdfObject... objects) {
 		return new TriplesSameSubject(subject, predicate, objects);
 	}
 	
@@ -44,7 +43,7 @@ public class GraphPatterns {
 	 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynBlankNodes">
 	 * 		blank node syntax</a>
 	 */
-	public static BNodeTriplePattern tp(PropertiesBlankNode bnode) {
+	public static TriplePattern tp(PropertiesBlankNode bnode) {
 		return new BNodeTriplePattern(bnode);
 	}
 

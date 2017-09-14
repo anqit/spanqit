@@ -1,8 +1,8 @@
 package com.anqit.spanqit.rdf;
 
 import com.anqit.spanqit.core.SpanqitStringUtils;
-import com.anqit.spanqit.graphpattern.BNodeTriplePattern;
 import com.anqit.spanqit.graphpattern.GraphPatterns;
+import com.anqit.spanqit.graphpattern.TriplePattern;
 
 /**
  * Denotes an RDF Blank Node
@@ -111,7 +111,7 @@ public interface RdfBlankNode extends RdfResource {
 		 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynBlankNodes">
 		 * 		blank node syntax</a>
 		 */
-		public BNodeTriplePattern toTp() {
+		public TriplePattern toTp() {
 			return GraphPatterns.tp(this);
 		}
 

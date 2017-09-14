@@ -6,7 +6,13 @@ import com.anqit.spanqit.rdf.RdfPredicate;
 /**
  * Denotes a SPARQL Triple Pattern
  *
- * @param <T>
+ * @param <T> the type of triple pattern; used to support fluency
+ * 
+ * @see <a
+ *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
+ *      Triple pattern syntax</a>
+ * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynBlankNodes">
+ * 		blank node syntax</a>     
  */
 public interface TriplePattern<T extends TriplePattern<T>> extends GraphPattern {
 	static String SUFFIX = " .";

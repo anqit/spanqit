@@ -10,7 +10,7 @@ import com.anqit.spanqit.rdf.RdfPredicate;
  * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynBlankNodes">
  * 		blank node syntax</a>
  */
-public class BNodeTriplePattern implements TriplePattern<BNodeTriplePattern> {
+class BNodeTriplePattern implements TriplePattern<BNodeTriplePattern> {
 	private PropertiesBlankNode bnode;
 
 	BNodeTriplePattern(PropertiesBlankNode subject) {
