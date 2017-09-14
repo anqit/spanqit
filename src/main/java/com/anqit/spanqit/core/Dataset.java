@@ -32,6 +32,6 @@ public class Dataset extends StandardQueryElementCollection<Dataset, From> {
 	 * @return this
 	 */
 	public Dataset from(Iri... iris) {
-		return addElements(Arrays.stream(iris).map(Spanqit::from).toArray(From[]::new));
+		return from(Arrays.stream(iris).map(Spanqit::from).toArray(From[]::new));
 	}
 }

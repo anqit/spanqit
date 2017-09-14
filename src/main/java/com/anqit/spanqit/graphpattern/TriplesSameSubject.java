@@ -50,6 +50,6 @@ class TriplesSameSubject implements TriplePattern<TriplesSameSubject> {
 
 	@Override
 	public String getQueryString() {
-		return subject.getQueryString() + " " + predicateObjectLists.getQueryString() + SUFFIX;
+		return subject.getQueryString() + " " + predicateObjectLists.getQueryString();
 	}
 }
