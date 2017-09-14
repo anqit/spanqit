@@ -12,7 +12,6 @@ import com.anqit.spanqit.core.SpanqitStringUtils;
  * A SPARQL expression. Used by filters, having clauses, order and group by
  * clauses, assignments, and as arguments to other expressions.
  *
- * @author Ankit
  * @param <T>
  *            the type of Expression (ie, Function or Operation). Used to
  *            support fluency

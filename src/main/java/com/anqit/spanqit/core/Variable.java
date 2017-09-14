@@ -9,8 +9,6 @@ import com.anqit.spanqit.rdf.RdfSubject;
 /**
  * A SPARQL query variable
  * 
- * @author Ankit
- *
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynVariables">
  *      SPARQL Variable Syntax</a>

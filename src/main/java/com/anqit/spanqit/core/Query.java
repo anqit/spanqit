@@ -186,7 +186,7 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	 * @return a SparqlVariable object that is unique to this query instance
 	 */
 	public Variable var() {
-		return new Variable("x" + ++varCount);
+		return Spanqit.var("x" + ++varCount);
 	}
 
 	protected abstract String getQueryActionString();

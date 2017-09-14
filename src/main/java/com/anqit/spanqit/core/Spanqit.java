@@ -7,9 +7,6 @@ import com.anqit.spanqit.rdf.Iri;
 
 /**
  * A class to with static methods to create SPARQL query elements.
- * 
- * @author Ankit
- * 
  */
 public class Spanqit {
 	// prevent instantiation of this class
