@@ -20,7 +20,7 @@ public interface RdfBlankNode extends RdfResource {
 	}
 
 	/**
-	 * creates a new anonymous blank node, identified by the supplied predicate-object lists
+	 * creates a label-less blank node, identified by the supplied predicate-object lists
 	 * 
 	 * @param predicate the predicate of the initial predicate-object list to populate this blank node with
 	 * @param objects the objects of the initial predicate-object list to populate this blank node with

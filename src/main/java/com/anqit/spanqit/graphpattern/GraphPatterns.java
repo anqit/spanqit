@@ -31,8 +31,8 @@ public class GraphPatterns {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
 	 *      Triple pattern syntax</a>
 	 */
-	public static TriplePattern tp(RdfSubject subject, RdfPredicate predicate, RdfObject... objects) {
-		return new TriplePattern(subject, predicate, objects);
+	public static TriplesSameSubject tp(RdfSubject subject, RdfPredicate predicate, RdfObject... objects) {
+		return new TriplesSameSubject(subject, predicate, objects);
 	}
 	
 	/**
