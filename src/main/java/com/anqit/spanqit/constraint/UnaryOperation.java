@@ -4,8 +4,6 @@ import com.anqit.spanqit.core.SpanqitStringUtils;
 
 /**
  * Represents a SPARQL operation that takes exactly 1 argument
- * 
- * @author Ankit
  */
 class UnaryOperation extends Operation<UnaryOperation> {
 	UnaryOperation(UnaryOperator operator) {

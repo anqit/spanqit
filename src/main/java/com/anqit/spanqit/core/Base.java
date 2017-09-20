@@ -5,8 +5,6 @@ import com.anqit.spanqit.rdf.Iri;
 /**
  * A SPARQL Base declaration
  * 
- * @author Ankit
- *
  * @see <a
  *      	href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#relIRIs">
  *      	SPARQL Relative IRIs</a>

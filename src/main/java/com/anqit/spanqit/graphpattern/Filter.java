@@ -7,8 +7,6 @@ import com.anqit.spanqit.core.SpanqitStringUtils;
 /**
  * A SPARQL Filter Clause
  * 
- * @author Ankit
- * 
  * @see <a href="http://www.w3.org/TR/sparql11-query/#termConstraint"> SPARQL
  *      Filter</a>
  */

@@ -4,8 +4,6 @@ package com.anqit.spanqit.constraint;
  * A SPARQL Operation. Differs from a {@link Function} in the way operators and
  * arguments are printed.
  * 
- * @author Ankit
- *
  * @param <T> The type of operation. Used to support fluency.
  */
 abstract class Operation<T extends Operation<T>> extends Expression<T> {

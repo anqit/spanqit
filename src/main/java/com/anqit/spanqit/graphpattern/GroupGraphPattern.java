@@ -7,8 +7,6 @@ import com.anqit.spanqit.core.SpanqitStringUtils;
 /**
  * A SPARQL Group Graph Pattern
  * 
- * @author Ankit
- *
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#GroupPatterns">
  *      SPARQL Group Graph Patterns</a>

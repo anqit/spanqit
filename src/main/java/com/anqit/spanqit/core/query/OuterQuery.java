@@ -14,12 +14,9 @@ import com.anqit.spanqit.core.Spanqit;
 /**
  * A non-subquery query.
  * 
- * @author Ankit
- *
  * @param <T>
  *            The query type. Used to support fluency.
  */
-// argh, so frustrating
 @SuppressWarnings("unchecked")
 public abstract class OuterQuery<T extends OuterQuery<T>> extends
 		Query<OuterQuery<T>> {

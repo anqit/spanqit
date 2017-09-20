@@ -7,8 +7,6 @@ package com.anqit.spanqit.constraint;
  * @see <a href=
  *      "http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#SparqlOps">
  *      SPARQL Function Definitions</a>
- * @author Ankit
- *
  */
 @SuppressWarnings("javadoc") // acceptable, as this won't be public for long
 public enum SparqlAggregate implements SparqlOperator {

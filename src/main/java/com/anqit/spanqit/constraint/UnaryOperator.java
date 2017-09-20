@@ -2,9 +2,6 @@ package com.anqit.spanqit.constraint;
 
 /**
  * The SPARQL unary operators
- * 
- * @author Ankit
- *
  */
 enum UnaryOperator implements SparqlOperator {
 	NOT("!"),

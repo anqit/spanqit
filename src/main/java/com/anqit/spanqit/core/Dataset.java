@@ -7,8 +7,6 @@ import com.anqit.spanqit.rdf.Iri;
 /**
  * A SPARQL dataset specification
  * 
- * @author Ankit
- *
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#rdfDataset">
  *      RDF Datasets</a>

@@ -2,9 +2,6 @@ package com.anqit.spanqit.constraint;
 
 /**
  * The SPARQL connective operators
- * 
- * @author Ankit
- *
  */
 enum ConnectiveOperator implements SparqlOperator {
 	// Logical
