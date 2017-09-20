@@ -18,8 +18,6 @@ import static com.anqit.spanqit.core.SpanqitStringUtils.appendAndNewlineIfNonNul
  * The base class for all SPARQL Queries. Contains elements and methods common
  * to all queries.
  * 
- * @author Ankit
- *
  * @param <T>
  *            They type of query. Used to support fluency.
  */
@@ -220,5 +218,5 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 		}
 
 		return query.toString();
-	}	
+	}
 }

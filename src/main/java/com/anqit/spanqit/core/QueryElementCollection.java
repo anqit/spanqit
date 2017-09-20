@@ -12,8 +12,7 @@ import java.util.stream.Collectors;
  * @param <T>
  *            the type of elements in the collection
  */
-public abstract class QueryElementCollection<T extends QueryElement> implements
-		QueryElement {
+public abstract class QueryElementCollection<T extends QueryElement> implements QueryElement {
 	protected Collection<T> elements;
 	private String delimeter;
 

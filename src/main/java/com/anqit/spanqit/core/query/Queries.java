@@ -3,10 +3,8 @@ package com.anqit.spanqit.core.query;
 /**
  * A class with static methods to create SPARQL queries
  * 
- * @author Ankit
- *
- * @see <a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/"> SPARQL
- *      Query Language</a>
+ * @see <a href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/">
+ * 		SPARQL Query Language</a>
  */
 public class Queries {
 	// prevent instantiation of this class
@@ -39,15 +37,26 @@ public class Queries {
 	}
 	
 	/**
-	 * Create a SPARQL Update Query
+	 * Create a SPARQL INSERT DATA query
 	 * 
-	 * @return a new Construct Query
+	 * @return a new INSERT DATA query
 	 * 
-	 * @see <a
-	 * 		 href="https://www.w3.org/TR/sparql11-update/">
-	 * 		 SPARQL Update Query</a>
+	 * @see <a href="https://www.w3.org/TR/sparql11-update/#insertData">
+	 * 		SPARQL INSERT DATA Query</a>
 	 */
-	public static UpdateQuery UPDATE() {
-		return new UpdateQuery();
+	public static InsertDataQuery INSERT_DATA() {
+		return new InsertDataQuery();
+	}
+	
+	/**
+	 * Create a SPARQL DELETE DATA query
+	 * 
+	 * @return a new DELETE DATA query
+	 * 
+	 * @see <a href="https://www.w3.org/TR/sparql11-update/#deleteData">
+	 * 		SPARQL DELETE DATA Query</a>
+	 */
+	public static DeleteDataQuery DELETE_DATA() {
+		return new DeleteDataQuery();
 	}
 }

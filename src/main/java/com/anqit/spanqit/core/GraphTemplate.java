@@ -5,27 +5,35 @@ import com.anqit.spanqit.graphpattern.TriplePattern;
 /**
  * A SPARQL Graph Template, used in Construct queries
  * 
- * @author Ankit
- *
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#construct">
  *      SPARQL CONSTRUCT Query</a>
  */
-public class GraphTemplate extends StandardQueryElementCollection<GraphTemplate, TriplePattern> {
+public class GraphTemplate implements QueryElement {
 	private static final String CONSTRUCT = "CONSTRUCT";
+	private TriplesTemplate triplesTemplate = new TriplesTemplate();
 	
-	GraphTemplate() {
-		super(CONSTRUCT, SpanqitStringUtils::getBracketedString);
-	}
+	GraphTemplate() { }
 
 	/**
 	 * Add triple patterns to this graph template
 	 * 
-	 * @param patterns
+	 * @param triples
 	 *            the patterns to add
 	 * @return this
 	 */
-	public GraphTemplate construct(TriplePattern... patterns) {
-		return addElements(patterns);
+	public GraphTemplate construct(TriplePattern... triples) {
+		triplesTemplate.and(triples);
+		
+		return this;
+	}
+	
+	@Override
+	public String getQueryString() {
+		StringBuilder graphTemplate = new StringBuilder();
+		
+		graphTemplate.append(CONSTRUCT).append(" ").append(triplesTemplate.getQueryString());
+		
+		return graphTemplate.toString();
 	}
 }

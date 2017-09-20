@@ -35,4 +35,6 @@ public class RdfPredicateObjectListCollection extends QueryElementCollection<Rdf
 		
 		return this;
 	}
+	
+	// TODO add suffix for if elements.size > 1; here or in triplessamesubject
 }

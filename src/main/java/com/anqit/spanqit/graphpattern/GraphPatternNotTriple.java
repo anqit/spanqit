@@ -5,8 +5,6 @@ import com.anqit.spanqit.constraint.Expression;
 /**
  * A SPARQL Graph Pattern that is not a triple pattern.
  * 
- * @author Ankit
- *
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#GraphPattern">
  *      SPARQL Graph Patterns</a>
