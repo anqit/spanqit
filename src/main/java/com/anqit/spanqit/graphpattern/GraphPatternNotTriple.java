@@ -1,5 +1,8 @@
 package com.anqit.spanqit.graphpattern;
 
+import java.util.Arrays;
+import java.util.function.Consumer;
+
 import com.anqit.spanqit.constraint.Expression;
 
 /**
@@ -17,7 +20,7 @@ public class GraphPatternNotTriple implements GraphPattern {
 	}
 
 	GraphPatternNotTriple(GraphPattern other) {
-		this.pattern = getPattern(other);
+		this.pattern = extractPattern(other);
 	}
 
 	/**
@@ -45,10 +48,7 @@ public class GraphPatternNotTriple implements GraphPattern {
 	public GraphPatternNotTriple and(GraphPattern... patterns) {
 		if (patterns != null && patterns.length > 0) {
 			GroupGraphPattern groupPattern = new GroupGraphPattern(pattern);
-
-			for (GraphPattern p : patterns) {
-				groupPattern.and(getPattern(p));
-			}
+			extractAndAddPatterns(groupPattern::and, patterns);
 
 			pattern = groupPattern;
 		}
@@ -79,12 +79,8 @@ public class GraphPatternNotTriple implements GraphPattern {
 	 *      Alternative Graph Pattern</a>
 	 */
 	public GraphPatternNotTriple union(GraphPattern... patterns) {
-		AlternativeGraphPattern alternativePattern = new AlternativeGraphPattern(
-				pattern);
-
-		for (GraphPattern p : patterns) {
-			alternativePattern.union(getPattern(p));
-		}
+		AlternativeGraphPattern alternativePattern = new AlternativeGraphPattern(pattern);
+		extractAndAddPatterns(alternativePattern::union, patterns);
 
 		pattern = alternativePattern;
 
@@ -230,11 +226,8 @@ public class GraphPatternNotTriple implements GraphPattern {
 	 */
 	public GraphPatternNotTriple minus(GraphPattern... patterns) {
 		MinusGraphPattern minus = new MinusGraphPattern();
-
-		for (GraphPattern p : patterns) {
-			minus.and(getPattern(p));
-		}
-
+		extractAndAddPatterns(minus::and, patterns);
+		
 		pattern = new GroupGraphPattern(pattern).and(minus);
 
 		return this;
@@ -267,17 +260,17 @@ public class GraphPatternNotTriple implements GraphPattern {
 	}
 
 	private void filterExists(boolean exists, GraphPattern... patterns) {
-		FilterExistsGraphPattern filterExists = new FilterExistsGraphPattern()
-				.exists(exists);
-
-		for (GraphPattern p : patterns) {
-			filterExists.and(getPattern(p));
-		}
+		FilterExistsGraphPattern filterExists = new FilterExistsGraphPattern().exists(exists);
+		extractAndAddPatterns(filterExists::and, patterns);
 
 		pattern = new GroupGraphPattern(pattern).and(filterExists);
 	}
 
-	private GraphPattern getPattern(GraphPattern pattern) {
+	private void extractAndAddPatterns(Consumer<? super GraphPattern> action, GraphPattern... patterns) {
+		Arrays.stream(patterns).map(this::extractPattern).forEach(action);
+	}
+	
+	private GraphPattern extractPattern(GraphPattern pattern) {
 		if (pattern instanceof GraphPatternNotTriple) {
 			return ((GraphPatternNotTriple) pattern).pattern;
 		} else {
