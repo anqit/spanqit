@@ -2,14 +2,14 @@ package com.anqit.spanqit.core.query;
 
 import java.util.Optional;
 
-import com.anqit.spanqit.core.SpanqitStringUtils;
+import com.anqit.spanqit.core.Spanqit;
 import com.anqit.spanqit.core.TriplesTemplate;
 import com.anqit.spanqit.graphpattern.GraphName;
 import com.anqit.spanqit.graphpattern.TriplePattern;
 
 @SuppressWarnings("unchecked")
 abstract class UpdateDataQuery<T extends UpdateDataQuery<T>> extends UpdateQuery<T> {
-	protected TriplesTemplate triplesTemplate = new TriplesTemplate();
+	protected TriplesTemplate triplesTemplate = Spanqit.triplesTemplate();
 	protected Optional<GraphName> graphName = Optional.empty();
 	
 	protected T addTriples(TriplePattern<?>... triples) {
@@ -28,15 +28,11 @@ abstract class UpdateDataQuery<T extends UpdateDataQuery<T>> extends UpdateQuery
 
 	@Override
 	protected String getQueryActionString() {
-		StringBuilder deleteDataQuery = new StringBuilder();
+		StringBuilder updateDataQuery = new StringBuilder();
 
-		deleteDataQuery.append(getPrefix()).append(" ")
-		.append(
-				graphName.map(graph -> 
-							SpanqitStringUtils.getBracedString("GRAPH " + graph.getQueryString() + " " + triplesTemplate.getQueryString()))
-					.orElse(triplesTemplate.getQueryString()));
+		updateDataQuery.append(getPrefix()).append(" ");
+		appendNamedTriplesTemplates(updateDataQuery, graphName, triplesTemplate);
 
-		return deleteDataQuery.toString();
+		return updateDataQuery.toString();
 	}
-
 }

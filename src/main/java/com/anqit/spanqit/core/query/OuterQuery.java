@@ -15,11 +15,10 @@ import com.anqit.spanqit.core.Spanqit;
  * A non-subquery query.
  * 
  * @param <T>
- *            The query type. Used to support fluency.
+ * 		The query type. Used to support fluency.
  */
 @SuppressWarnings("unchecked")
-public abstract class OuterQuery<T extends OuterQuery<T>> extends
-		Query<OuterQuery<T>> {
+public abstract class OuterQuery<T extends OuterQuery<T>> extends Query<OuterQuery<T>> {
 	protected Base base; // ?
 	protected PrefixDeclarations prefixes; // *
 	protected Dataset from; // *

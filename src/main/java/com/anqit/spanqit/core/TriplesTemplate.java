@@ -8,8 +8,9 @@ import com.anqit.spanqit.graphpattern.TriplePattern;
  * Represents a collection of triple patterns
  */
 public class TriplesTemplate extends QueryElementCollection<TriplePattern> {
-	public TriplesTemplate() {
+	TriplesTemplate(TriplePattern... triples) {
 		super(" .\n");
+		and(triples);
 	}
 
 	/**

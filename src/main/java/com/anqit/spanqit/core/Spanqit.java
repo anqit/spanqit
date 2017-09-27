@@ -213,4 +213,15 @@ public class Spanqit {
 	public static OrderCondition desc(Orderable orderOn) {
 		return new OrderCondition(orderOn, false);
 	}
+	
+	/**
+	 * Create a TriplesTemplate instance, for use with Construct and Update queries
+	 * 
+	 * @param patterns
+	 * 			the triples to include in the triples template
+	 * @return a TriplesTemplate of the given triples
+	 */
+	public static TriplesTemplate triplesTemplate(TriplePattern<?>... patterns) {
+		return new TriplesTemplate(patterns);
+	}
 }
