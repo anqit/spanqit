@@ -59,4 +59,16 @@ public class Queries {
 	public static DeleteDataQuery DELETE_DATA() {
 		return new DeleteDataQuery();
 	}
+	
+	/**
+	 * Creates a SPARQL Modify query
+	 * 
+	 * @return a new Modify query
+	 * 
+	 * @see <a href="https://www.w3.org/TR/sparql11-update/#deleteInsert">
+	 * 		SPARQL Modify Query</a>
+	 */
+	public static ModifyQuery MODIFY() {
+		return new ModifyQuery();
+	}
 }

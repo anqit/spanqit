@@ -11,7 +11,7 @@ import com.anqit.spanqit.graphpattern.TriplePattern;
  */
 public class GraphTemplate implements QueryElement {
 	private static final String CONSTRUCT = "CONSTRUCT";
-	private TriplesTemplate triplesTemplate = new TriplesTemplate();
+	private TriplesTemplate triplesTemplate = Spanqit.triplesTemplate();
 	
 	GraphTemplate() { }
 

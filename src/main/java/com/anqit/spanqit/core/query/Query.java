@@ -21,7 +21,7 @@ import static com.anqit.spanqit.core.SpanqitStringUtils.appendAndNewlineIfNonNul
  * @param <T>
  *            They type of query. Used to support fluency.
  */
-@SuppressWarnings("unchecked") // really wish i didn't have to do this
+@SuppressWarnings("unchecked")
 public abstract class Query<T extends Query<T>> implements QueryElement {
 	protected static final String LIMIT = "LIMIT";
 	protected static final String OFFSET = "OFFSET";

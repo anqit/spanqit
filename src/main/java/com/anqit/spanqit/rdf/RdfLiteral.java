@@ -1,7 +1,11 @@
 package com.anqit.spanqit.rdf;
 
+import java.util.Optional;
+
 import com.anqit.spanqit.core.SpanqitStringUtils;
 
+
+import static com.anqit.spanqit.core.SpanqitStringUtils.appendIfPresent;
 /**
  * Denotes an RDF literal
  * 
@@ -64,6 +68,30 @@ public abstract class RdfLiteral<T> implements RdfValue {
 	}
 	
 	/**
+	 * create a literal with a datatype
+	 * 
+	 * @param stringValue the literal string
+	 * @param dataType the datatype tag
+	 * 
+	 * @return a StringLiteral instance representing the given String and datatype
+	 */
+	public static StringLiteral ofType(String stringValue, Iri dataType) {
+		return new StringLiteral(stringValue, dataType);
+	}
+	
+	/**
+	 * create a literal with a language tag
+	 * 
+	 * @param stringValue the literal string
+	 * @param language the language tag
+	 * 
+	 * @return a StringLiteral instance representing the given String and language
+	 */
+	public static StringLiteral ofLanguage(String stringValue, String language) {
+		return new StringLiteral(stringValue, language);
+	}
+	
+	/**
 	 * create an RDF numeric literal
 	 * 
 	 * @param numberValue the Number instance to create a literal from
@@ -87,17 +115,40 @@ public abstract class RdfLiteral<T> implements RdfValue {
 	 * Represents an RDF string literal
 	 */
 	public static class StringLiteral extends RdfLiteral<String> {
+		private static final String DATATYPE_SPECIFIER = "^^";
+		private static final String LANG_TAG_SPECIFIER = "@";
+		
+		private Optional<Iri> dataType = Optional.empty();
+		private Optional<StringLiteral> languageTag = Optional.empty();
+		
 		private StringLiteral(String stringValue) {
 			super(stringValue);
 		}
 		
+		private StringLiteral(String stringValue, Iri dataType) {
+			super(stringValue);
+			this.dataType = Optional.ofNullable(dataType);
+		}
+		
+		private StringLiteral(String stringValue, String languageTag) {
+			super(stringValue);
+			this.languageTag = Optional.ofNullable(of(languageTag));
+		}
+				
 		@Override
 		public String getQueryString() {
+			StringBuilder literal = new StringBuilder();
+			
 			if(value.contains("'") || value.contains("\"")) {
-				return SpanqitStringUtils.getLongQuotedString(value);
+				literal.append(SpanqitStringUtils.getLongQuotedString(value));
 			} else {
-				return SpanqitStringUtils.getQuotedString(value);
+				literal.append(SpanqitStringUtils.getQuotedString(value));
 			}
+			
+			appendIfPresent(dataType, literal, DATATYPE_SPECIFIER, null);
+			appendIfPresent(languageTag, literal, LANG_TAG_SPECIFIER, null);
+			
+			return literal.toString();
 		}
 	}
 	

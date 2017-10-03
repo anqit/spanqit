@@ -7,7 +7,18 @@ public class SpanqitStringUtils {
 	private static final String PAD = " ";
 
 	public static void appendAndNewlineIfNonNull(QueryElement element, StringBuilder builder) {
-		builder.append(Optional.ofNullable(element).map(e -> e.getQueryString() + "\n").orElse(""));
+		appendIfPresent(Optional.ofNullable(element), builder, null, "\n");
+	}
+	
+	public static void appendIfPresent(Optional<? extends QueryElement> queryElementOptional, StringBuilder builder, String prefix, String suffix) {
+		Optional<String> preOpt = Optional.ofNullable(prefix);
+		Optional<String> sufOpt = Optional.ofNullable(suffix);
+		
+		queryElementOptional.ifPresent(element -> {
+			preOpt.ifPresent(p -> builder.append(p));
+			builder.append(element.getQueryString());
+			sufOpt.ifPresent(s -> builder.append(s));
+		});
 	}
 	
 	public static String getBracedString(String contents) {

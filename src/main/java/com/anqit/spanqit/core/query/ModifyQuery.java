@@ -4,13 +4,17 @@ import java.util.Optional;
 
 import com.anqit.spanqit.core.QueryPattern;
 import com.anqit.spanqit.core.Spanqit;
-import com.anqit.spanqit.core.SpanqitStringUtils;
 import com.anqit.spanqit.core.TriplesTemplate;
 import com.anqit.spanqit.graphpattern.GraphName;
+import com.anqit.spanqit.graphpattern.GraphPattern;
+import com.anqit.spanqit.graphpattern.TriplePattern;
 import com.anqit.spanqit.rdf.Iri;
 
 /**
+ * The SPARQL Modify Queries
  * 
+ * @see <a href="https://www.w3.org/TR/sparql11-update/#deleteInsert">
+ * 		SPARQL DELETE/INSERT Query</a>
  */
 public class ModifyQuery extends UpdateQuery<ModifyQuery> {
 	private static final String INSERT = "INSERT";
@@ -31,7 +35,119 @@ public class ModifyQuery extends UpdateQuery<ModifyQuery> {
 	private QueryPattern where = Spanqit.where();
 
 	ModifyQuery() { }
+	
+	/**
+	 * Define the graph that will be modified or matched against in the absence of more explicit graph definitions
+	 * 
+	 * @param iri the IRI identifying the desired graph
+	 * 
+	 * @return this modify query instance
+	 */
+	public ModifyQuery with(Iri iri) {
+		with = Optional.ofNullable(iri);
+		
+		return this;
+	}
+	
+	/** 
+	 * Specify triples to delete
+	 * 
+	 * @param triples the triples to delete
+	 * 
+	 * @return this modify query instance
+	 */
+	public ModifyQuery delete(TriplePattern<?>... triples) {
+		if(deleteTriples.isPresent()) {
+			deleteTriples.get().and(triples);
+		} else {
+			deleteTriples = Optional.of(Spanqit.triplesTemplate(triples));
+		}
+		
+		return this;
+	}
+	
+	/**
+	 * Specify the graph to delete triples from
+	 * 
+	 * @param graphName the identifier of the graph
+	 * 
+	 * @return this modify query instance
+	 */
+	public ModifyQuery from(GraphName graphName) {
+		this.deleteGraph = Optional.ofNullable(graphName);
+		
+		return this;
+	}
+	
+	/** 
+	 * Specify triples to insert
+	 * 
+	 * @param triples the triples to insert
+	 * 
+	 * @return this modify query instance
+	 */
+	public ModifyQuery insert(TriplePattern<?>... triples) {
+		if(insertTriples.isPresent()) {
+			insertTriples.get().and(triples);
+		} else {
+			insertTriples = Optional.of(Spanqit.triplesTemplate(triples));
+		}
 
+		return this;
+	}
+	
+	/**
+	 * Specify the graph to insert triples into
+	 * 
+	 * @param graphName the identifier of the graph
+	 * 
+	 * @return this modify query instance
+	 */
+	public ModifyQuery into(GraphName graphName) {
+		insertGraph = Optional.ofNullable(graphName);
+		
+		return this;
+	}
+
+	/**
+	 * Specify the graph used when evaluating the WHERE clause
+	 * 
+	 * @param iri the IRI identifying the desired graph
+	 * 
+	 * @return this modify query instance
+	 */
+	public ModifyQuery using(Iri iri) {
+		using = Optional.ofNullable(iri);
+		
+		return this;
+	}
+	
+	/**
+	 * Specify a named graph to use to when evaluating the WHERE clause
+	 * 
+	 * @param iri the IRI identifying the desired graph
+	 * 
+	 * @return this modify query instance
+	 */
+	public ModifyQuery usingNamed(Iri iri) {
+		usingNamed = true;
+		
+		return using(iri);
+	}
+	
+	/**
+	 * Add graph patterns to this query's query pattern
+	 * 
+	 * @param patterns the patterns to add
+	 * 
+	 * @return this modify query instance
+	 */
+	public ModifyQuery where(GraphPattern... patterns) {
+		where.where(patterns);
+		
+		return this;
+	}
+	
 	@Override
 	protected String getQueryActionString() {
 		StringBuilder modifyQuery = new StringBuilder();
