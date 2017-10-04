@@ -249,7 +249,7 @@ public class GraphPatternNotTriple implements GraphPattern {
 	 *      Specifying Datasets in SPARQL Queries</a>
 	 */
 	public GraphPatternNotTriple from(GraphName name) {
-		pattern = new NamedGraphPattern(pattern, name);
+		pattern = new GroupGraphPattern(pattern).from(name);
 
 		return this;
 	}

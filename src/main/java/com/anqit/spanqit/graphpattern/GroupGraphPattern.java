@@ -1,8 +1,12 @@
 package com.anqit.spanqit.graphpattern;
 
+import java.util.Optional;
+
 import com.anqit.spanqit.constraint.Expression;
 import com.anqit.spanqit.core.QueryElementCollection;
 import com.anqit.spanqit.core.SpanqitStringUtils;
+
+import static com.anqit.spanqit.core.SpanqitStringUtils.appendIfPresent;
 
 /**
  * A SPARQL Group Graph Pattern
@@ -15,7 +19,10 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 		GraphPattern {
 	private static final String OPTIONAL = "OPTIONAL";
 	private static final String DELIMITER = " . ";
-	private Filter filter;
+	private static final String GRAPH = "GRAPH ";
+	
+	private Optional<GraphName> from = Optional.empty();
+	private Optional<Filter> filter = Optional.empty();
 	protected boolean isOptional = false;
 
 	GroupGraphPattern() {
@@ -40,6 +47,7 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 	protected void copy(GroupGraphPattern original) {
 		this.elements = original.elements;
 		this.isOptional = original.isOptional;
+		this.from = original.from;
 		this.filter = original.filter;
 	}
 
@@ -56,12 +64,18 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 
 		return this;
 	}
+	
+	GroupGraphPattern from(GraphName name) {
+		from = Optional.of(name);
+		
+		return this;
+	}
 
 	GroupGraphPattern filter(Expression<?> constraint) {
-		if (filter == null) {
-			filter = new Filter();
+		if (!filter.isPresent()) {
+			filter = Optional.of(new Filter());
 		}
-		filter.filter(constraint);
+		filter.get().filter(constraint);
 
 		return this;
 	}
@@ -83,14 +97,14 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 		boolean bracketize = !(elements.size() == 1 && elements.toArray()[0] instanceof GroupGraphPattern);
 
 		if (isOptional) {
-			pattern.append(OPTIONAL + " ");
+			pattern.append(OPTIONAL).append(" ");
 		}
 
+		appendIfPresent(from, pattern, GRAPH, " ");
+		
 		innerPattern.append(super.getQueryString());
 
-		if (filter != null) {
-			innerPattern.append("\n").append(filter.getQueryString());
-		}
+		appendIfPresent(filter, innerPattern, "\n", null);
 
 		if (bracketize) {
 			pattern.append(SpanqitStringUtils.getBracedString(innerPattern
