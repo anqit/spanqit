@@ -68,4 +68,8 @@ public interface TriplePattern<T extends TriplePattern<T>> extends GraphPattern 
 	default T andHas(RdfPredicate predicate, Number... objects) {
 		return andHas(predicate, toRdfObjectArray(objects));
 	};
+	
+	default T andIsA(RdfObject object) {
+		return andHas(RdfPredicate.isA, object);
+	}
 }

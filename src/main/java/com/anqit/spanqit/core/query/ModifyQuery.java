@@ -50,11 +50,14 @@ public class ModifyQuery extends UpdateQuery<ModifyQuery> {
 	}
 	
 	/** 
-	 * Specify triples to delete
+	 * Specify triples to delete (or leave empty for DELETE WHERE shortcut)
 	 * 
 	 * @param triples the triples to delete
 	 * 
 	 * @return this modify query instance
+	 * 
+	 * @see <a href="https://www.w3.org/TR/sparql11-update/#deleteWhere">
+	 * 			SPARQL DELETE WHERE shortcut</a>
 	 */
 	public ModifyQuery delete(TriplePattern<?>... triples) {
 		if(deleteTriples.isPresent()) {
@@ -156,7 +159,12 @@ public class ModifyQuery extends UpdateQuery<ModifyQuery> {
 		
 		deleteTriples.ifPresent(delTriples -> {
 				modifyQuery.append(DELETE).append(" ");
-				appendNamedTriplesTemplates(modifyQuery, deleteGraph, delTriples);
+				
+				// DELETE WHERE shortcut
+				// https://www.w3.org/TR/sparql11-update/#deleteWhere
+				if(!delTriples.isEmpty()) {
+					appendNamedTriplesTemplates(modifyQuery, deleteGraph, delTriples);
+				}
 				modifyQuery.append("\n");
 			});
 		
