@@ -13,7 +13,7 @@ public class Queries {
 	/**
 	 * Create a SPARQL Select query
 	 * 
-	 * @return a new SPARQL Select query
+	 * @return a new {@link SelectQuery}
 	 * 
 	 * @see <a
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#select">SPARQL
@@ -26,7 +26,7 @@ public class Queries {
 	/**
 	 * Create a SPARQL Construct query
 	 * 
-	 * @return a new Construct query
+	 * @return a new {@link ConstructQuery}
 	 * 
 	 * @see <a
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#construct">SPARQL
@@ -39,7 +39,7 @@ public class Queries {
 	/**
 	 * Create a SPARQL INSERT DATA query
 	 * 
-	 * @return a new INSERT DATA query
+	 * @return a new {@link InsertDataQuery}
 	 * 
 	 * @see <a href="https://www.w3.org/TR/sparql11-update/#insertData">
 	 * 		SPARQL INSERT DATA Query</a>
@@ -51,7 +51,7 @@ public class Queries {
 	/**
 	 * Create a SPARQL DELETE DATA query
 	 * 
-	 * @return a new DELETE DATA query
+	 * @return a new {@link DeleteDataQuery}
 	 * 
 	 * @see <a href="https://www.w3.org/TR/sparql11-update/#deleteData">
 	 * 		SPARQL DELETE DATA Query</a>
@@ -63,7 +63,7 @@ public class Queries {
 	/**
 	 * Creates a SPARQL Modify query
 	 * 
-	 * @return a new Modify query
+	 * @return a new {@link ModifyQuery}
 	 * 
 	 * @see <a href="https://www.w3.org/TR/sparql11-update/#deleteInsert">
 	 * 		SPARQL Modify Query</a>
@@ -75,7 +75,7 @@ public class Queries {
 	/**
 	 * Creates a SPARQL LOAD query
 	 * 
-	 * @return a new LOAD query
+	 * @return a new {@link LoadQuery}
 	 * 
 	 * @see <a href="https://www.w3.org/TR/sparql11-update/#load">
 	 * 		SPARQL LOAD Query</a>
@@ -87,7 +87,7 @@ public class Queries {
 	/**
 	 * Creates a SPARQL CLEAR Query
 	 *  
-	 * @return a new CLEAR Query
+	 * @return a new {@link ClearQuery}
 	 * 
 	 * @see <a href="https://www.w3.org/TR/sparql11-update/#clear">
 	 * 		SPARQL CLEAR Query</a>
@@ -99,7 +99,7 @@ public class Queries {
 	/**
 	 * Creates a SPARQL CREATE Query
 	 * 
-	 * @return a new CREATE Query
+	 * @return a new {@link CreateQuery}
 	 * 
 	 * @see <a href="https://www.w3.org/TR/sparql11-update/#create">
 	 * 		SPARQL CREATE Query</a>
@@ -111,7 +111,7 @@ public class Queries {
 	/**
 	 * Creates a SPARQL DROP Query
 	 * 
-	 * @return a new DROP Query
+	 * @return a new {@link DropQuery}
 	 * 
 	 * @see <a href="https://www.w3.org/TR/sparql11-update/#drop">
 	 * 		SPARQL DROP Query</a>
@@ -123,7 +123,7 @@ public class Queries {
 	/**
 	 * Creates a SPARQL COPY Query
 	 * 
-	 * @return a new COPY Query
+	 * @return a new {@link CopyQuery}
 	 * 
 	 * @see <a href="https://www.w3.org/TR/sparql11-update/#copy">
 	 * 		SPARQL COPY Query</a>
@@ -135,7 +135,7 @@ public class Queries {
 	/**
 	 * Creates a SPARQL MOVE Query
 	 * 
-	 * @return a new MOVE Query
+	 * @return a new {@link MoveQuery}
 	 * 
 	 * @see <a href="https://www.w3.org/TR/sparql11-update/#move">
 	 * 		SPARQL MOVE Query</a>

@@ -231,6 +231,16 @@ public class Expressions {
 		return function(REGEX, testString, pattern, flags);
 	}
 	
+	/**
+	 * {@code STR(literal)} or {@code STR(iri)}
+	 * 
+	 * @param operand the arg to convert to a string
+	 * 
+	 * @return a {@code STR()} function
+	 * 
+	 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-str">
+	 * 		SPARQL STR Function</a>
+	 */
 	public static Expression<?> str(ExpressionOperand operand) {
 		return function(SparqlFunction.STRING, operand);
 	}
