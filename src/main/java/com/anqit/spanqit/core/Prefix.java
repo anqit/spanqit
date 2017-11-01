@@ -33,7 +33,7 @@ public class Prefix implements QueryElement {
 
 	@Override
 	public String getQueryString() {
-		return PREFIX + " " + label + ": " + iri.getQueryString();
+		return PREFIX + " " + iri.getQueryString();
 	}
 
 	@Override
