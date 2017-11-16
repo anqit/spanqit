@@ -55,7 +55,7 @@ public class LoadQuery extends GraphManagementQuery<LoadQuery> {
 
 		load.append(from.getQueryString());
 
-		SpanqitStringUtils.appendIfPresent(to, load, " " + INTO_GRAPH + " ", null);
+		SpanqitStringUtils.appendQueryElementIfPresent(to, load, " " + INTO_GRAPH + " ", null);
 
 		return load.toString();
 	}

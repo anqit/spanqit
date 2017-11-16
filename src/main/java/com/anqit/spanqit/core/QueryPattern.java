@@ -14,12 +14,10 @@ import com.anqit.spanqit.graphpattern.GraphPatterns;
 public class QueryPattern implements QueryElement {
 	private static final String WHERE = "WHERE";
 
-	private GraphPatternNotTriple where;
+	private GraphPatternNotTriple where = GraphPatterns.and();
 
 	// Package-protect default constructor
-	QueryPattern() { 
-		where = GraphPatterns.and();
-	}
+	QueryPattern() { }
 
 	/**
 	 * Add graph patterns to this query pattern. Adds the given patterns into

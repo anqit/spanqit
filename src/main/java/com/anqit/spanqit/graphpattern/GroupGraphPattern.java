@@ -6,7 +6,7 @@ import com.anqit.spanqit.constraint.Expression;
 import com.anqit.spanqit.core.QueryElementCollection;
 import com.anqit.spanqit.core.SpanqitStringUtils;
 
-import static com.anqit.spanqit.core.SpanqitStringUtils.appendIfPresent;
+import static com.anqit.spanqit.core.SpanqitStringUtils.appendQueryElementIfPresent;
 
 /**
  * A SPARQL Group Graph Pattern
@@ -100,11 +100,11 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 			pattern.append(OPTIONAL).append(" ");
 		}
 
-		appendIfPresent(from, pattern, GRAPH, " ");
+		appendQueryElementIfPresent(from, pattern, GRAPH, " ");
 		
 		innerPattern.append(super.getQueryString());
 
-		appendIfPresent(filter, innerPattern, "\n", null);
+		appendQueryElementIfPresent(filter, innerPattern, "\n", null);
 
 		if (bracketize) {
 			pattern.append(SpanqitStringUtils.getBracedString(innerPattern

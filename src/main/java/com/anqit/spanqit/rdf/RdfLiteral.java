@@ -4,8 +4,9 @@ import java.util.Optional;
 
 import com.anqit.spanqit.core.SpanqitStringUtils;
 
+import static com.anqit.spanqit.core.SpanqitStringUtils.appendQueryElementIfPresent;
+import static com.anqit.spanqit.core.SpanqitStringUtils.appendStringIfPresent;
 
-import static com.anqit.spanqit.core.SpanqitStringUtils.appendIfPresent;
 /**
  * Denotes an RDF literal
  * 
@@ -21,7 +22,7 @@ import static com.anqit.spanqit.core.SpanqitStringUtils.appendIfPresent;
 public abstract class RdfLiteral<T> implements RdfValue { 
 	protected T value;
 	
-	protected RdfLiteral(T value) {
+	private RdfLiteral(T value) {
 		this.value = value;
 	}
 
@@ -119,7 +120,7 @@ public abstract class RdfLiteral<T> implements RdfValue {
 		private static final String LANG_TAG_SPECIFIER = "@";
 		
 		private Optional<Iri> dataType = Optional.empty();
-		private Optional<StringLiteral> languageTag = Optional.empty();
+		private Optional<String> languageTag = Optional.empty();
 		
 		private StringLiteral(String stringValue) {
 			super(stringValue);
@@ -132,7 +133,7 @@ public abstract class RdfLiteral<T> implements RdfValue {
 		
 		private StringLiteral(String stringValue, String languageTag) {
 			super(stringValue);
-			this.languageTag = Optional.ofNullable(of(languageTag));
+			this.languageTag = Optional.ofNullable(languageTag);
 		}
 				
 		@Override
@@ -145,8 +146,8 @@ public abstract class RdfLiteral<T> implements RdfValue {
 				literal.append(SpanqitStringUtils.getQuotedString(value));
 			}
 			
-			appendIfPresent(dataType, literal, DATATYPE_SPECIFIER, null);
-			appendIfPresent(languageTag, literal, LANG_TAG_SPECIFIER, null);
+			appendQueryElementIfPresent(dataType, literal, DATATYPE_SPECIFIER, null);
+			appendStringIfPresent(languageTag, literal, LANG_TAG_SPECIFIER, null);
 			
 			return literal.toString();
 		}
