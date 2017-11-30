@@ -7,48 +7,14 @@ import com.anqit.spanqit.graphpattern.TriplePattern;
 /**
  * Denotes an RDF Blank Node
  */
-public interface RdfBlankNode extends RdfResource { 
-	/**
-	 * creates a labeled blank node
-	 * 
-	 * @param label the label of the blank node
-	 * 
-	 * @return a new {@link LabeledBlankNode} instance
-	 */
-	public static LabeledBlankNode bNode(String label) {
-		return new LabeledBlankNode(label);
-	}
-
-	/**
-	 * creates a label-less blank node, identified by the supplied predicate-object lists
-	 * 
-	 * @param predicate the predicate of the initial predicate-object list to populate this blank node with
-	 * @param objects the objects of the initial predicate-object list to populate this blank node with
-	 * 
-	 * @return a new {@link AnonymousBlankNode} instance
-	 * 
-	 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynBlankNodes">
-	 * 		Blank node syntax</a>
-	 */
-	public static PropertiesBlankNode bNode(RdfPredicate predicate, RdfObject... objects) {
-		return new PropertiesBlankNode(predicate, objects);
-	}
-	
-	/**
-	 * create an empty anonymous blank node
-	 * @return an empty {@link AnonymousBlankNode} instance
-	 */
-	public static AnonymousBlankNode bNode() {
-		return new AnonymousBlankNode();
-	}
-	
+public interface RdfBlankNode extends RdfResource {	
 	/**
 	 * a labeled blank node, of the form "_:<code>label</code>"
 	 */
 	public static class LabeledBlankNode implements RdfBlankNode {
 		private String label;
 		
-		private LabeledBlankNode(String label) {
+		LabeledBlankNode(String label) {
 			this.label = label;
 		}
 		
@@ -79,7 +45,7 @@ public interface RdfBlankNode extends RdfResource {
 	public static class PropertiesBlankNode implements RdfBlankNode {
 		private RdfPredicateObjectListCollection predicateObjectLists = Rdf.predicateObjectListCollection();
 
-		private PropertiesBlankNode(RdfPredicate predicate, RdfObject... objects) {
+		PropertiesBlankNode(RdfPredicate predicate, RdfObject... objects) {
 			andHas(predicate, objects);
 		}
 		

@@ -59,60 +59,6 @@ public abstract class RdfLiteral<T> implements RdfValue {
 	}
 
 	/**
-	 * create an RDF string literal
-	 * 
-	 * @param stringValue the String instance to create a literal from
-	 * @return a StringLiteral instance representing the given String
-	 */
-	public static StringLiteral of(String stringValue) {
-		return new StringLiteral(stringValue);
-	}
-	
-	/**
-	 * create a literal with a datatype
-	 * 
-	 * @param stringValue the literal string
-	 * @param dataType the datatype tag
-	 * 
-	 * @return a StringLiteral instance representing the given String and datatype
-	 */
-	public static StringLiteral ofType(String stringValue, Iri dataType) {
-		return new StringLiteral(stringValue, dataType);
-	}
-	
-	/**
-	 * create a literal with a language tag
-	 * 
-	 * @param stringValue the literal string
-	 * @param language the language tag
-	 * 
-	 * @return a StringLiteral instance representing the given String and language
-	 */
-	public static StringLiteral ofLanguage(String stringValue, String language) {
-		return new StringLiteral(stringValue, language);
-	}
-	
-	/**
-	 * create an RDF numeric literal
-	 * 
-	 * @param numberValue the Number instance to create a literal from
-	 * @return a NumberLiteral instance representing the given Number
-	 */
-	public static NumericLiteral of(Number numberValue) {
-		return new NumericLiteral(numberValue);
-	}
-	
-	/**
-	 * create an RDF boolean literal
-	 * 
-	 * @param boolValue the boolean to create a literal from
-	 * @return a BooleanLiteral instance representing the given boolean
-	 */
-	public static BooleanLiteral of(Boolean boolValue) {
-		return new BooleanLiteral(boolValue);
-	}
-
-	/**
 	 * Represents an RDF string literal
 	 */
 	public static class StringLiteral extends RdfLiteral<String> {
@@ -122,16 +68,16 @@ public abstract class RdfLiteral<T> implements RdfValue {
 		private Optional<Iri> dataType = Optional.empty();
 		private Optional<String> languageTag = Optional.empty();
 		
-		private StringLiteral(String stringValue) {
+		StringLiteral(String stringValue) {
 			super(stringValue);
 		}
 		
-		private StringLiteral(String stringValue, Iri dataType) {
+		StringLiteral(String stringValue, Iri dataType) {
 			super(stringValue);
 			this.dataType = Optional.ofNullable(dataType);
 		}
 		
-		private StringLiteral(String stringValue, String languageTag) {
+		StringLiteral(String stringValue, String languageTag) {
 			super(stringValue);
 			this.languageTag = Optional.ofNullable(languageTag);
 		}
@@ -157,7 +103,7 @@ public abstract class RdfLiteral<T> implements RdfValue {
 	 * Represents an RDF number literal
 	 */
 	public static class NumericLiteral extends RdfLiteral<Number> {
-		private NumericLiteral(Number numbervalue) {
+		NumericLiteral(Number numbervalue) {
 			super(numbervalue);
 		}
 	}
@@ -166,7 +112,7 @@ public abstract class RdfLiteral<T> implements RdfValue {
 	 * Represents an RDF boolean literal
 	 */
 	public static class BooleanLiteral extends RdfLiteral<Boolean> {
-		private BooleanLiteral(Boolean boolValue) {
+		BooleanLiteral(Boolean boolValue) {
 			super(boolValue);
 		}
 	}

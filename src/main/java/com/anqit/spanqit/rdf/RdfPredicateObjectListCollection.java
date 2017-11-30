@@ -1,5 +1,7 @@
 package com.anqit.spanqit.rdf;
 
+import java.util.Collections;
+
 import com.anqit.spanqit.core.QueryElementCollection;
 
 /**
@@ -13,11 +15,6 @@ import com.anqit.spanqit.core.QueryElementCollection;
 public class RdfPredicateObjectListCollection extends QueryElementCollection<RdfPredicateObjectList> {
 	private static String DELIMITER = " ;\n    ";
 
-	RdfPredicateObjectListCollection(RdfPredicate predicate, RdfObject... objects) {
-		this();
-		andHas(predicate, objects);
-	}
-	
 	RdfPredicateObjectListCollection() {
 		super(DELIMITER);
 	};
@@ -31,7 +28,17 @@ public class RdfPredicateObjectListCollection extends QueryElementCollection<Rdf
 	 * @return this instance
 	 */
 	public RdfPredicateObjectListCollection andHas(RdfPredicate predicate, RdfObject... objects) {
-		elements.add(new RdfPredicateObjectList(predicate, objects));
+		return andHas(Rdf.predicateObjectList(predicate, objects));
+	}
+	
+	/**
+	 * add predicate-object lists to this collection
+	 * 
+	 * @param lists the {@link RdfPredicateObjectList}'s to add to this collection
+	 * @return this instance
+	 */
+	public RdfPredicateObjectListCollection andHas(RdfPredicateObjectList... lists) {
+		Collections.addAll(elements, lists);
 		
 		return this;
 	}
