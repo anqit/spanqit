@@ -20,7 +20,7 @@ public class TriplesTemplate extends QueryElementCollection<TriplePattern> {
 	 * 
 	 * @return this TriplesTemplate instance
 	 */
-	public TriplesTemplate and(TriplePattern<?>... triples) {
+	public TriplesTemplate and(TriplePattern... triples) {
 		Collections.addAll(elements, triples);
 		
 		return this;

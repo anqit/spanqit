@@ -12,7 +12,7 @@ abstract class UpdateDataQuery<T extends UpdateDataQuery<T>> extends UpdateQuery
 	protected TriplesTemplate triplesTemplate = Spanqit.triplesTemplate();
 	protected Optional<GraphName> graphName = Optional.empty();
 	
-	protected T addTriples(TriplePattern<?>... triples) {
+	protected T addTriples(TriplePattern... triples) {
 		triplesTemplate.and(triples);
 		
 		return (T) this;

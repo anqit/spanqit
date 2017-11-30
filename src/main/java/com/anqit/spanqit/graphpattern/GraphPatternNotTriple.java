@@ -13,7 +13,7 @@ import com.anqit.spanqit.constraint.Expression;
  *      SPARQL Graph Patterns</a>
  */
 public class GraphPatternNotTriple implements GraphPattern {
-	protected GraphPattern pattern;
+	private GraphPattern pattern;
 
 	GraphPatternNotTriple() {
 		this(new GroupGraphPattern());
@@ -280,10 +280,6 @@ public class GraphPatternNotTriple implements GraphPattern {
 
 	@Override
 	public String getQueryString() {
-		if (pattern == null) {
-			pattern = new GroupGraphPattern();
-		}
-
 		return pattern.getQueryString();
 	}
 }

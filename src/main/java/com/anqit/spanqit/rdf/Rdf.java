@@ -5,10 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.anqit.spanqit.rdf.RdfLiteral.BooleanLiteral;
+import com.anqit.spanqit.rdf.RdfLiteral.NumericLiteral;
+import com.anqit.spanqit.rdf.RdfLiteral.StringLiteral;
+
 /**
  * A class with static methods to create basic RDF objects
  */
 public class Rdf {
+	// not sure if other protocols are generally used in RDF iri's?
 	private static final List<String> IRI_PROTOCOLS = Stream.of("http://", "https://", "mailto:").collect(Collectors.toList());
 
 	private Rdf() { 	}
@@ -17,16 +22,16 @@ public class Rdf {
 		return new RdfPredicateObjectListCollection();
 	}
 	
-	public static RdfObject[] toRdfObjectArray(String... objects) {
-		return  Arrays.stream(objects).map(RdfLiteral::of).toArray(RdfObject[]::new);
+	public static StringLiteral[] toRdfLiteralArray(String... objects) {
+		return  Arrays.stream(objects).map(RdfLiteral::of).toArray(StringLiteral[]::new);
 	}
 	
-	public static RdfObject[] toRdfObjectArray(Boolean... objects) {
-		return  Arrays.stream(objects).map(RdfLiteral::of).toArray(RdfObject[]::new);
+	public static BooleanLiteral[] toRdfLiteralArray(Boolean... objects) {
+		return  Arrays.stream(objects).map(RdfLiteral::of).toArray(BooleanLiteral[]::new);
 	}
 	
-	public static RdfObject[] toRdfObjectArray(Number... objects) {
-		return  Arrays.stream(objects).map(RdfLiteral::of).toArray(RdfObject[]::new);
+	public static NumericLiteral[] toRdfLiteralArray(Number... objects) {
+		return  Arrays.stream(objects).map(RdfLiteral::of).toArray(NumericLiteral[]::new);
 	}
 
 	/**

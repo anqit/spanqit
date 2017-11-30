@@ -144,7 +144,7 @@ public class Spanqit {
 	 *            triples to add to the template
 	 * @return a new SPARQL graph template
 	 */
-	public static GraphTemplate construct(TriplePattern<?>... triples) {
+	public static GraphTemplate construct(TriplePattern... triples) {
 		return new GraphTemplate().construct(triples);
 	}
 
@@ -221,7 +221,7 @@ public class Spanqit {
 	 * 			the triples to include in the triples template
 	 * @return a TriplesTemplate of the given triples
 	 */
-	public static TriplesTemplate triplesTemplate(TriplePattern<?>... triples) {
+	public static TriplesTemplate triplesTemplate(TriplePattern... triples) {
 		return new TriplesTemplate(triples);
 	}
 }

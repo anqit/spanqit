@@ -59,7 +59,7 @@ public class ModifyQuery extends UpdateQuery<ModifyQuery> {
 	 * @see <a href="https://www.w3.org/TR/sparql11-update/#deleteWhere">
 	 * 			SPARQL DELETE WHERE shortcut</a>
 	 */
-	public ModifyQuery delete(TriplePattern<?>... triples) {
+	public ModifyQuery delete(TriplePattern... triples) {
 		if(deleteTriples.isPresent()) {
 			deleteTriples.get().and(triples);
 		} else {
@@ -89,7 +89,7 @@ public class ModifyQuery extends UpdateQuery<ModifyQuery> {
 	 * 
 	 * @return this modify query instance
 	 */
-	public ModifyQuery insert(TriplePattern<?>... triples) {
+	public ModifyQuery insert(TriplePattern... triples) {
 		if(insertTriples.isPresent()) {
 			insertTriples.get().and(triples);
 		} else {

@@ -13,7 +13,7 @@ import com.anqit.spanqit.rdf.RdfSubject;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
  *      Triple pattern syntax</a>
  */
-class TriplesSameSubject implements TriplePattern<TriplesSameSubject> {
+class TriplesSameSubject implements TriplePattern {
 	private RdfSubject subject;
 	private RdfPredicateObjectListCollection predicateObjectLists = Rdf.predicateObjectListCollection();
 
@@ -42,14 +42,9 @@ class TriplesSameSubject implements TriplePattern<TriplesSameSubject> {
 		
 		return this;
 	}
-	
-	@Override
-	public boolean isEmpty() {
-		return false;
-	}
 
 	@Override
 	public String getQueryString() {
-		return subject.getQueryString() + " " + predicateObjectLists.getQueryString();
+		return subject.getQueryString() + " " + predicateObjectLists.getQueryString() + SUFFIX;
 	}
 }

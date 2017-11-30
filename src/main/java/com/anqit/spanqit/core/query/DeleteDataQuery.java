@@ -20,7 +20,7 @@ public class DeleteDataQuery extends UpdateDataQuery<DeleteDataQuery> {
 	 * 
 	 * @return this Delete Data query instance
 	 */
-	public DeleteDataQuery deleteData(TriplePattern<?>... triples) {
+	public DeleteDataQuery deleteData(TriplePattern... triples) {
 		return addTriples(triples);
 	}
 

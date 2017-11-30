@@ -1,6 +1,6 @@
 package com.anqit.spanqit.rdf;
 
-import static com.anqit.spanqit.rdf.Rdf.toRdfObjectArray;
+import static com.anqit.spanqit.rdf.Rdf.toRdfLiteralArray;
 
 import com.anqit.spanqit.core.QueryElement;
 import com.anqit.spanqit.graphpattern.GraphPatterns;
@@ -39,7 +39,7 @@ public interface RdfSubject extends QueryElement {
 	 * @return a new triple pattern with this subject, and the given predicate and object(s)
 	 */
 	default public TriplePattern has(RdfPredicate predicate, String... objects) {
-		return GraphPatterns.tp(this, predicate, toRdfObjectArray(objects));
+		return GraphPatterns.tp(this, predicate, toRdfLiteralArray(objects));
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public interface RdfSubject extends QueryElement {
 	 * @return a new triple pattern with this subject, and the given predicate and object(s)
 	 */
 	default public TriplePattern has(RdfPredicate predicate, Number... objects) {
-		return GraphPatterns.tp(this, predicate, toRdfObjectArray(objects));
+		return GraphPatterns.tp(this, predicate, toRdfLiteralArray(objects));
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public interface RdfSubject extends QueryElement {
 	 * @return a new triple pattern with this subject, and the given predicate and object(s)
 	 */
 	default public TriplePattern has(RdfPredicate predicate, Boolean... objects) {
-		return GraphPatterns.tp(this, predicate, toRdfObjectArray(objects));
+		return GraphPatterns.tp(this, predicate, toRdfLiteralArray(objects));
 	}
 	
 	/**
@@ -78,6 +78,6 @@ public interface RdfSubject extends QueryElement {
 	 * 		RDF Type abbreviation</a>
 	 */
 	default public TriplePattern isA(RdfObject... objects) {
-		return has(RdfPredicate.isA, objects);
+		return has(RdfPredicate.a, objects);
 	}
 }

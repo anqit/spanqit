@@ -20,7 +20,7 @@ public class InsertDataQuery extends UpdateDataQuery<InsertDataQuery> {
 	 * 
 	 * @return this Insert Data query instance
 	 */
-	public InsertDataQuery insertData(TriplePattern<?>... triples) {
+	public InsertDataQuery insertData(TriplePattern... triples) {
 		return addTriples(triples);
 	}
 	

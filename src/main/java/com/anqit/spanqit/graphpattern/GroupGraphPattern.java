@@ -18,7 +18,7 @@ import static com.anqit.spanqit.core.SpanqitStringUtils.appendQueryElementIfPres
 class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 		GraphPattern {
 	private static final String OPTIONAL = "OPTIONAL";
-	private static final String DELIMITER = " . ";
+//	private static final String DELIMITER = " . ";
 	private static final String GRAPH = "GRAPH ";
 	
 	private Optional<GraphName> from = Optional.empty();
@@ -30,12 +30,12 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 	}
 
 	GroupGraphPattern(boolean isOptional) {
-		super(DELIMITER);
+//		super(DELIMITER);
 		this.isOptional = isOptional;
 	}
 
 	GroupGraphPattern(GraphPattern original) {
-		super(DELIMITER);
+//		super(DELIMITER);
 
 		if (original instanceof GroupGraphPattern) {
 			copy((GroupGraphPattern) original);
