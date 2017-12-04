@@ -1,24 +1,29 @@
-package com.anqit.spanqit.core;
+package com.anqit.spanqit.core.query;
 
+import static com.anqit.spanqit.core.SpanqitUtils.appendAndNewlineIfPresent;
+import static com.anqit.spanqit.core.SpanqitUtils.getOrCreateAndModifyOptional;
+
+import java.util.Optional;
+
+import com.anqit.spanqit.core.Base;
+import com.anqit.spanqit.core.Dataset;
+import com.anqit.spanqit.core.From;
+import com.anqit.spanqit.core.Prefix;
+import com.anqit.spanqit.core.PrefixDeclarations;
+import com.anqit.spanqit.core.Spanqit;
 import com.anqit.spanqit.rdf.Iri;
-
-import static com.anqit.spanqit.core.SpanqitStringUtils.appendAndNewlineIfNonNull;
 
 /**
  * A non-subquery query.
  * 
- * @author Ankit
- *
  * @param <T>
- *            The query type. Used to support fluency.
+ * 		The query type. Used to support fluency.
  */
-// argh, so frustrating
 @SuppressWarnings("unchecked")
-public abstract class OuterQuery<T extends OuterQuery<T>> extends
-		Query<OuterQuery<T>> {
-	protected Base base; // ?
-	protected PrefixDeclarations prefixes; // *
-	protected Dataset from; // *
+public abstract class OuterQuery<T extends OuterQuery<T>> extends Query<T> {
+	protected Optional<Base> base = Optional.empty();
+	protected Optional<PrefixDeclarations> prefixes = Optional.empty();
+	protected Optional<Dataset> from = Optional.empty();
 
 	/**
 	 * Set the base IRI of this query
@@ -28,7 +33,7 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 * @return this
 	 */
 	public T base(Iri iri) {
-		this.base = Spanqit.base(iri);
+		this.base = Optional.of(Spanqit.base(iri));
 
 		return (T) this;
 	}
@@ -41,7 +46,7 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 * @return this
 	 */
 	public T base(Base base) {
-		this.base = base;
+		this.base = Optional.of(base);
 
 		return (T) this;
 	}
@@ -54,11 +59,7 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 * @return this
 	 */
 	public T prefix(Prefix... prefixes) {
-		if (this.prefixes == null) {
-			this.prefixes = Spanqit.prefixes();
-		}
-
-		this.prefixes.addPrefix(prefixes);
+		this.prefixes = getOrCreateAndModifyOptional(this.prefixes, Spanqit::prefixes, p -> p.addPrefix(prefixes));
 
 		return (T) this;
 	}
@@ -71,7 +72,7 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 * @return this
 	 */
 	public T prefix(PrefixDeclarations prefixes) {
-		this.prefixes = prefixes;
+		this.prefixes = Optional.of(prefixes);
 
 		return (T) this;
 	}
@@ -84,10 +85,7 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 * @return this
 	 */
 	public T from(From... graphs) {
-		if (from == null) {
-			from = Spanqit.dataset();
-		}
-		from.from(graphs);
+		from = getOrCreateAndModifyOptional(from, Spanqit::dataset, f -> f.from(graphs));
 
 		return (T) this;
 	}
@@ -100,7 +98,7 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	 * @return this
 	 */
 	public T from(Dataset from) {
-		this.from = from;
+		this.from = Optional.of(from);
 
 		return (T) this;
 	}
@@ -109,9 +107,9 @@ public abstract class OuterQuery<T extends OuterQuery<T>> extends
 	public String getQueryString() {
 		StringBuilder query = new StringBuilder();
 
-		appendAndNewlineIfNonNull(base, query);
-		appendAndNewlineIfNonNull(prefixes, query);
-		appendAndNewlineIfNonNull(from, query);
+		appendAndNewlineIfPresent(base, query);
+		appendAndNewlineIfPresent(prefixes, query);
+		appendAndNewlineIfPresent(from, query);
 
 		query.append(super.getQueryString());
 

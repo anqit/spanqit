@@ -1,12 +1,12 @@
-package com.anqit.spanqit.core;
+package com.anqit.spanqit.core.query;
 
+import com.anqit.spanqit.core.GraphTemplate;
+import com.anqit.spanqit.core.Spanqit;
 import com.anqit.spanqit.graphpattern.TriplePattern;
 
 /**
  * The SPARQL CONSTRUCT query
  * 
- * @author Ankit
- *
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#construct">
  *      SPARQL CONSTRUCT Query</a>

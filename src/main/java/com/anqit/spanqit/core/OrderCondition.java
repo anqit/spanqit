@@ -3,8 +3,6 @@ package com.anqit.spanqit.core;
 /**
  * An ascending or descending order condition
  * 
- * @author Ankit
- *
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#modOrderBy">
  *      SPARQL Order By Clause</a>
@@ -61,7 +59,7 @@ public class OrderCondition implements Orderable {
 				condition.append(DESC);
 			}
 
-			condition.append("(").append(orderOn.getQueryString()).append(")");
+			condition.append(SpanqitUtils.getParenthesizedString(orderOn.getQueryString()));
 		}
 
 		return condition.toString();

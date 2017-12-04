@@ -1,13 +1,34 @@
 package com.anqit.spanqit.core;
 
 import java.util.Optional;
+import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 @SuppressWarnings("javadoc")
-public class SpanqitStringUtils {
+public class SpanqitUtils {
 	private static final String PAD = " ";
 
-	public static void appendAndNewlineIfNonNull(QueryElement element, StringBuilder builder) {
-		builder.append(Optional.ofNullable(element).map(e -> e.getQueryString() + "\n").orElse(""));
+	public static <O> Optional<O> getOrCreateAndModifyOptional(Optional<O> optional, Supplier<O> getter, UnaryOperator<O> operator) {
+		return Optional.of(operator.apply(optional.orElseGet(getter)));
+	}
+	
+	public static void appendAndNewlineIfPresent(Optional<? extends QueryElement> elementOptional, StringBuilder builder) {
+		appendQueryElementIfPresent(elementOptional, builder, null, "\n");
+	}
+	
+	public static void appendQueryElementIfPresent(Optional<? extends QueryElement> queryElementOptional, StringBuilder builder, String prefix, String suffix) {
+		appendStringIfPresent(queryElementOptional.map(QueryElement::getQueryString), builder, prefix, suffix);
+	}
+	
+	public static void appendStringIfPresent(Optional<String> stringOptional, StringBuilder builder, String prefix, String suffix) {
+		Optional<String> preOpt = Optional.ofNullable(prefix);
+		Optional<String> sufOpt = Optional.ofNullable(suffix);
+		
+		stringOptional.ifPresent(string -> {
+			preOpt.ifPresent(p -> builder.append(p));
+			builder.append(string);
+			sufOpt.ifPresent(s -> builder.append(s));
+		});
 	}
 	
 	public static String getBracedString(String contents) {

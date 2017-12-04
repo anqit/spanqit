@@ -2,9 +2,6 @@ package com.anqit.spanqit.constraint;
 
 /**
  * The SPARQL binary operators
- * 
- * @author Ankit
- *
  */
 enum BinaryOperator implements SparqlOperator {
 	EQUALS("="),

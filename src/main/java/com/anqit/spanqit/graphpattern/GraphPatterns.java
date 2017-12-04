@@ -4,6 +4,7 @@ import com.anqit.spanqit.core.Projectable;
 import com.anqit.spanqit.rdf.RdfBlankNode.PropertiesBlankNode;
 import com.anqit.spanqit.rdf.RdfObject;
 import com.anqit.spanqit.rdf.RdfPredicate;
+import com.anqit.spanqit.rdf.RdfPredicateObjectList;
 import com.anqit.spanqit.rdf.RdfSubject;
 
 /**
@@ -24,7 +25,7 @@ public class GraphPatterns {
 	 * @param predicate
 	 * @param objects
 	 * 
-	 * @return a new triple pattern
+	 * @return a new {@link TriplePattern}
 	 * 
 	 * @see <a
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
@@ -34,6 +35,21 @@ public class GraphPatterns {
 		return new TriplesSameSubject(subject, predicate, objects);
 	}
 	
+	/**
+	 * Create a triple pattern with the given subject and predicate-object list(s)
+	 * 
+	 * @param subject
+	 * @param lists
+	 * 
+	 * @return a new {@link TriplePattern}
+	 * 
+	 * @see <a
+	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynTriples">
+	 *      Triple pattern syntax</a>
+	 */
+	public static TriplePattern tp(RdfSubject subject, RdfPredicateObjectList... lists) {
+		return new TriplesSameSubject(subject, lists);
+	}
 	/**
 	 * Create a triple pattern from a property-list blank node
 	 * @param bnode the PropertiesBlankNode instance to convert to a triple pattern

@@ -3,8 +3,6 @@ package com.anqit.spanqit.graphpattern;
 /**
  * A SPARQL Graph Pattern Filter
  * 
- * @author Ankit
- *
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#neg-pattern">
  *      Filtering using Graph Pattern</a>

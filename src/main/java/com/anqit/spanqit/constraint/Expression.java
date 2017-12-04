@@ -6,7 +6,7 @@ import com.anqit.spanqit.core.Assignable;
 import com.anqit.spanqit.core.Groupable;
 import com.anqit.spanqit.core.Orderable;
 import com.anqit.spanqit.core.QueryElementCollection;
-import com.anqit.spanqit.core.SpanqitStringUtils;
+import com.anqit.spanqit.core.SpanqitUtils;
 
 /**
  * A SPARQL expression. Used by filters, having clauses, order and group by
@@ -36,7 +36,7 @@ import com.anqit.spanqit.core.SpanqitStringUtils;
  *      SPARQL Assignments</a>
  */
 public abstract class Expression<T extends Expression<T>> extends
-		QueryElementCollection<ExpressionOperand> implements ExpressionOperand,
+		QueryElementCollection<Operand> implements Operand,
 		Orderable, Groupable, Assignable {
 	protected SparqlOperator operator;
 	private boolean parenthesize;
@@ -46,14 +46,14 @@ public abstract class Expression<T extends Expression<T>> extends
 	}
 
 	Expression(SparqlOperator operator, String delimeter) {
-		super(delimeter, new ArrayList<ExpressionOperand>());
+		super(delimeter, new ArrayList<Operand>());
 		this.operator = operator;
 		parenthesize(false);
 	}
 
 	@SuppressWarnings("unchecked")
-	T addOperand(ExpressionOperand... operands) {
-		for (ExpressionOperand operand : operands) {
+	T addOperand(Operand... operands) {
+		for (Operand operand : operands) {
 			elements.add(operand);
 		}
 
@@ -84,14 +84,14 @@ public abstract class Expression<T extends Expression<T>> extends
 		return (T) this;
 	}
 	
-	ExpressionOperand getOperand(int index) {
-		return ((ArrayList<ExpressionOperand>) elements).get(index);
+	Operand getOperand(int index) {
+		return ((ArrayList<Operand>) elements).get(index);
 	}
 	
 	@Override
 	public String getQueryString() {
 		String queryString = super.getQueryString();
 		
-		return parenthesize ? SpanqitStringUtils.getParenthesizedString(queryString) : queryString;
+		return parenthesize ? SpanqitUtils.getParenthesizedString(queryString) : queryString;
 	}
 }

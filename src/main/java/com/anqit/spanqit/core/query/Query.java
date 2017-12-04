@@ -1,28 +1,38 @@
-package com.anqit.spanqit.core;
+package com.anqit.spanqit.core.query;
+
+import static com.anqit.spanqit.core.SpanqitUtils.appendAndNewlineIfPresent;
+import static com.anqit.spanqit.core.SpanqitUtils.getOrCreateAndModifyOptional;
+
+import java.util.Optional;
 
 import com.anqit.spanqit.constraint.Expression;
+import com.anqit.spanqit.core.GroupBy;
+import com.anqit.spanqit.core.Groupable;
+import com.anqit.spanqit.core.Having;
+import com.anqit.spanqit.core.OrderBy;
+import com.anqit.spanqit.core.Orderable;
+import com.anqit.spanqit.core.QueryElement;
+import com.anqit.spanqit.core.QueryPattern;
+import com.anqit.spanqit.core.Spanqit;
+import com.anqit.spanqit.core.Variable;
 import com.anqit.spanqit.graphpattern.GraphPattern;
-
-import static com.anqit.spanqit.core.SpanqitStringUtils.appendAndNewlineIfNonNull;
 
 /**
  * The base class for all SPARQL Queries. Contains elements and methods common
  * to all queries.
  * 
- * @author Ankit
- *
  * @param <T>
  *            They type of query. Used to support fluency.
  */
-@SuppressWarnings("unchecked") // really wish i didn't have to do this
+@SuppressWarnings("unchecked")
 public abstract class Query<T extends Query<T>> implements QueryElement {
 	protected static final String LIMIT = "LIMIT";
 	protected static final String OFFSET = "OFFSET";
 
 	protected QueryPattern where = Spanqit.where();
-	protected GroupBy groupBy;
-	protected OrderBy orderBy;
-	protected Having having;
+	protected Optional<GroupBy> groupBy = Optional.empty();
+	protected Optional<OrderBy> orderBy = Optional.empty();
+	protected Optional<Having> having = Optional.empty();
 	protected int limit = -1, offset = -1, varCount = -1;
 
 	/**
@@ -64,10 +74,7 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	 * @see GroupBy
 	 */
 	public T groupBy(Groupable... groupables) {
-		if (groupBy == null) {
-			groupBy = Spanqit.groupBy();
-		}
-		groupBy.by(groupables);
+		groupBy = getOrCreateAndModifyOptional(groupBy, Spanqit::groupBy, gb -> gb.by(groupables));
 
 		return (T) this;
 	}
@@ -80,7 +87,7 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	 * @return this
 	 */
 	public T groupBy(GroupBy groupBy) {
-		this.groupBy = groupBy;
+		this.groupBy = Optional.of(groupBy);
 
 		return (T) this;
 	}
@@ -95,11 +102,8 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	 * @see OrderBy
 	 */
 	public T orderBy(Orderable... conditions) {
-		if (orderBy == null) {
-			orderBy = Spanqit.orderBy();
-		}
-		orderBy.by(conditions);
-
+		orderBy = getOrCreateAndModifyOptional(orderBy, Spanqit::orderBy, ob -> ob.by(conditions));
+		
 		return (T) this;
 	}
 
@@ -111,7 +115,7 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	 * @return this
 	 */
 	public T orderBy(OrderBy orderBy) {
-		this.orderBy = orderBy;
+		this.orderBy = Optional.of(orderBy);
 
 		return (T) this;
 	}
@@ -126,10 +130,7 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	 * @see Having
 	 */
 	public T having(Expression<?>... constraints) {
-		if (having == null) {
-			having = Spanqit.having();
-		}
-		having.having(constraints);
+		having = getOrCreateAndModifyOptional(having, Spanqit::having, h -> h.having(constraints));
 
 		return (T) this;
 	}
@@ -142,7 +143,7 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 	 * @return this
 	 */
 	public T having(Having having) {
-		this.having = having;
+		this.having = Optional.of(having);
 
 		return (T) this;
 	}
@@ -198,9 +199,9 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 		query.append(getQueryActionString()).append("\n");
 		query.append(where.getQueryString()).append("\n");
 
-		appendAndNewlineIfNonNull(groupBy, query);
-		appendAndNewlineIfNonNull(having, query);
-		appendAndNewlineIfNonNull(orderBy, query);
+		appendAndNewlineIfPresent(groupBy, query);
+		appendAndNewlineIfPresent(having, query);
+		appendAndNewlineIfPresent(orderBy, query);
 
 		if (limit >= 0) {
 			query.append(LIMIT + " ").append(limit).append("\n");
@@ -211,5 +212,5 @@ public abstract class Query<T extends Query<T>> implements QueryElement {
 		}
 
 		return query.toString();
-	}	
+	}
 }
