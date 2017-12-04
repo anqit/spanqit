@@ -1,6 +1,6 @@
 package com.anqit.spanqit.core.query;
 
-import static com.anqit.spanqit.core.SpanqitStringUtils.appendAndNewlineIfNonNull;
+import static com.anqit.spanqit.core.SpanqitUtils.getOrCreateAndModifyOptional;
 
 import java.util.Optional;
 
@@ -9,10 +9,11 @@ import com.anqit.spanqit.core.Prefix;
 import com.anqit.spanqit.core.PrefixDeclarations;
 import com.anqit.spanqit.core.QueryElement;
 import com.anqit.spanqit.core.Spanqit;
-import com.anqit.spanqit.core.SpanqitStringUtils;
+import com.anqit.spanqit.core.SpanqitUtils;
 import com.anqit.spanqit.core.TriplesTemplate;
 import com.anqit.spanqit.graphpattern.GraphName;
 import com.anqit.spanqit.rdf.Iri;
+
 /**
  * A SPARQL Update query
  * 
@@ -24,8 +25,8 @@ import com.anqit.spanqit.rdf.Iri;
  */
 @SuppressWarnings("unchecked")
 abstract class UpdateQuery<T extends UpdateQuery<T>> implements QueryElement {
-	private Base base;
-	private PrefixDeclarations prefixes;
+	private Optional<Base> base = Optional.empty();
+	private Optional<PrefixDeclarations> prefixes = Optional.empty();
 	
 	UpdateQuery() {	}
 
@@ -37,7 +38,7 @@ abstract class UpdateQuery<T extends UpdateQuery<T>> implements QueryElement {
 	 * @return this
 	 */
 	public T base(Iri iri) {
-		this.base = Spanqit.base(iri);
+		this.base = Optional.of(Spanqit.base(iri));
 
 		return (T) this;
 	}
@@ -50,7 +51,7 @@ abstract class UpdateQuery<T extends UpdateQuery<T>> implements QueryElement {
 	 * @return this
 	 */
 	public T base(Base base) {
-		this.base = base;
+		this.base = Optional.of(base);
 
 		return (T) this;
 	}
@@ -63,11 +64,7 @@ abstract class UpdateQuery<T extends UpdateQuery<T>> implements QueryElement {
 	 * @return this
 	 */
 	public T prefix(Prefix... prefixes) {
-		if (this.prefixes == null) {
-			this.prefixes = Spanqit.prefixes();
-		}
-
-		this.prefixes.addPrefix(prefixes);
+		this.prefixes = getOrCreateAndModifyOptional(this.prefixes, Spanqit::prefixes, p -> p.addPrefix(prefixes));
 
 		return (T) this;
 	}
@@ -80,7 +77,7 @@ abstract class UpdateQuery<T extends UpdateQuery<T>> implements QueryElement {
 	 * @return this
 	 */
 	public T prefix(PrefixDeclarations prefixes) {
-		this.prefixes = prefixes;
+		this.prefixes = Optional.of(prefixes);
 
 		return (T) this;
 	}
@@ -91,9 +88,9 @@ abstract class UpdateQuery<T extends UpdateQuery<T>> implements QueryElement {
 	public String getQueryString() {
 		StringBuilder query = new StringBuilder();
 
-		appendAndNewlineIfNonNull(base, query);
-		appendAndNewlineIfNonNull(prefixes, query);
-		
+		SpanqitUtils.appendAndNewlineIfPresent(base, query);
+		SpanqitUtils.appendAndNewlineIfPresent(prefixes, query);
+
 		query.append(getQueryActionString());
 		
 		return query.toString();
@@ -101,7 +98,7 @@ abstract class UpdateQuery<T extends UpdateQuery<T>> implements QueryElement {
 
 	protected void appendNamedTriplesTemplates(StringBuilder queryString, Optional<GraphName> graphName, TriplesTemplate triples) {
 		queryString.append(graphName.map(graph ->
-				SpanqitStringUtils.getBracedString("GRAPH " + graph.getQueryString() + " " + triples.getQueryString()))
-			.orElse(triples.getQueryString()));
+				SpanqitUtils.getBracedString("GRAPH " + graph.getQueryString() + " " + triples.getQueryString()))
+			.orElseGet(() ->triples.getQueryString()));
 	}
 }

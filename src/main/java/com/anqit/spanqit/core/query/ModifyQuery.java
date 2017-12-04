@@ -10,6 +10,8 @@ import com.anqit.spanqit.graphpattern.GraphPattern;
 import com.anqit.spanqit.graphpattern.TriplePattern;
 import com.anqit.spanqit.rdf.Iri;
 
+import static com.anqit.spanqit.core.SpanqitUtils.getOrCreateAndModifyOptional;
+
 /**
  * The SPARQL Modify Queries
  * 
@@ -60,11 +62,7 @@ public class ModifyQuery extends UpdateQuery<ModifyQuery> {
 	 * 			SPARQL DELETE WHERE shortcut</a>
 	 */
 	public ModifyQuery delete(TriplePattern... triples) {
-		if(deleteTriples.isPresent()) {
-			deleteTriples.get().and(triples);
-		} else {
-			deleteTriples = Optional.of(Spanqit.triplesTemplate(triples));
-		}
+		deleteTriples = getOrCreateAndModifyOptional(deleteTriples, Spanqit::triplesTemplate, tt -> tt.and(triples));
 		
 		return this;
 	}
@@ -90,12 +88,8 @@ public class ModifyQuery extends UpdateQuery<ModifyQuery> {
 	 * @return this modify query instance
 	 */
 	public ModifyQuery insert(TriplePattern... triples) {
-		if(insertTriples.isPresent()) {
-			insertTriples.get().and(triples);
-		} else {
-			insertTriples = Optional.of(Spanqit.triplesTemplate(triples));
-		}
-
+		insertTriples = getOrCreateAndModifyOptional(insertTriples, Spanqit::triplesTemplate, tt -> tt.and(triples));
+		
 		return this;
 	}
 	
