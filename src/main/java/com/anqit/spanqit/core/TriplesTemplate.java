@@ -28,7 +28,7 @@ public class TriplesTemplate extends QueryElementCollection<TriplePattern> {
 	
 	@Override
 	public String getQueryString() {
-		return SpanqitStringUtils.getBracedString(super.getQueryString());
+		return SpanqitUtils.getBracedString(super.getQueryString());
 	}
 
 }

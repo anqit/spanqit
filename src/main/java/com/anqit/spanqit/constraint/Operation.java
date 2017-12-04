@@ -20,8 +20,7 @@ abstract class Operation<T extends Operation<T>> extends Expression<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	// ugh, wish the compiler dug just a little deeper...
-	T addOperand(ExpressionOperand operand) /* throws Exception */{
+	T addOperand(Operand operand) /* throws Exception */ {
 		if (isBelowOperatorLimit()) {
 			return super.addOperand(operand);
 		}

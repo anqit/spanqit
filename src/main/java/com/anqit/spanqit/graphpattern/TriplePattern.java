@@ -2,8 +2,10 @@ package com.anqit.spanqit.graphpattern;
 
 import static com.anqit.spanqit.rdf.Rdf.toRdfLiteralArray;
 
+import com.anqit.spanqit.rdf.Rdf;
 import com.anqit.spanqit.rdf.RdfObject;
 import com.anqit.spanqit.rdf.RdfPredicate;
+import com.anqit.spanqit.rdf.RdfPredicateObjectList;
 
 /**
  * Denotes a SPARQL Triple Pattern
@@ -26,7 +28,19 @@ public interface TriplePattern extends GraphPattern {
 	 * 
 	 * @return this triple pattern
 	 */
-	public TriplePattern andHas(RdfPredicate predicate, RdfObject... objects);
+	default public TriplePattern andHas(RdfPredicate predicate, RdfObject... objects) {
+		return andHas(Rdf.predicateObjectList(predicate, objects));
+	}
+	
+	/**
+	 * Add predicate-object lists describing this triple pattern's subject
+	 * 
+	 * @param lists
+	 * 		the {@link RdfPredicateObjectList}(s) to add 
+	 * 
+	 * @return this triple pattern
+	 */
+	public TriplePattern andHas(RdfPredicateObjectList... lists);
 	
 	/**
 	 * Convenience version of {@link #andHas(RdfPredicate, RdfObject...)} that takes Strings

@@ -1,6 +1,6 @@
 package com.anqit.spanqit.core;
 
-import com.anqit.spanqit.constraint.ExpressionOperand;
+import com.anqit.spanqit.constraint.Operand;
 import com.anqit.spanqit.graphpattern.GraphName;
 import com.anqit.spanqit.rdf.RdfObject;
 import com.anqit.spanqit.rdf.RdfPredicate;
@@ -14,7 +14,7 @@ import com.anqit.spanqit.rdf.RdfSubject;
  *      SPARQL Variable Syntax</a>
  */
 public class Variable implements Projectable, RdfSubject,
-		RdfPredicate, RdfObject, ExpressionOperand, Orderable,
+		RdfPredicate, RdfObject, Operand, Orderable,
 		Groupable, GraphName, Assignable {
 	private String alias;
 

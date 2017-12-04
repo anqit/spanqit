@@ -1,5 +1,6 @@
 package com.anqit.spanqit.core.query;
 
+import com.anqit.spanqit.core.TriplesTemplate;
 import com.anqit.spanqit.graphpattern.GraphName;
 import com.anqit.spanqit.graphpattern.TriplePattern;
 
@@ -22,6 +23,18 @@ public class DeleteDataQuery extends UpdateDataQuery<DeleteDataQuery> {
 	 */
 	public DeleteDataQuery deleteData(TriplePattern... triples) {
 		return addTriples(triples);
+	}
+	
+	/**
+	 * Set this query's triples template
+	 * 
+	 * @param triplesTemplate
+	 * 		the {@link TriplesTemplate} instance to set
+	 * 
+	 * @return this instance
+	 */
+	public DeleteDataQuery deleteData(TriplesTemplate triplesTemplate) {
+		return setTriplesTemplate(triplesTemplate);
 	}
 
 	/**

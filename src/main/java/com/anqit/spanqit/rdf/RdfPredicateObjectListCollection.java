@@ -13,7 +13,7 @@ import com.anqit.spanqit.core.QueryElementCollection;
  * 		Object Lists</a>
  */
 public class RdfPredicateObjectListCollection extends QueryElementCollection<RdfPredicateObjectList> {
-	private static String DELIMITER = " ;\n    ";
+	private static final String DELIMITER = " ;\n    ";
 
 	RdfPredicateObjectListCollection() {
 		super(DELIMITER);

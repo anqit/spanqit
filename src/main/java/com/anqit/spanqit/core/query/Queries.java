@@ -1,5 +1,11 @@
 package com.anqit.spanqit.core.query;
 
+import com.anqit.spanqit.core.GraphTemplate;
+import com.anqit.spanqit.core.Projectable;
+import com.anqit.spanqit.core.Projection;
+import com.anqit.spanqit.core.TriplesTemplate;
+import com.anqit.spanqit.graphpattern.TriplePattern;
+
 /**
  * A class with static methods to create SPARQL queries
  * 
@@ -13,51 +19,121 @@ public class Queries {
 	/**
 	 * Create a SPARQL Select query
 	 * 
+	 * @param projectables
+	 * 		the initial set of {@link Projectable}(s), if any, to select
+	 * 
 	 * @return a new {@link SelectQuery}
 	 * 
 	 * @see <a
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#select">SPARQL
 	 *      Select Query</a>
 	 */
-	public static SelectQuery SELECT() {
-		return new SelectQuery();
+	public static SelectQuery SELECT(Projectable... projectables) {
+		return new SelectQuery().select(projectables);
 	}
 
 	/**
+	 * Create a SPARQL Select query
+	 * 
+	 * @param select
+	 * 		the {@link Projection} to set initially
+	 * @return a new {@link SelectQuery}
+	 * 
+	 * @see <a
+	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#select">SPARQL
+	 *      Select Query</a>
+	 */
+	public static SelectQuery SELECT(Projection select) {
+		return new SelectQuery().select(select);
+	}
+	
+	/**
 	 * Create a SPARQL Construct query
 	 * 
+	 * @param patterns
+	 * 		the initial set of {@link TriplePattern}(s), if any, to construct
 	 * @return a new {@link ConstructQuery}
 	 * 
 	 * @see <a
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#construct">SPARQL
 	 *      Construct Query</a>
 	 */
-	public static ConstructQuery CONSTRUCT() {
-		return new ConstructQuery();
+	public static ConstructQuery CONSTRUCT(TriplePattern... patterns) {
+		return new ConstructQuery().construct(patterns);
 	}
 	
 	/**
+	 * Create a SPARQL Construct query
+	 * 
+	 * @param construct
+	 * 		the {@link GraphTemplate} to set initially
+	 * @return a new {@link ConstructQuery}
+	 * 
+	 * @see <a
+	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#construct">SPARQL
+	 *      Construct Query</a>
+	 */
+	public static ConstructQuery CONSTRUCT(GraphTemplate construct) {
+		return new ConstructQuery().construct(construct);
+	}
+	/**
 	 * Create a SPARQL INSERT DATA query
+	 * 
+	 * @param triples
+	 * 		the initial set of {@link TriplePattern}(s), if any, to use
 	 * 
 	 * @return a new {@link InsertDataQuery}
 	 * 
 	 * @see <a href="https://www.w3.org/TR/sparql11-update/#insertData">
 	 * 		SPARQL INSERT DATA Query</a>
 	 */
-	public static InsertDataQuery INSERT_DATA() {
-		return new InsertDataQuery();
+	public static InsertDataQuery INSERT_DATA(TriplePattern... triples) {
+		return new InsertDataQuery().insertData(triples);
 	}
 	
 	/**
+	 * Create a SPARQL INSERT DATA query
+	 * 
+	 * @param triplesTemplate
+	 * 		the {@link TriplesTemplate} to set initially
+	 * 
+	 * @return a new {@link InsertDataQuery}
+	 * 
+	 * @see <a href="https://www.w3.org/TR/sparql11-update/#insertData">
+	 * 		SPARQL INSERT DATA Query</a>
+	 */
+	public static InsertDataQuery INSERT_DATA(TriplesTemplate triplesTemplate) {
+		return new InsertDataQuery().insertData(triplesTemplate);
+	}
+
+	/**
 	 * Create a SPARQL DELETE DATA query
+	 * 
+	 * @param triples
+	 * 		the initial set of {@link TriplePattern}(s), if any, to use
 	 * 
 	 * @return a new {@link DeleteDataQuery}
 	 * 
 	 * @see <a href="https://www.w3.org/TR/sparql11-update/#deleteData">
 	 * 		SPARQL DELETE DATA Query</a>
 	 */
-	public static DeleteDataQuery DELETE_DATA() {
-		return new DeleteDataQuery();
+	public static DeleteDataQuery DELETE_DATA(TriplePattern... triples) {
+		return new DeleteDataQuery().deleteData(triples);
+	}
+	
+	/**
+	 * Create a SPARQL DELETE DATA query
+	 * 
+	 * @param triplesTemplate
+	 * 		the {@link TriplesTemplate} to set initially
+	 * 
+	 * @return a new {@link DeleteDataQuery}
+	 * 
+	 * @see <a href="https://www.w3.org/TR/sparql11-update/#deleteData">
+	 * 		SPARQL DELETE DATA Query</a>
+	 */
+	public static DeleteDataQuery DELETE_DATA(TriplesTemplate triplesTemplate) {
+		return new DeleteDataQuery().deleteData(triplesTemplate);
 	}
 	
 	/**

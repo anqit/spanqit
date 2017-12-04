@@ -59,7 +59,7 @@ public class OrderCondition implements Orderable {
 				condition.append(DESC);
 			}
 
-			condition.append("(").append(orderOn.getQueryString()).append(")");
+			condition.append(SpanqitUtils.getParenthesizedString(orderOn.getQueryString()));
 		}
 
 		return condition.toString();

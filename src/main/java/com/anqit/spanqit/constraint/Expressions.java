@@ -50,7 +50,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-abs">
 	 *      SPARQL ABS Function</a>
 	 */
-	public static Expression<?> abs(ExpressionOperand operand) {
+	public static Expression<?> abs(Operand operand) {
 		return function(ABS, operand);
 	}
 
@@ -64,7 +64,7 @@ public class Expressions {
 	 *      SPARQL BNODE Function</a>
 	 */
 	public static Expression<?> bnode() {
-		return function(BNODE, (ExpressionOperand) null);
+		return function(BNODE, (Operand) null);
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-ceil">
 	 *      SPARQL CEIL Function</a>
 	 */
-	public static Expression<?> ceil(ExpressionOperand operand) {
+	public static Expression<?> ceil(Operand operand) {
 		return function(CEIL, operand);
 	}
 
@@ -138,7 +138,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-coalesce">
 	 *      SPARQL COALESCE Function</a>
 	 */
-	public static Expression<?> coalesce(ExpressionOperand... operands) {
+	public static Expression<?> coalesce(Operand... operands) {
 		return function(COALESCE, operands);
 	}
 
@@ -153,7 +153,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-concat">
 	 *      SPARQL CONCAT Function</a>
 	 */
-	public static Expression<?> concat(ExpressionOperand... operands) {
+	public static Expression<?> concat(Operand... operands) {
 		return function(CONCAT, operands);
 	}
 	
@@ -170,7 +170,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-regex">
 	 *      SPARQL REGEX Function</a>
 	 */
-	public static Expression<?> regex(ExpressionOperand testString, String pattern) {
+	public static Expression<?> regex(Operand testString, String pattern) {
 		return regex(testString, Rdf.literalOf(pattern));
 	}
 
@@ -189,7 +189,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-regex">
 	 *      SPARQL REGEX Function</a>
 	 */
-	public static Expression<?> regex(ExpressionOperand testString, String pattern,
+	public static Expression<?> regex(Operand testString, String pattern,
 			String flags) {
 		return regex(testString, Rdf.literalOf(pattern), Rdf.literalOf(flags));
 	}
@@ -207,8 +207,8 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-regex">
 	 *      SPARQL REGEX Function</a>
 	 */
-	public static Expression<?> regex(ExpressionOperand testString,
-			ExpressionOperand pattern) {
+	public static Expression<?> regex(Operand testString,
+			Operand pattern) {
 		return function(REGEX, testString, pattern);
 	}
 
@@ -227,8 +227,8 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-regex">
 	 *      SPARQL REGEX Function</a>
 	 */
-	public static Expression<?> regex(ExpressionOperand testString,
-			ExpressionOperand pattern, ExpressionOperand flags) {
+	public static Expression<?> regex(Operand testString,
+			Operand pattern, Operand flags) {
 		return function(REGEX, testString, pattern, flags);
 	}
 	
@@ -242,7 +242,7 @@ public class Expressions {
 	 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-str">
 	 * 		SPARQL STR Function</a>
 	 */
-	public static Expression<?> str(ExpressionOperand operand) {
+	public static Expression<?> str(Operand operand) {
 		return function(SparqlFunction.STRING, operand);
 	}
 
@@ -263,7 +263,7 @@ public class Expressions {
 	 *         <code>operands</code>
 	 */
 	public static Expression<?> function(SparqlFunction function,
-			ExpressionOperand... operands) {
+			Operand... operands) {
 		return new Function(function).addOperand(operands);
 	}
 
@@ -278,7 +278,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> not(ExpressionOperand operand) {
+	public static Expression<?> not(Operand operand) {
 		return unaryExpression(UnaryOperator.NOT, operand);
 	}
 
@@ -293,7 +293,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> plus(ExpressionOperand operand) {
+	public static Expression<?> plus(Operand operand) {
 		return unaryExpression(UnaryOperator.UNARY_PLUS, operand);
 	}
 
@@ -308,12 +308,12 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> minus(ExpressionOperand operand) {
+	public static Expression<?> minus(Operand operand) {
 		return unaryExpression(UnaryOperator.UNARY_MINUS, operand);
 	}
 
 	private static UnaryOperation unaryExpression(UnaryOperator operator,
-			ExpressionOperand operand) {
+			Operand operand) {
 		return new UnaryOperation(operator).addOperand(operand);
 	}
 
@@ -329,8 +329,8 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> equals(ExpressionOperand left,
-			ExpressionOperand right) {
+	public static Expression<?> equals(Operand left,
+			Operand right) {
 		return binaryExpression(BinaryOperator.EQUALS, left, right);
 	}
 
@@ -346,8 +346,8 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> notEquals(ExpressionOperand left,
-			ExpressionOperand right) {
+	public static Expression<?> notEquals(Operand left,
+			Operand right) {
 		return binaryExpression(BinaryOperator.NOT_EQUALS, left, right);
 	}
 
@@ -380,7 +380,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> gt(Number left, ExpressionOperand right) {
+	public static Expression<?> gt(Number left, Operand right) {
 		return binaryExpression(BinaryOperator.GREATER_THAN, Rdf.literalOf(left),
 				right);
 	}
@@ -397,7 +397,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> gt(ExpressionOperand left, Number right) {
+	public static Expression<?> gt(Operand left, Number right) {
 		return binaryExpression(BinaryOperator.GREATER_THAN, left,
 				Rdf.literalOf(right));
 	}
@@ -414,8 +414,8 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> gt(ExpressionOperand left,
-			ExpressionOperand right) {
+	public static Expression<?> gt(Operand left,
+			Operand right) {
 		return binaryExpression(BinaryOperator.GREATER_THAN, left, right);
 	}
 
@@ -431,8 +431,8 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> gte(ExpressionOperand left,
-			ExpressionOperand right) {
+	public static Expression<?> gte(Operand left,
+			Operand right) {
 		return binaryExpression(BinaryOperator.GREATER_THAN_EQUALS, left, right);
 	}
 
@@ -465,7 +465,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> lt(Number left, ExpressionOperand right) {
+	public static Expression<?> lt(Number left, Operand right) {
 		return binaryExpression(BinaryOperator.LESS_THAN, Rdf.literalOf(left),
 				right);
 	}
@@ -482,7 +482,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> lt(ExpressionOperand left, Number right) {
+	public static Expression<?> lt(Operand left, Number right) {
 		return binaryExpression(BinaryOperator.LESS_THAN, left,
 				Rdf.literalOf(right));
 	}
@@ -499,8 +499,8 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> lt(ExpressionOperand left,
-			ExpressionOperand right) {
+	public static Expression<?> lt(Operand left,
+			Operand right) {
 		return binaryExpression(BinaryOperator.LESS_THAN, left, right);
 	}
 
@@ -517,13 +517,13 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> lte(ExpressionOperand left,
-			ExpressionOperand right) {
+	public static Expression<?> lte(Operand left,
+			Operand right) {
 		return binaryExpression(BinaryOperator.LESS_THAN_EQUALS, left, right);
 	}
 
 	private static BinaryOperation binaryExpression(BinaryOperator operator,
-			ExpressionOperand op1, ExpressionOperand op2) {
+			Operand op1, Operand op2) {
 		BinaryOperation op = new BinaryOperation(operator);
 
 		op.addOperand(op1).addOperand(op2);
@@ -542,7 +542,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> and(ExpressionOperand... operands) {
+	public static Expression<?> and(Operand... operands) {
 		return connectiveExpression(ConnectiveOperator.AND, operands);
 	}
 
@@ -557,7 +557,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> or(ExpressionOperand... operands) {
+	public static Expression<?> or(Operand... operands) {
 		return connectiveExpression(ConnectiveOperator.OR, operands);
 	}
 
@@ -572,7 +572,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> add(ExpressionOperand... operands) {
+	public static Expression<?> add(Operand... operands) {
 		return connectiveExpression(ConnectiveOperator.ADD, operands);
 	}
 
@@ -587,7 +587,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> subtract(ExpressionOperand... operands) {
+	public static Expression<?> subtract(Operand... operands) {
 		return connectiveExpression(ConnectiveOperator.SUBTRACT, operands);
 	}
 
@@ -602,7 +602,7 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> multiply(ExpressionOperand... operands) {
+	public static Expression<?> multiply(Operand... operands) {
 		return connectiveExpression(ConnectiveOperator.MULTIPLY, operands);
 	}
 
@@ -617,14 +617,14 @@ public class Expressions {
 	 *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#OperatorMapping">SPARQL
 	 *      Operators</a>
 	 */
-	public static Expression<?> divide(ExpressionOperand... operands) {
+	public static Expression<?> divide(Operand... operands) {
 		return connectiveExpression(ConnectiveOperator.DIVIDE, operands);
 	}
 	
-	private static ConnectiveOperation connectiveExpression(ConnectiveOperator operator, ExpressionOperand... operands) {
+	private static ConnectiveOperation connectiveExpression(ConnectiveOperator operator, Operand... operands) {
 		ConnectiveOperation op = new ConnectiveOperation(operator);
 
-		for (ExpressionOperand operand : operands) {
+		for (Operand operand : operands) {
 			op.addOperand(operand);
 		}
 
@@ -640,7 +640,7 @@ public class Expressions {
 	 * @param operand
 	 * @return
 	 */
-	public static Aggregate avg(ExpressionOperand operand) {
+	public static Aggregate avg(Operand operand) {
 		return new Aggregate(SparqlAggregate.AVG).addOperand(operand);
 	}
 	
@@ -649,7 +649,7 @@ public class Expressions {
 	 * @param operand
 	 * @return
 	 */
-	public static Aggregate count(ExpressionOperand operand) {
+	public static Aggregate count(Operand operand) {
 		return new Aggregate(SparqlAggregate.COUNT).addOperand(operand);
 	}
 	
@@ -657,27 +657,27 @@ public class Expressions {
 		return new Aggregate(SparqlAggregate.COUNT).countAll();
 	}
 	
-	public static Aggregate group_concat(ExpressionOperand... operands) {
+	public static Aggregate group_concat(Operand... operands) {
 		return new Aggregate(SparqlAggregate.GROUP_CONCAT).addOperand(operands);
 	}
 	
-	public static Aggregate group_concat(String separator, ExpressionOperand... operands) {
+	public static Aggregate group_concat(String separator, Operand... operands) {
 		return new Aggregate(SparqlAggregate.GROUP_CONCAT).addOperand(operands).separator(separator);
 	}
 	
-	public static Aggregate max(ExpressionOperand operand) {
+	public static Aggregate max(Operand operand) {
 		return new Aggregate(SparqlAggregate.MAX).addOperand(operand);
 	}
 	
-	public static Aggregate min(ExpressionOperand operand) {
+	public static Aggregate min(Operand operand) {
 		return new Aggregate(SparqlAggregate.MIN).addOperand(operand);
 	}
 	
-	public static Aggregate sample(ExpressionOperand operand) {
+	public static Aggregate sample(Operand operand) {
 		return new Aggregate(SparqlAggregate.SAMPLE).addOperand(operand);
 	}
 	
-	public static Aggregate sum(ExpressionOperand operand) {
+	public static Aggregate sum(Operand operand) {
 		return new Aggregate(SparqlAggregate.SUM).addOperand(operand);
 	}
 }

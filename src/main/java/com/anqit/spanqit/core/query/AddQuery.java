@@ -15,5 +15,4 @@ public class AddQuery extends DestinationSourceManagementQuery<AddQuery> {
 	protected String getQueryActionString() {
 		return ADD;
 	}
-
 }

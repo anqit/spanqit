@@ -15,7 +15,7 @@ public class Having extends StandardQueryElementCollection<Having, Expression<?>
 	private static final String DELIMETER = " ";
 
 	Having() {
-		super(HAVING, DELIMETER, SpanqitStringUtils::getParenthesizedString, new ArrayList<Expression<?>>());
+		super(HAVING, DELIMETER, SpanqitUtils::getParenthesizedString, new ArrayList<Expression<?>>());
 		printBodyIfEmpty(true);
 	}
 

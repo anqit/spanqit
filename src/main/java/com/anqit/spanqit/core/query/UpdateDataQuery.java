@@ -18,6 +18,12 @@ abstract class UpdateDataQuery<T extends UpdateDataQuery<T>> extends UpdateQuery
 		return (T) this;
 	}
 	
+	protected T setTriplesTemplate(TriplesTemplate triplesTemplate) {
+		this.triplesTemplate = triplesTemplate;
+		
+		return (T) this;
+	}
+	
 	public T graph(GraphName graph) {
 		graphName = Optional.ofNullable(graph);
 		

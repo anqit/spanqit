@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import com.anqit.spanqit.constraint.Expression;
 import com.anqit.spanqit.core.QueryElementCollection;
-import com.anqit.spanqit.core.SpanqitStringUtils;
+import com.anqit.spanqit.core.SpanqitUtils;
 
-import static com.anqit.spanqit.core.SpanqitStringUtils.appendQueryElementIfPresent;
+import static com.anqit.spanqit.core.SpanqitUtils.appendQueryElementIfPresent;
 
 /**
  * A SPARQL Group Graph Pattern
@@ -107,7 +107,7 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 		appendQueryElementIfPresent(filter, innerPattern, "\n", null);
 
 		if (bracketize) {
-			pattern.append(SpanqitStringUtils.getBracedString(innerPattern
+			pattern.append(SpanqitUtils.getBracedString(innerPattern
 					.toString()));
 		} else {
 			pattern.append(innerPattern.toString());

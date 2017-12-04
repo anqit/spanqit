@@ -3,7 +3,7 @@ package com.anqit.spanqit.constraint;
 import com.anqit.spanqit.core.QueryElement;
 
 /**
- * An element that can be used as an operand to an
+ * Denotes an element that can be used as an operand to an
  * {@link com.anqit.spanqit.constraint.Expression}
  */
-public interface ExpressionOperand extends QueryElement { }
+public interface Operand extends QueryElement { }

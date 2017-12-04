@@ -1,13 +1,19 @@
 package com.anqit.spanqit.core;
 
 import java.util.Optional;
+import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 @SuppressWarnings("javadoc")
-public class SpanqitStringUtils {
+public class SpanqitUtils {
 	private static final String PAD = " ";
 
-	public static void appendAndNewlineIfNonNull(QueryElement element, StringBuilder builder) {
-		appendQueryElementIfPresent(Optional.ofNullable(element), builder, null, "\n");
+	public static <O> Optional<O> getOrCreateAndModifyOptional(Optional<O> optional, Supplier<O> getter, UnaryOperator<O> operator) {
+		return Optional.of(operator.apply(optional.orElseGet(getter)));
+	}
+	
+	public static void appendAndNewlineIfPresent(Optional<? extends QueryElement> elementOptional, StringBuilder builder) {
+		appendQueryElementIfPresent(elementOptional, builder, null, "\n");
 	}
 	
 	public static void appendQueryElementIfPresent(Optional<? extends QueryElement> queryElementOptional, StringBuilder builder, String prefix, String suffix) {

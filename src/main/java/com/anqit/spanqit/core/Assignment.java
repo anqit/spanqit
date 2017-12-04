@@ -1,7 +1,7 @@
 package com.anqit.spanqit.core;
 
 /**
- * A SPARQL expression to variable assignment
+ * A SPARQL expression-to-variable assignment
  * 
  * @see <a
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#assignment">
@@ -19,6 +19,6 @@ public class Assignment implements Projectable, Groupable {
 
 	@Override
 	public String getQueryString() {
-		return SpanqitStringUtils.getParenthesizedString(expression.getQueryString() + AS + var.getQueryString());
+		return SpanqitUtils.getParenthesizedString(expression.getQueryString() + AS + var.getQueryString());
 	}
 }

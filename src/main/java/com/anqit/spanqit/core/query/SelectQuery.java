@@ -63,7 +63,8 @@ public class SelectQuery extends OuterQuery<SelectQuery> {
 	 * <p>
 	 * NOTE: if called with <code>true</code>, this setting will take precedence
 	 * over any expressions added to the projection via
-	 * {@link #select(Projectable...)} or {@link #select(Projection)} when printing
+	 * {@link #select(Projectable...)} or {@link #select(Projection)} when
+	 * converting to string via {@link #getQueryString()}
 	 * 
 	 * @param selectAll
 	 *            if all in-scope expressions should be selected
@@ -82,8 +83,7 @@ public class SelectQuery extends OuterQuery<SelectQuery> {
 	 * <p>
 	 * NOTE: if SELECT * has been specified (by {@link #all()} or calling
 	 * {@link #all(boolean)} with <code>true</code>), that will take precedence
-	 * over specified expressions when converting to string via
-	 * {@link #getQueryString()}
+	 * over specified expressions when converting to string via {@link #getQueryString()}
 	 * 
 	 * @param projectables
 	 *            expressions to add

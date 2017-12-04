@@ -2,10 +2,10 @@ package com.anqit.spanqit.rdf;
 
 import java.util.Optional;
 
-import com.anqit.spanqit.core.SpanqitStringUtils;
+import com.anqit.spanqit.core.SpanqitUtils;
 
-import static com.anqit.spanqit.core.SpanqitStringUtils.appendQueryElementIfPresent;
-import static com.anqit.spanqit.core.SpanqitStringUtils.appendStringIfPresent;
+import static com.anqit.spanqit.core.SpanqitUtils.appendQueryElementIfPresent;
+import static com.anqit.spanqit.core.SpanqitUtils.appendStringIfPresent;
 
 /**
  * Denotes an RDF literal
@@ -87,9 +87,9 @@ public abstract class RdfLiteral<T> implements RdfValue {
 			StringBuilder literal = new StringBuilder();
 			
 			if(value.contains("'") || value.contains("\"")) {
-				literal.append(SpanqitStringUtils.getLongQuotedString(value));
+				literal.append(SpanqitUtils.getLongQuotedString(value));
 			} else {
-				literal.append(SpanqitStringUtils.getQuotedString(value));
+				literal.append(SpanqitUtils.getQuotedString(value));
 			}
 			
 			appendQueryElementIfPresent(dataType, literal, DATATYPE_SPECIFIER, null);

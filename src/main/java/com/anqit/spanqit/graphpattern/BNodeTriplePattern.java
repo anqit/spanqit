@@ -1,8 +1,7 @@
 package com.anqit.spanqit.graphpattern;
 
 import com.anqit.spanqit.rdf.RdfBlankNode.PropertiesBlankNode;
-import com.anqit.spanqit.rdf.RdfObject;
-import com.anqit.spanqit.rdf.RdfPredicate;
+import com.anqit.spanqit.rdf.RdfPredicateObjectList;
 
 /**
  * A triple pattern formed by a property-list blank node
@@ -18,8 +17,8 @@ class BNodeTriplePattern implements TriplePattern {
 	}
 
 	@Override
-	public BNodeTriplePattern andHas(RdfPredicate predicate, RdfObject... objects) {
-		bnode.andHas(predicate, objects);
+	public BNodeTriplePattern andHas(RdfPredicateObjectList... lists) {
+		bnode.andHas(lists);
 
 		return this;
 	}

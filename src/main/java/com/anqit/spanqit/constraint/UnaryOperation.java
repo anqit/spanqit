@@ -1,6 +1,6 @@
 package com.anqit.spanqit.constraint;
 
-import com.anqit.spanqit.core.SpanqitStringUtils;
+import com.anqit.spanqit.core.SpanqitUtils;
 
 /**
  * Represents a SPARQL operation that takes exactly 1 argument
@@ -17,7 +17,7 @@ class UnaryOperation extends Operation<UnaryOperation> {
 			
 			expression.append(operator.getQueryString());
 			String op = getOperand(0).getQueryString();
-			expression.append(SpanqitStringUtils.getParenthesizedString(op));
+			expression.append(SpanqitUtils.getParenthesizedString(op));
 			
 			return expression.toString();
 		} else {

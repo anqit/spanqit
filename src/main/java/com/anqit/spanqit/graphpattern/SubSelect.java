@@ -3,7 +3,7 @@ package com.anqit.spanqit.graphpattern;
 import com.anqit.spanqit.core.Projectable;
 import com.anqit.spanqit.core.Projection;
 import com.anqit.spanqit.core.Spanqit;
-import com.anqit.spanqit.core.SpanqitStringUtils;
+import com.anqit.spanqit.core.SpanqitUtils;
 import com.anqit.spanqit.core.query.Query;
 
 /**
@@ -138,6 +138,6 @@ public class SubSelect extends Query<SubSelect> implements GraphPattern {
 		// TODO: VALUES
 		// subselect.append(values.getQueryString());
 
-		return SpanqitStringUtils.getBracedString(subSelect.toString());
+		return SpanqitUtils.getBracedString(subSelect.toString());
 	}
 }

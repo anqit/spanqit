@@ -1,7 +1,7 @@
 package com.anqit.spanqit.rdf;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,7 +17,7 @@ import com.anqit.spanqit.rdf.RdfLiteral.StringLiteral;
  */
 public class Rdf {
 	// not sure if other protocols are generally used in RDF iri's?
-	private static final List<String> IRI_PROTOCOLS = Stream.of("http://", "https://", "mailto:").collect(Collectors.toList());
+	private static final Set<String> IRI_PROTOCOLS = Stream.of("http://", "https://", "mailto:").collect(Collectors.toSet());
 
 	private Rdf() { 	}
 
@@ -61,7 +61,7 @@ public class Rdf {
 	 * @param predicate the predicate of the initial predicate-object list to populate this blank node with
 	 * @param objects the objects of the initial predicate-object list to populate this blank node with
 	 * 
-	 * @return a new {@link AnonymousBlankNode} instance
+	 * @return a new {@link PropertiesBlankNode} instance
 	 * 
 	 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#QSynBlankNodes">
 	 * 		Blank node syntax</a>

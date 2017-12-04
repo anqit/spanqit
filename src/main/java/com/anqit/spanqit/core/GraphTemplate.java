@@ -28,6 +28,18 @@ public class GraphTemplate implements QueryElement {
 		return this;
 	}
 	
+	/**
+	 * Set, rather than augment, this graph template's triples template 
+	 * @param triplesTemplate
+	 * 		the {@link TriplesTemplate} instance to set
+	 * @return this graph template
+	 */
+	public GraphTemplate construct(TriplesTemplate triplesTemplate) {
+		this.triplesTemplate = triplesTemplate;
+		
+		return this;
+	}
+	
 	@Override
 	public String getQueryString() {
 		StringBuilder graphTemplate = new StringBuilder();

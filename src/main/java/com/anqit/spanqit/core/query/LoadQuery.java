@@ -2,7 +2,7 @@ package com.anqit.spanqit.core.query;
 
 import java.util.Optional;
 
-import com.anqit.spanqit.core.SpanqitStringUtils;
+import com.anqit.spanqit.core.SpanqitUtils;
 import com.anqit.spanqit.rdf.Iri;
 
 /**
@@ -55,7 +55,7 @@ public class LoadQuery extends GraphManagementQuery<LoadQuery> {
 
 		load.append(from.getQueryString());
 
-		SpanqitStringUtils.appendQueryElementIfPresent(to, load, " " + INTO_GRAPH + " ", null);
+		SpanqitUtils.appendQueryElementIfPresent(to, load, " " + INTO_GRAPH + " ", null);
 
 		return load.toString();
 	}

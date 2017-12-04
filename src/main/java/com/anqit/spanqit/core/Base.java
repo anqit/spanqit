@@ -20,6 +20,6 @@ public class Base implements QueryElement {
 
 	@Override
 	public String getQueryString() {
-		return iri == null ? "" : BASE + iri.getQueryString();
+		return BASE + iri.getQueryString();
 	}
 }

@@ -1,5 +1,6 @@
 package com.anqit.spanqit.core.query;
 
+import com.anqit.spanqit.core.TriplesTemplate;
 import com.anqit.spanqit.graphpattern.GraphName;
 import com.anqit.spanqit.graphpattern.TriplePattern;
 
@@ -24,6 +25,17 @@ public class InsertDataQuery extends UpdateDataQuery<InsertDataQuery> {
 		return addTriples(triples);
 	}
 	
+	/**
+	 * Set this query's triples template
+	 * 
+	 * @param triplesTemplate
+	 * 		the {@link TriplesTemplate} instance to set
+	 * 
+	 * @return this instance
+	 */
+	public InsertDataQuery insertData(TriplesTemplate triplesTemplate) {
+		return setTriplesTemplate(triplesTemplate);
+	}
 	/**
 	 * Specify a graph to insert the data into
 	 * 
