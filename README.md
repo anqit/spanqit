@@ -12,4 +12,4 @@ Spanqit is an open source, fluent Java library to programatically create SPARQL 
 - support for more SPARQL syntax constructs like predicate-object lists in triple patterns and blank nodes
 - more convenience methods
 - some bug fixes and javadocs
- 
+Check out the updated [examples project](https://github.com/anqit/spanqit-examples) for detailed usage
