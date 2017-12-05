@@ -1,8 +1,6 @@
 package com.anqit.spanqit.rdf;
 
-import java.util.Collections;
-
-import com.anqit.spanqit.core.QueryElementCollection;
+import com.anqit.spanqit.core.StandardQueryElementCollection;
 
 /**
  * A Predicate-Object List
@@ -10,12 +8,10 @@ import com.anqit.spanqit.core.QueryElementCollection;
  * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#predObjLists">
  * 		SPARQL Predicate-Object List</a>
  */
-public class RdfPredicateObjectList extends QueryElementCollection<RdfObject> {
-	private RdfPredicate predicate;
-	
+public class RdfPredicateObjectList extends StandardQueryElementCollection<RdfObject> {
 	RdfPredicateObjectList(RdfPredicate predicate, RdfObject... objects) {
-		super(", ");
-		this.predicate = predicate;
+		super(predicate.getQueryString(), ", ");
+		printNameIfEmpty(false);
 		and(objects);
 	}
 	
@@ -27,13 +23,8 @@ public class RdfPredicateObjectList extends QueryElementCollection<RdfObject> {
 	 * @return this {@link RdfPredicateObjectList} instance
 	 */
 	public RdfPredicateObjectList and(RdfObject... objects) {
-		Collections.addAll(elements, objects);
+		addElements(objects);
 		
 		return this;
-	}
-	
-	@Override
-	public String getQueryString() {
-		return predicate.getQueryString() + " " + super.getQueryString();
 	}
 }

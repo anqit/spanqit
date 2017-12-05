@@ -18,7 +18,6 @@ import static com.anqit.spanqit.core.SpanqitUtils.appendQueryElementIfPresent;
 class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 		GraphPattern {
 	private static final String OPTIONAL = "OPTIONAL";
-//	private static final String DELIMITER = " . ";
 	private static final String GRAPH = "GRAPH ";
 	
 	private Optional<GraphName> from = Optional.empty();
@@ -30,13 +29,10 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 	}
 
 	GroupGraphPattern(boolean isOptional) {
-//		super(DELIMITER);
 		this.isOptional = isOptional;
 	}
 
 	GroupGraphPattern(GraphPattern original) {
-//		super(DELIMITER);
-
 		if (original instanceof GroupGraphPattern) {
 			copy((GroupGraphPattern) original);
 		} else if (original != null && !original.isEmpty()) {
@@ -52,9 +48,7 @@ class GroupGraphPattern extends QueryElementCollection<GraphPattern> implements
 	}
 
 	GroupGraphPattern and(GraphPattern... patterns) {
-		for (GraphPattern pattern : patterns) {
-			elements.add(pattern);
-		}
+		addElements(patterns);
 
 		return this;
 	}

@@ -1,62 +1,78 @@
 package com.anqit.spanqit.core;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Function;
 
-abstract class StandardQueryElementCollection<C extends StandardQueryElementCollection<C, T>, T extends QueryElement>
+/**
+ * A {@link QueryElementCollection} that follows a more standard way of converting to a query string
+ *
+ * @param <T>
+ * 		the type of {@link QueryElement}s in the collection
+ */
+public abstract class StandardQueryElementCollection<T extends QueryElement>
 		extends QueryElementCollection<T> {
-	private String operatorName;
-	private Function<String, String> wrapperMethod;
+	private Optional<String> operatorName = Optional.empty();
+	private Function<String, String> wrapperMethod = Function.identity();
 	
 	private boolean printBodyIfEmpty = false;
 	private boolean printNameIfEmpty = true;
 
-	StandardQueryElementCollection() {
-		this(null, null);
+	protected StandardQueryElementCollection() { }
+	
+	protected StandardQueryElementCollection(String delimeter) {
+		super(delimeter);
+	}
+
+	protected StandardQueryElementCollection(String operatorName, String delimeter) {
+		super(delimeter);
+		setOperatorName(operatorName);
 	}
 	
-	StandardQueryElementCollection(String operatorName, Function<String, String> wrapperMethod) {
+	protected StandardQueryElementCollection(String delimeter, Collection<T> collection) {
+		super(delimeter, collection);
+	}
+	
+	protected StandardQueryElementCollection(String operatorName, Function<String, String> wrapperMethod) {
 		super();
-		initialize(operatorName, wrapperMethod);
+		setOperatorName(operatorName);
+		setWrapperMethod(wrapperMethod);
 	}
 
-	StandardQueryElementCollection(String operatorName, String delimiter, Collection<T> collection) {
+	protected StandardQueryElementCollection(String operatorName, String delimiter, Collection<T> collection) {
 		super(delimiter, collection);
-		initialize(operatorName, null);
+		setOperatorName(operatorName);
 	}
 
-	StandardQueryElementCollection(String operatorName, String delimiter, Function<String, String> wrapperMethod,
+	protected StandardQueryElementCollection(String operatorName, String delimiter, Function<String, String> wrapperMethod,
 			Collection<T> collection) {
 		super(delimiter, collection);
-		initialize(operatorName, wrapperMethod);
+		setOperatorName(operatorName);
+		setWrapperMethod(wrapperMethod);
 	}
 
-	private void initialize(String operatorName, Function<String, String> wrapperMethod) {
-		this.operatorName = Optional.ofNullable(operatorName).map(s -> s + " ").orElse("");
-		this.wrapperMethod = Optional.ofNullable(wrapperMethod).orElse(Function.identity());
+	protected void setOperatorName(String operatorName) {
+		setOperatorName(operatorName, true);
 	}
 
-	@SuppressWarnings("unchecked")
-	protected C addElements(T... queryElements) {
-		Collections.addAll(elements, queryElements);
-
-		return (C) this;
+	protected void setOperatorName(String operatorName, boolean pad) {
+		this.operatorName = Optional.of(operatorName + (pad ? " " : ""));
+	}
+	
+	protected void setWrapperMethod(Function<String, String> wrapperMethod) {
+		this.wrapperMethod = wrapperMethod;
+	}
+	
+	protected void resetWrapperMethod() {
+		this.wrapperMethod = Function.identity();
 	}
 
-	@SuppressWarnings("unchecked")
-	protected C printBodyIfEmpty(boolean printBodyIfEmpty) {
+	protected void printBodyIfEmpty(boolean printBodyIfEmpty) {
 		this.printBodyIfEmpty = printBodyIfEmpty;
-		
-		return (C) this;
 	}
 
-	@SuppressWarnings("unchecked")
-	protected C printNameIfEmpty(boolean printNameIfEmpty) {
+	protected void printNameIfEmpty(boolean printNameIfEmpty) {
 		this.printNameIfEmpty = printNameIfEmpty;
-		
-		return (C) this;
 	}
 
 	@Override
@@ -64,7 +80,7 @@ abstract class StandardQueryElementCollection<C extends StandardQueryElementColl
 		StringBuilder queryString = new StringBuilder();
 
 		if(printNameIfEmpty || !isEmpty()) {
-			queryString.append(operatorName);
+			operatorName.ifPresent(queryString::append);
 		}
 		if (printBodyIfEmpty || !isEmpty()) {
 			queryString.append(wrapperMethod.apply(super.getQueryString()));

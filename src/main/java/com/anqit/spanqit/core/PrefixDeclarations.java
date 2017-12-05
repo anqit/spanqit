@@ -7,7 +7,7 @@ package com.anqit.spanqit.core;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#prefNames">
  *      SPARQL Prefix</a>
  */
-public class PrefixDeclarations extends StandardQueryElementCollection<PrefixDeclarations, Prefix> {
+public class PrefixDeclarations extends StandardQueryElementCollection<Prefix> {
 	/**
 	 * Add prefix declarations to this collection
 	 * 
@@ -15,6 +15,8 @@ public class PrefixDeclarations extends StandardQueryElementCollection<PrefixDec
 	 * @return this
 	 */
 	public PrefixDeclarations addPrefix(Prefix... prefixes) {
-		return addElements(prefixes);
+		addElements(prefixes);
+		
+		return this;
 	}
 }

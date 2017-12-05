@@ -1,15 +1,18 @@
 package com.anqit.spanqit.core;
 
 import java.util.Collections;
+import java.util.function.Function;
 
 import com.anqit.spanqit.graphpattern.TriplePattern;
 
 /**
  * Represents a collection of triple patterns
  */
-public class TriplesTemplate extends QueryElementCollection<TriplePattern> {
+public class TriplesTemplate extends StandardQueryElementCollection<TriplePattern> {
+	private static final Function<String, String> WRAPPER = SpanqitUtils::getBracedString;
 	TriplesTemplate(TriplePattern... triples) {
 		super(" .\n");
+		setWrapperMethod(WRAPPER);
 		and(triples);
 	}
 
@@ -25,10 +28,4 @@ public class TriplesTemplate extends QueryElementCollection<TriplePattern> {
 		
 		return this;
 	}
-	
-	@Override
-	public String getQueryString() {
-		return SpanqitUtils.getBracedString(super.getQueryString());
-	}
-
 }

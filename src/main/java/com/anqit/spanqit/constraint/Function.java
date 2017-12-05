@@ -15,14 +15,6 @@ class Function extends Expression<Function> {
 	Function(SparqlFunction function) {
 		super(function, ", ");
 		parenthesize();
-	}
-
-	@Override
-	public String getQueryString() {
-		StringBuilder function = new StringBuilder();
-
-		function.append(operator.getQueryString()).append(super.getQueryString());
-
-		return function.toString();
+		setOperatorName(operator.getQueryString(), false);
 	}
 }

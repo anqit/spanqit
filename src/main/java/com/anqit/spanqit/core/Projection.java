@@ -17,13 +17,9 @@ public class Projection extends QueryElementCollection<Projectable> {
 	private boolean isDistinct, selectAll;
 
 	Projection() {
-		this(false);
-	}
-
-	Projection(boolean isDistinct) {
 		super(DELIMETER, new ArrayList<Projectable>());
 		all(false);
-		distinct(isDistinct);
+		distinct(false);
 	}
 
 	/**
@@ -94,9 +90,7 @@ public class Projection extends QueryElementCollection<Projectable> {
 	 * @return this
 	 */
 	public Projection select(Projectable... projectables) {
-		for (Projectable variable : projectables) {
-			elements.add(variable);
-		}
+		addElements(projectables);
 
 		return this;
 	}
@@ -104,15 +98,15 @@ public class Projection extends QueryElementCollection<Projectable> {
 	@Override
 	public String getQueryString() {
 		StringBuilder selectStatement = new StringBuilder();
-		selectStatement.append(SELECT).append(DELIMETER);
-
-		if (isDistinct) {
-			selectStatement.append(DISTINCT).append(DELIMETER);
-		}
+		selectStatement.append(SELECT).append(" ");
 
 		if (selectAll || isEmpty()) {
-			selectStatement.append("*").append(DELIMETER);
-		} else {
+			selectStatement.append("*").append(" ");
+		} else {	
+			if (isDistinct) {
+				selectStatement.append(DISTINCT).append(" ");
+			}
+	
 			selectStatement.append(super.getQueryString());
 		}
 

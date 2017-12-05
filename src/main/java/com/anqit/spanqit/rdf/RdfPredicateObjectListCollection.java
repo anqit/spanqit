@@ -1,7 +1,5 @@
 package com.anqit.spanqit.rdf;
 
-import java.util.Collections;
-
 import com.anqit.spanqit.core.QueryElementCollection;
 
 /**
@@ -38,7 +36,7 @@ public class RdfPredicateObjectListCollection extends QueryElementCollection<Rdf
 	 * @return this instance
 	 */
 	public RdfPredicateObjectListCollection andHas(RdfPredicateObjectList... lists) {
-		Collections.addAll(elements, lists);
+		addElements(lists);
 		
 		return this;
 	}

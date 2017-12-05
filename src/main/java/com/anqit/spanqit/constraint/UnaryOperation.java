@@ -8,20 +8,7 @@ import com.anqit.spanqit.core.SpanqitUtils;
 class UnaryOperation extends Operation<UnaryOperation> {
 	UnaryOperation(UnaryOperator operator) {
 		super(operator, 1);
-	}
-
-	@Override
-	public String getQueryString() {
-		if(isAtOperatorLimit()) {
-			StringBuilder expression = new StringBuilder();
-			
-			expression.append(operator.getQueryString());
-			String op = getOperand(0).getQueryString();
-			expression.append(SpanqitUtils.getParenthesizedString(op));
-			
-			return expression.toString();
-		} else {
-			return "";
-		}
+		setOperatorName(operator.getQueryString(), false);
+		setWrapperMethod(SpanqitUtils::getParenthesizedString);
 	}
 }

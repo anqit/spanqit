@@ -1,7 +1,10 @@
 package com.anqit.spanqit.core;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -10,23 +13,21 @@ import java.util.stream.Collectors;
  * Would have loved to have avoided making this public.
  *
  * @param <T>
- *            the type of elements in the collection
+ *            the type of {@link QueryElement}s in the collection
  */
 public abstract class QueryElementCollection<T extends QueryElement> implements QueryElement {
-	protected Collection<T> elements;
-	private String delimeter;
+	protected Collection<T> elements = new HashSet<T>();
+	private String delimeter = "\n";
 
-	protected QueryElementCollection() {
-		this("\n");
-	}
+	protected QueryElementCollection() { }
 
 	protected QueryElementCollection(String delimeter) {
-		this(delimeter, new HashSet<T>());
+		this.delimeter = delimeter;
 	}
 
 	protected QueryElementCollection(String delimeter, Collection<T> elements) {
-		this.elements = elements;
 		this.delimeter = delimeter;
+		this.elements = elements;
 	}
 
 	/**
@@ -34,6 +35,16 @@ public abstract class QueryElementCollection<T extends QueryElement> implements 
 	 */
 	public boolean isEmpty() {
 		return elements.isEmpty();
+	}
+
+	@SuppressWarnings("unchecked")
+	protected void addElements(T... queryElements) {
+		Collections.addAll(elements, queryElements);
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected <O> void addElements(Function<O, T> mapper, O... elements) {
+		addElements((T[]) Arrays.stream(elements).map(mapper).toArray());
 	}
 
 	@Override

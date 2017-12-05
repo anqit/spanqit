@@ -33,9 +33,7 @@ class AlternativeGraphPattern extends QueryElementCollection<GroupGraphPattern>
 	}
 
 	AlternativeGraphPattern union(GraphPattern... patterns) {
-		for (GraphPattern pattern : patterns) {
-			elements.add(new GroupGraphPattern(pattern));
-		}
+		addElements(GroupGraphPattern::new, patterns);
 
 		return this;
 	}

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#modOrderBy">
  *      SPARQL Order By Clause</a>
  */
-public class OrderBy extends StandardQueryElementCollection<OrderBy, Orderable> {
+public class OrderBy extends StandardQueryElementCollection<Orderable> {
 	private static final String ORDER_BY = "ORDER BY";
 	private static final String DELIMETER = " ";
 
@@ -26,6 +26,8 @@ public class OrderBy extends StandardQueryElementCollection<OrderBy, Orderable> 
 	 * @return this
 	 */
 	public OrderBy by(Orderable... conditions) {
-		return addElements(conditions);
+		addElements(conditions);
+		
+		return this;
 	}
 }

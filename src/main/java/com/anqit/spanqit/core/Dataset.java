@@ -1,7 +1,5 @@
 package com.anqit.spanqit.core;
 
-import java.util.Arrays;
-
 import com.anqit.spanqit.rdf.Iri;
 
 /**
@@ -11,7 +9,7 @@ import com.anqit.spanqit.rdf.Iri;
  *      href="http://www.w3.org/TR/2013/REC-sparql11-query-20130321/#rdfDataset">
  *      RDF Datasets</a>
  */
-public class Dataset extends StandardQueryElementCollection<Dataset, From> {
+public class Dataset extends StandardQueryElementCollection<From> {
 	/**
 	 * Add graph references to this dataset
 	 * 
@@ -20,7 +18,9 @@ public class Dataset extends StandardQueryElementCollection<Dataset, From> {
 	 * @return this object
 	 */
 	public Dataset from(From... graphs) {
-		return addElements(graphs);
+		addElements(graphs);
+
+		return this;
 	}
 
 	/**
@@ -30,6 +30,8 @@ public class Dataset extends StandardQueryElementCollection<Dataset, From> {
 	 * @return this
 	 */
 	public Dataset from(Iri... iris) {
-		return from(Arrays.stream(iris).map(Spanqit::from).toArray(From[]::new));
+		addElements(Spanqit::from, iris);
+
+		return this;
 	}
 }

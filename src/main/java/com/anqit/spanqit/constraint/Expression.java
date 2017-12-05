@@ -1,12 +1,13 @@
 package com.anqit.spanqit.constraint;
 
 import java.util.ArrayList;
+import java.util.function.Function;
 
 import com.anqit.spanqit.core.Assignable;
 import com.anqit.spanqit.core.Groupable;
 import com.anqit.spanqit.core.Orderable;
-import com.anqit.spanqit.core.QueryElementCollection;
 import com.anqit.spanqit.core.SpanqitUtils;
+import com.anqit.spanqit.core.StandardQueryElementCollection;
 
 /**
  * A SPARQL expression. Used by filters, having clauses, order and group by
@@ -36,10 +37,11 @@ import com.anqit.spanqit.core.SpanqitUtils;
  *      SPARQL Assignments</a>
  */
 public abstract class Expression<T extends Expression<T>> extends
-		QueryElementCollection<Operand> implements Operand,
+		StandardQueryElementCollection<Operand> implements Operand,
 		Orderable, Groupable, Assignable {
+	private static final Function<String, String> WRAPPER = SpanqitUtils::getParenthesizedString;
+	
 	protected SparqlOperator operator;
-	private boolean parenthesize;
 
 	Expression(SparqlOperator operator) {
 		this(operator, " " + operator.getQueryString() + " ");
@@ -53,9 +55,7 @@ public abstract class Expression<T extends Expression<T>> extends
 
 	@SuppressWarnings("unchecked")
 	T addOperand(Operand... operands) {
-		for (Operand operand : operands) {
-			elements.add(operand);
-		}
+		addElements(operands);
 
 		return (T) this;
 	}
@@ -79,19 +79,16 @@ public abstract class Expression<T extends Expression<T>> extends
 	 */
 	@SuppressWarnings("unchecked")
 	public T parenthesize(boolean parenthesize) {
-		this.parenthesize = parenthesize;
+		if(parenthesize) {
+			setWrapperMethod(WRAPPER);
+		} else {
+			resetWrapperMethod();
+		}
 		
 		return (T) this;
 	}
 	
 	Operand getOperand(int index) {
 		return ((ArrayList<Operand>) elements).get(index);
-	}
-	
-	@Override
-	public String getQueryString() {
-		String queryString = super.getQueryString();
-		
-		return parenthesize ? SpanqitUtils.getParenthesizedString(queryString) : queryString;
 	}
 }
