@@ -3,6 +3,7 @@ package com.anqit.spanqit.core;
 import java.util.Collections;
 
 import com.anqit.spanqit.graphpattern.TriplePattern;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * Represents a collection of triple patterns

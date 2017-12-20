@@ -1,6 +1,6 @@
 package com.anqit.spanqit.constraint;
 
-import com.anqit.spanqit.core.SpanqitUtils;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * A SPARQL aggregate expression. 

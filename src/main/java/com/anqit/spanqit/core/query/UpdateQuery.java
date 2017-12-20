@@ -1,6 +1,6 @@
 package com.anqit.spanqit.core.query;
 
-import static com.anqit.spanqit.core.SpanqitUtils.getOrCreateAndModifyOptional;
+import static com.anqit.spanqit.util.SpanqitUtils.getOrCreateAndModifyOptional;
 
 import java.util.Optional;
 
@@ -9,10 +9,10 @@ import com.anqit.spanqit.core.Prefix;
 import com.anqit.spanqit.core.PrefixDeclarations;
 import com.anqit.spanqit.core.QueryElement;
 import com.anqit.spanqit.core.Spanqit;
-import com.anqit.spanqit.core.SpanqitUtils;
 import com.anqit.spanqit.core.TriplesTemplate;
 import com.anqit.spanqit.graphpattern.GraphName;
 import com.anqit.spanqit.rdf.Iri;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * A SPARQL Update query
@@ -99,6 +99,6 @@ abstract class UpdateQuery<T extends UpdateQuery<T>> implements QueryElement {
 	protected void appendNamedTriplesTemplates(StringBuilder queryString, Optional<GraphName> graphName, TriplesTemplate triples) {
 		queryString.append(graphName.map(graph ->
 				SpanqitUtils.getBracedString("GRAPH " + graph.getQueryString() + " " + triples.getQueryString()))
-			.orElseGet(() ->triples.getQueryString()));
+			.orElseGet(triples::getQueryString));
 	}
 }

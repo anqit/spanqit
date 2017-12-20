@@ -98,19 +98,27 @@ public abstract class DestinationSourceManagementQuery<T extends DestinationSour
 		
 		appendSilent(query);
 		
-		if(fromDefault) {
-			query.append(DEFAULT);
-		} else {
-			query.append(from.map(Iri::getQueryString).orElse(DEFAULT));
-		}
+//		if(fromDefault) {
+//			query.append(DEFAULT);
+//		} else {
+//			query.append(from.map(Iri::getQueryString).orElse(DEFAULT));
+//		}
+		
+		query.append(from.filter(f -> !fromDefault)
+				.map(Iri::getQueryString)
+				.orElse(DEFAULT));
 		
 		query.append(" ").append(TO).append(" ");
 		
-		if(toDefault) {
-			query.append(DEFAULT);
-		} else {
-			query.append(to.map(Iri::getQueryString).orElse(DEFAULT));
-		}
+		query.append(to.filter(t -> !toDefault)
+				.map(Iri::getQueryString)
+				.orElse(DEFAULT));
+
+//		if(toDefault) {
+//			query.append(DEFAULT);
+//		} else {
+//			query.append(to.map(Iri::getQueryString).orElse(DEFAULT));
+//		}
 		
 		return query.toString();
 	}

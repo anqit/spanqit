@@ -6,7 +6,7 @@ import com.anqit.spanqit.core.Assignable;
 import com.anqit.spanqit.core.Groupable;
 import com.anqit.spanqit.core.Orderable;
 import com.anqit.spanqit.core.QueryElementCollection;
-import com.anqit.spanqit.core.SpanqitUtils;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * A SPARQL expression. Used by filters, having clauses, order and group by

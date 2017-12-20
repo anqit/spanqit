@@ -2,8 +2,8 @@ package com.anqit.spanqit.core.query;
 
 import java.util.Optional;
 
-import com.anqit.spanqit.core.SpanqitUtils;
 import com.anqit.spanqit.rdf.Iri;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * A SPARQL LOAD Query

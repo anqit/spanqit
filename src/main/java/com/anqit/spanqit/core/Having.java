@@ -3,6 +3,7 @@ package com.anqit.spanqit.core;
 import java.util.ArrayList;
 
 import com.anqit.spanqit.constraint.Expression;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * A SPARQL Having clause
