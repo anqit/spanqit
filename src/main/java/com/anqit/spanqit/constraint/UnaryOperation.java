@@ -1,6 +1,6 @@
 package com.anqit.spanqit.constraint;
 
-import com.anqit.spanqit.core.SpanqitUtils;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * Represents a SPARQL operation that takes exactly 1 argument

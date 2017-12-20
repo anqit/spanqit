@@ -1,7 +1,7 @@
 package com.anqit.spanqit.core.query;
 
-import static com.anqit.spanqit.core.SpanqitUtils.appendAndNewlineIfPresent;
-import static com.anqit.spanqit.core.SpanqitUtils.getOrCreateAndModifyOptional;
+import static com.anqit.spanqit.util.SpanqitUtils.appendAndNewlineIfPresent;
+import static com.anqit.spanqit.util.SpanqitUtils.getOrCreateAndModifyOptional;
 
 import java.util.Optional;
 

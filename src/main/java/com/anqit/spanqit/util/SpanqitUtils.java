@@ -1,8 +1,10 @@
-package com.anqit.spanqit.core;
+package com.anqit.spanqit.util;
 
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
+
+import com.anqit.spanqit.core.QueryElement;
 
 @SuppressWarnings("javadoc")
 public class SpanqitUtils {

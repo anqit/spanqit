@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import com.anqit.spanqit.constraint.Expression;
 import com.anqit.spanqit.core.QueryElement;
-import com.anqit.spanqit.core.SpanqitUtils;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * A SPARQL Filter Clause

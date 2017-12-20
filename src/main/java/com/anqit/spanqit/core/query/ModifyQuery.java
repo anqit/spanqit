@@ -1,5 +1,7 @@
 package com.anqit.spanqit.core.query;
 
+import static com.anqit.spanqit.util.SpanqitUtils.getOrCreateAndModifyOptional;
+
 import java.util.Optional;
 
 import com.anqit.spanqit.core.QueryPattern;
@@ -9,8 +11,6 @@ import com.anqit.spanqit.graphpattern.GraphName;
 import com.anqit.spanqit.graphpattern.GraphPattern;
 import com.anqit.spanqit.graphpattern.TriplePattern;
 import com.anqit.spanqit.rdf.Iri;
-
-import static com.anqit.spanqit.core.SpanqitUtils.getOrCreateAndModifyOptional;
 
 /**
  * The SPARQL Modify Queries

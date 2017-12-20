@@ -3,8 +3,8 @@ package com.anqit.spanqit.graphpattern;
 import com.anqit.spanqit.core.Projectable;
 import com.anqit.spanqit.core.Projection;
 import com.anqit.spanqit.core.Spanqit;
-import com.anqit.spanqit.core.SpanqitUtils;
 import com.anqit.spanqit.core.query.Query;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * A SPARQL subquery

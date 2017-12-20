@@ -1,12 +1,13 @@
 package com.anqit.spanqit.graphpattern;
 
+import static com.anqit.spanqit.util.SpanqitUtils.appendQueryElementIfPresent;
+
+import java.util.Arrays;
 import java.util.Optional;
 
 import com.anqit.spanqit.constraint.Expression;
 import com.anqit.spanqit.core.QueryElementCollection;
-import com.anqit.spanqit.core.SpanqitUtils;
-
-import static com.anqit.spanqit.core.SpanqitUtils.appendQueryElementIfPresent;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * A SPARQL Group Graph Pattern

@@ -1,5 +1,7 @@
 package com.anqit.spanqit.core;
 
+import com.anqit.spanqit.util.SpanqitUtils;
+
 /**
  * A SPARQL expression-to-variable assignment
  * 

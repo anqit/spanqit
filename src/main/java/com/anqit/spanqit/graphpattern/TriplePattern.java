@@ -94,4 +94,28 @@ public interface TriplePattern extends GraphPattern {
 	default TriplePattern andIsA(RdfObject object) {
 		return andHas(RdfPredicate.a, object);
 	}
+	
+	/**
+	 * Create a group graph pattern containing this triple pattern and the given graph patterns
+	 * 
+	 * @param graphPatterns
+	 * 		other {@link GraphPattern}s to add to the group graph pattern
+	 * @return
+	 * 		a new {@link GraphPatternNotTriple}
+	 */
+	default GraphPatternNotTriple and(GraphPattern... graphPatterns) {
+		return GraphPatterns.and(this).and(graphPatterns);
+	}
+	
+	/**
+	 * Create an alternative graph pattern containing this triple unioned with the given graph patterns
+	 * 
+	 * @param graphPatterns
+	 * 		other {@link GraphPattern}s to add to the alternative graph pattern
+	 * @return
+	 * 		a new {@link GraphPatternNotTriple}
+	 */
+	default GraphPatternNotTriple union(GraphPattern... graphPatterns) {
+		return GraphPatterns.union(this).union(graphPatterns);
+	}
 }

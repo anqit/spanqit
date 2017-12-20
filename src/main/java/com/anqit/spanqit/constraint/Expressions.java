@@ -636,18 +636,30 @@ public class Expressions {
 	 */
 	
 	/**
+	 * {@code avg(...)}
 	 * 
 	 * @param operand
+	 * 		the expression to average
 	 * @return
+	 * 		an avg aggregate function
+	 * 
+	 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#aggregates">
+	 * 		SPARQL aggregates</a>
 	 */
 	public static Aggregate avg(Operand operand) {
 		return new Aggregate(SparqlAggregate.AVG).addOperand(operand);
 	}
 	
 	/**
+	 * {@code count()}
 	 * 
 	 * @param operand
+	 * 		the expression to count
 	 * @return
+	 * 		a count aggregate
+	 *
+	 * @see <a href="https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#aggregates">
+	 * 		SPARQL aggregates</a>
 	 */
 	public static Aggregate count(Operand operand) {
 		return new Aggregate(SparqlAggregate.COUNT).addOperand(operand);

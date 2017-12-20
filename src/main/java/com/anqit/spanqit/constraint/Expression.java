@@ -6,8 +6,8 @@ import java.util.function.Function;
 import com.anqit.spanqit.core.Assignable;
 import com.anqit.spanqit.core.Groupable;
 import com.anqit.spanqit.core.Orderable;
-import com.anqit.spanqit.core.SpanqitUtils;
 import com.anqit.spanqit.core.StandardQueryElementCollection;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * A SPARQL expression. Used by filters, having clauses, order and group by
@@ -40,7 +40,7 @@ public abstract class Expression<T extends Expression<T>> extends
 		StandardQueryElementCollection<Operand> implements Operand,
 		Orderable, Groupable, Assignable {
 	private static final Function<String, String> WRAPPER = SpanqitUtils::getParenthesizedString;
-	
+
 	protected SparqlOperator operator;
 
 	Expression(SparqlOperator operator) {

@@ -1,11 +1,11 @@
 package com.anqit.spanqit.rdf;
 
+import static com.anqit.spanqit.util.SpanqitUtils.appendQueryElementIfPresent;
+import static com.anqit.spanqit.util.SpanqitUtils.appendStringIfPresent;
+
 import java.util.Optional;
 
-import com.anqit.spanqit.core.SpanqitUtils;
-
-import static com.anqit.spanqit.core.SpanqitUtils.appendQueryElementIfPresent;
-import static com.anqit.spanqit.core.SpanqitUtils.appendStringIfPresent;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * Denotes an RDF literal

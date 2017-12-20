@@ -1,8 +1,8 @@
 package com.anqit.spanqit.rdf;
 
-import com.anqit.spanqit.core.SpanqitUtils;
 import com.anqit.spanqit.graphpattern.GraphPatterns;
 import com.anqit.spanqit.graphpattern.TriplePattern;
+import com.anqit.spanqit.util.SpanqitUtils;
 
 /**
  * Denotes an RDF Blank Node

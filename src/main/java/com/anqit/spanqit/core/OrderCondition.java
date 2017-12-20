@@ -1,5 +1,7 @@
 package com.anqit.spanqit.core;
 
+import com.anqit.spanqit.util.SpanqitUtils;
+
 /**
  * An ascending or descending order condition
  * 
