@@ -2,7 +2,7 @@
 
 ***
 ## Exciting update!
-Spanqit has been merged into the Eclipse Foundation project [rdf4j](http://rdf4j.org/)! As such, further development will continue there. Check out links to [docs](http://docs.rdf4j.org/sparqlbuilder/) and the [source code](https://github.com/eclipse/rdf4j/tree/master/sparqlbuilder)
+Spanqit has been merged into the Eclipse Foundation project [rdf4j](http://rdf4j.org/)! As such, further development will continue there first, and perhaps backported here. Check out links to [docs](http://docs.rdf4j.org/sparqlbuilder/) and the [source code](https://github.com/eclipse/rdf4j/tree/master/sparqlbuilder)
 ***
 
 
